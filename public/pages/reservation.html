@@ -1,0 +1,125 @@
+<div ng-controller="customerCtrl">
+	<table class="table">
+		<tr>
+			<td>
+				<div class="input-group">
+					<span class="input-group-addon">
+							<i class="glyphicon glyphicon-search"></i>
+							</span>
+
+					<input type="text" ng-model="searchName" class="form-control" my-enter=search() placeholder="Search restaurants by name, location, cuisine"
+					/>
+
+				</div>
+			</td>
+
+		</tr>
+	</table>
+
+	<div class="col-md-6 col-sm-12">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3>Search Results</h3>
+			</div>
+			<div class="panel-body">
+				<table class="table">
+					<tr ng-repeat="result in searchedResults">
+						<td>
+							<h4>{{result.name}}
+								<span> <small> ({{result.address}}) <small></span>
+							</h4>
+							<h6>{{result.cuisine}}</h6>
+							<b> People said about it </b>
+							<ul>
+								<li ng-repeat="rev in result.reviews" style="list-style: none;">
+									{{rev.name}} {{rev.reviews}}
+								</li>
+							</ul>
+						</td>
+						<td align="right">
+							<button class="btn btn-primary" ng-click=getReview(result)>Book</button> &nbsp; &nbsp;
+							<button class="btn btn-warning" ng-click=getReview(result)>Review</button>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+	</div>
+
+	<!-- Add Review Section-->
+	<div class="col-md-6 col-sm-12">
+		<div class="panel panel-warning">
+			<div class="panel-heading">
+				<h3>Review {{' for '+ reviewRestaurant}}</h3>
+			</div>
+			<div class="panel-body">
+				<table class="table no-border">
+					<tr>
+						<td class="no-border"><b>Name</b> </td>
+						<td class="no-border"> <input type="text" ng-model="reviewerName" />
+						</td>
+					</tr>
+					<tr>
+						<td class="no-border">
+							<b> Review </b>
+						</td>
+						<td class="no-border">
+							<input type="text" ng-model="review" />
+
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" class="no-border">
+							<button class="btn btn-success" ng-click="submitReview()">Submit</button>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+		<!-- Booking Section-->
+		<div class="panel panel-success">
+			<div class="panel-heading">
+				<h3>Booking {{' for '+ reviewRestaurant}}</h3>
+			</div>
+			<div class="panel-body">
+				
+				<table class="table">
+					<tr><th colspan="3">Current Bookings are</th></tr>
+					<tr>
+						<th>Table</th>
+						<th>Booking Date</th>
+					</tr>
+					<tr ng-repeat="booking in bookings">
+						<td class="no-border">{{booking.name}}</td>
+						<td class="no-border">{{booking.date | date: "dd/MM/y hh:mm:ss a"}}</td>
+						<td class="no-border">
+							<button class="btn btn-danger" ng-click="cancelBooking($index)">Cancel</button>
+						</td>
+					</tr>
+				</table>
+				<table class="" style="border:0px solid #ccc;">
+					<tr>
+						<td>Table
+							<input type="text" ng-model="tableName" /> <br/>
+						</td>
+
+
+						<td align="center">
+							<button class="btn btn-primary" ng-click="bookTable()">Book</button>
+
+						</td>
+					</tr>
+				</table>
+				<table class="table no-border">
+					<tr>
+						<td class="no-border">
+							<button class="btn btn-success" ng-click="updateBookings()">Save</button>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

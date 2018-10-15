@@ -1,0 +1,8 @@
+body {
+ font-family: Arial;
+ font-size: 10pt;
+}
+
+.no-border {
+	border: 1px solid #fff !important;
+}
