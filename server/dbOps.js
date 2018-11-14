@@ -47,8 +47,10 @@ let makeGetRestaurants = async (db, req, res, client, output) => {
 	if (item) {
 		query = {
 			$or: [
-				{ "name": { $regex: `${item}` } },
-				{ "locality": { $regex: `${item}` } }
+				{ "name": { $regex: `${item}`, $options: '-i' } },
+				{ "locality": { $regex: `${item}`, $options: '-i' } },
+				{ "address": { $regex: `${item}`, $options: '-i' } },
+
 			]
 		}
 	}
