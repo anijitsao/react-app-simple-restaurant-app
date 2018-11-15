@@ -5,7 +5,7 @@ const ObjectId = mongodb.ObjectID
 
 const URI_TO_CONNECT_MONGODB = "mongodb+srv://root:root123@anijitsmongo-mwm6l.mongodb.net/allapps";
 const DB_NAME = "allapps"
-const COLLECTION_USER_STICKER = "restaurants"
+const COLLECTION_RESTAURANTS = "restaurants"
 
 // this function will connect db and based on API send response
 let connectDbAndRunQueries = async (apiName, req, res) => {
@@ -42,9 +42,11 @@ let chooseApiAndSendResponse = (apiName, db, req, res, client, output) => {
 let makeGetRestaurants = async (db, req, res, client, output) => {
 	console.log('query parameters', req.params.item)
 	let { item } = req.params
+	let { body } = req
 	let query = {}
 
 	if (item) {
+		// if searched from the search box
 		query = {
 			$or: [
 				{ "name": { $regex: `${item}`, $options: 'i' } },
@@ -53,13 +55,22 @@ let makeGetRestaurants = async (db, req, res, client, output) => {
 				{ "cuisines": { $elemMatch: { $regex: `${item}`, $options: 'i' } } }
 			]
 		}
+	} else if (body) {
+		// if clicked from the list of restaurants
+
+		let keys = Object.keys(body)
+		console.log('body of the req is', body, ' having keys ', keys)
+		keys.forEach((key) => {
+			console.log('Key and its value :', key, body[key])
+			query[key] = { $regex: `${body[key]}`, $options: 'i' }
+		})
 	}
 	console.log('Query is now\n', JSON.stringify(query, null, '\t'))
 	try {
 
 		// db call 
 		let data = await db
-			.collection(COLLECTION_USER_STICKER)
+			.collection(COLLECTION_RESTAURANTS)
 			.find(query)
 			.toArray()
 
