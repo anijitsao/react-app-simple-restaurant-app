@@ -1,0 +1,40 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "assert": "^1.4.1",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^7.4.0",
+    "mongodb": "^2.2.36",
+    "morgan": "^1.9.1",
+    "mysql-promise": "^4.1.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "axios": "^0.18.0",
+    "babel-loader": "^8.0.4",
+    "css-loader": "^1.0.0",
+    "file-loader": "^2.0.0",
+    "mini-css-extract-plugin": "^0.4.4",
+    "prop-types": "^15.6.2",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "react-router-dom": "^4.3.1",
+    "style-loader": "^0.23.1",
+    "uuid": "^3.3.2",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2"
+  }
+}
