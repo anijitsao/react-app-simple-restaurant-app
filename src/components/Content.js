@@ -78,8 +78,11 @@ class Content extends Component {
     let { restaurants } = this.state
     return (
       <div className="content-div">
-      <SearchBar />
-      <ShowRestaurants restaurants={restaurants}/> 
+        <SearchBar 
+        searchByValue={this.searchByValue} 
+        searchTextChange={this.searchTextChange}/>
+        
+        <ShowRestaurants restaurants={restaurants}/> 
       </div>
     );
   }
