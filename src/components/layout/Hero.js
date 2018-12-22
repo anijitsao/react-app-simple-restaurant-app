@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 // components
-import SearchBar from './SearchBar'
+import SearchBar from '../search/SearchBar'
 
 class Hero extends Component {
   constructor(props) {

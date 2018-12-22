@@ -1,8 +1,8 @@
 import React from 'react';
 
 // components
-import FilterRestaurants from './FilterRestaurants'
-import ListRestaurants from './ListRestaurants'
+import FilterRestaurants from './filter/FilterRestaurants'
+import ListRestaurants from './list/ListRestaurants'
 
 const ShowRestaurants = ({restaurants}) => {
   return (

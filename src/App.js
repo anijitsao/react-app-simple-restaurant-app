@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 // components 
 import Header from './components/layout/Header';
 import Content from './components/Content';
-import Hero from './components/Hero'
+import Hero from './components/layout/Hero'
 
 
 // css

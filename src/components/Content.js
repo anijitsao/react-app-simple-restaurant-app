@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 // components
-import SearchBar from './SearchBar'
+import SearchBar from './search/SearchBar'
 import ShowRestaurants from './ShowRestaurants'
 
 // constants
