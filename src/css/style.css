@@ -184,157 +184,6 @@ input[type=text]:focus {
 }
 
 
-/* Rooms panel related styles */
-.rooms-panel {
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-
-.room-info {
-  position: relative;
-  display: grid;
-  grid-template-columns: 1fr 5fr 1fr;
-  margin-bottom: 10px;
-}
-
-.active-room {
-  background-color: #f8bcf8;
-}
-
-.room-info:hover,
-.room-info:focus {
-  background-color: #f8bcf8;
-}
-
-.room-icon-div {
-  justify-self: end;
-}
-
-.room-icon {
-  height: 50px;
-  width: 50px;
-  border-radius: 50px;
-  padding: 4px;
-}
-
-.room-name {
-  font-size: 0.9em;
-  padding: 0.6em;
-  color: #282828;
-}
-
-.last-message {
-  font-size: 0.75em;
-  color: #969494;
-}
-
-.date-info {
-  font-size: 0.65em;
-  padding: 0.9em;
-  color: #aba9a9;
-  text-align: right;
-}
-
-
-/* message panel related */
-.message-panel {
-  background-color: #f9f9f9;
-  display: grid;
-  grid-template-rows: auto 80px;
-  overflow-y: hidden;
-  overflow-x: hidden;
-}
-
-.show-messages {
-  position: relative;
-  display: grid;
-  overflow-y: auto;
-}
-
-.msg {
-  font-size: 0.7em;
-  text-align: left;
-  border: 1px solid #f9f9f9;
-  border-radius: 5px;
-  padding: 1em;
-  margin: 1em;
-
-  position: relative;
-  word-wrap: break-word;
-  max-height: 100px;
-  white-space: pre-wrap;
-}
-
-.room-msg {
-  background-color: #efeded;
-}
-
-
-.room-msg::before {
-  content: '';
-  border-top: solid -4px transparent;
-  border-right: solid 20px #efeded;
-  border-bottom: solid 28px transparent;
-  position: absolute;
-  left: -12px;
-  width: 0;
-  height: 0;
-  top: 8px;
-}
-
-.my-msg {
-  background-color: #fed2ff;
-  justify-self: end;
-}
-
-.my-msg::after {
-  content: '';
-  border-top: solid -4px transparent;
-  border-left: solid 20px #fed2ff;
-  border-bottom: solid 28px transparent;
-  position: absolute;
-  right: -12px;
-  width: 0;
-  height: 0;
-  top: 8px;
-}
-
-.time-sent {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  padding: 1em;
-  font-size: 0.7em;
-  color: #797676;
-}
-
-/* message writing div related styles */
-.msg-write-div {
-  align-self: end;
-  padding: 1em;
-  font-size: 0.8em;
-  font-family: inherit;
-
-  border: 1px solid #ab14ab;
-  border-radius: 2px;
-
-  overflow-y: hidden;
-  height: 77px;
-}
-
-.msg-write-div:hover,
-.msg-write-div:focus {
-  /*border: 2px solid #ab14ab;*/
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
-}
-
-textarea {
-  width: 100%;
-  resize: none;
-  border: 0;
-  outline: 0;
-}
-
 /* Hero component related */
 .hero-div {
   display: grid;
@@ -484,10 +333,23 @@ a {
   font-size: 1em;
 }
 
+.filter-title {
+  text-transform: capitalize;
+}
+
 .item-info {
   display: grid;
   grid-template-columns: 2fr 1fr;
   padding: 0.4em;
   font-size: 0.8em;
   cursor: pointer;
+}
+
+.active-item {
+  color: #ab14ab;
+  font-weight: bold;
+}
+
+.active-item:hover {
+  text-decoration: line-through;
 }
