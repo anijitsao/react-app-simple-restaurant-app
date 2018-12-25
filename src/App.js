@@ -26,9 +26,7 @@ class App extends Component {
   }
 
   searchByValue(searchText) {
-
     console.log('Search text is now', searchText)
-
     this.setState({ showContent: true, searchText })
   }
 

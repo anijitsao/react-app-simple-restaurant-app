@@ -365,3 +365,15 @@ a {
 .active-item:hover {
   text-decoration: line-through;
 }
+
+
+/* Loading image related */
+.loading-div {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+}
+
+.loading-gif {
+  width: 100px;
+}

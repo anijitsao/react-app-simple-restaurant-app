@@ -41,11 +41,11 @@ class Hero extends Component {
 
     return (
       <div className="hero-div" >
-	  		<SearchBar 
-	  		searchText={searchText} 
-	  		searchTextChange={this.searchTextChange}
-	  		searchByValue={this.searchByValue}/>
-	  	</div>
+        <SearchBar
+          searchText={searchText}
+          searchTextChange={this.searchTextChange}
+          searchByValue={this.searchByValue} />
+      </div>
     );
   }
 };

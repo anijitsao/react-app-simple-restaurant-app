@@ -40,7 +40,7 @@ class FilterRestaurants extends Component {
   componentWillReceiveProps(nextProps) {
     // console.log('nextProps and current are', nextProps, this.props)
     if (this.state.modifyOriginalRestaurants == true) {
-      this.setState({ restaurants: [...nextProps.restaurants], restaurantsOrig: [...nextProps.restaurants], modifyOriginalRestaurants: false }, () => {
+      this.setState({ restaurants: [...nextProps.restaurants], restaurantsOrig: [...nextProps.restaurants] }, () => {
         this.computeFilters()
       })
 
@@ -142,6 +142,7 @@ class FilterRestaurants extends Component {
     }
 
     this.props.updateFilter(restaurantSorted)
+    this.setState({ modifyOriginalRestaurants: false })
   }
 
   // function to filter restaurants accoring to cost, establishment and locality
@@ -183,7 +184,7 @@ class FilterRestaurants extends Component {
       }
     }
 
-    this.setState({ restaurants: restaurantsFiltered }, () => {
+    this.setState({ restaurants: restaurantsFiltered, modifyOriginalRestaurants: false }, () => {
       this.computeFilters()
       // console.log('Filtered restaurants are', this.state)
       this.props.updateFilter(restaurantsFiltered)

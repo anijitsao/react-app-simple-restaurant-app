@@ -21,7 +21,8 @@ class Content extends Component {
     this.searchByValue = this.searchByValue.bind(this)
 
     this.state = {
-      restaurants: []
+      restaurants: [],
+      showLoading: false
     }
 
     this.allConstants = new Constants()
@@ -58,14 +59,17 @@ class Content extends Component {
   getRestaurants() {
     const { allConstants } = this
 
+    // set state to show the Loading icon
+    this.setState({ showLoading: true })
+
     axios({
-        method: allConstants.method.POST,
-        url: allConstants.getRestaurants.replace('{value}', this.props.searchText),
-        header: allConstants.header
-      })
+      method: allConstants.method.POST,
+      url: allConstants.getRestaurants.replace('{value}', this.props.searchText),
+      header: allConstants.header
+    })
       .then((res) => {
         console.log('Response from back end', res.data)
-
+        
         this.setState({ restaurants: [...res.data] })
       })
       .catch((err) => {
@@ -78,11 +82,12 @@ class Content extends Component {
     let { restaurants } = this.state
     return (
       <div className="content-div">
-        <SearchBar 
-        searchByValue={this.searchByValue} 
-        searchTextChange={this.searchTextChange}/>
-        
-        <ShowRestaurants restaurants={restaurants}/> 
+
+        <SearchBar
+          searchByValue={this.searchByValue}
+          searchTextChange={this.searchTextChange} />
+
+        <ShowRestaurants restaurants={restaurants} />
       </div>
     );
   }
