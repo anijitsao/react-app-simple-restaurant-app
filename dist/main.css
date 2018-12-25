@@ -85,16 +85,13 @@ input[type=text] {
 
   padding: 1.3em;
   font-size: 0.7em;
-  letter-spacing: 1px;
-  border: 1px solid #ab14ab;
-  background-color: #eee;
+  letter-spacing: 1px;  
 }
 
 input[type=password]:hover,
 input[type=text]:hover,
 input[type=password]:focus,
-input[type=text]:focus {
-  /*border-bottom: solid 2px #ab14ab;*/
+input[type=text]:focus {  
   background-color: #fff;
 }
 
@@ -185,11 +182,14 @@ input[type=text]:focus {
 
 /* Hero component related */
 .hero-div {
-  display: grid;
-  align-items: end;
-  justify-items: center;
-  background: url(http://localhost:3000/images/hero.jpg) no-repeat center;
-  height: 80vh;
+  background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0, 0, 0,0.5)), url(http://localhost:3000/images/hero.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	display: grid;
+
+	height: calc(100vh - 50px);
+	align-items: end;
+	justify-items: center;
 }
 
 /* Search bar related */
@@ -202,6 +202,11 @@ input[type=text]:focus {
   border: solid 1px #ab14ab;
   font-size: 0.7em;
 }
+.search-bar {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  grid-gap: 1em;
+}
 
 .search-btn {
   text-transform: uppercase;
@@ -209,6 +214,13 @@ input[type=text]:focus {
   margin-left: 1em;
 }
 
+.search-box {
+  background-color: #ccc;
+}
+
+.search-box:hover {
+  background-color: #fff;
+}
 
 /* Listing of all the restaurants */
 .content-div {
