@@ -356,7 +356,8 @@ a {
   cursor: pointer;
 }
 
-.active-item {
+/* both active item have same color and font */
+.active-item, .active-item-sort {
   color: #ab14ab;
   font-weight: bold;
 }

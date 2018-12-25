@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 // components
 import Filter from './Filter'
-import EstablishmentFilter from './EstablishmentFilter'
 
 const COST_CATEGORY = { low: 250, medium: 500, high: 500 }
 
@@ -13,15 +12,17 @@ class FilterRestaurants extends Component {
     this.state = {
       restaurants: [],
 
-
       establishments: {},
       locality: {},
       cost: {},
 
       sort: {
-        "Price Low to High": '',
-        "Price High to Low": '',
-        "Rating": ''
+        "inc": '',
+        "dec": '',
+        "rating": ''
+      },
+      sortFilter: {
+        "sort": 'rating'
       },
 
       currentFilter: {
@@ -39,7 +40,7 @@ class FilterRestaurants extends Component {
   componentWillReceiveProps(nextProps) {
     // console.log('nextProps and current are', nextProps, this.props)
     if (this.state.modifyOriginalRestaurants == true) {
-      this.setState({ restaurants: [...nextProps.restaurants], restaurantsOrig: [...nextProps.restaurants] }, () => {
+      this.setState({ restaurants: [...nextProps.restaurants], restaurantsOrig: [...nextProps.restaurants], modifyOriginalRestaurants: false }, () => {
         this.computeFilters()
       })
 
@@ -66,9 +67,7 @@ class FilterRestaurants extends Component {
 
       // compute different establishments count
       restaurant.establishment.forEach((establish) => {
-
         let typeOfEstablishment = establish.toLowerCase()
-
 
         // if establishment is already present increment it
         if (establishments[typeOfEstablishment]) {
@@ -96,34 +95,60 @@ class FilterRestaurants extends Component {
     let filterId = event.target.parentElement.id
     console.log('event here', filterId)
 
-    // copy the current filter from the state
-    let currentFilter = { ...this.state.currentFilter }
 
     let filterType = filterId.substring(0, filterId.indexOf('-'))
     let filterValue = filterId.substr(filterId.indexOf('-') + 1)
 
-    // if the filter is removed set it null
-    // otherwise update it accordingly
-    currentFilter[filterType] = (currentFilter[filterType] && currentFilter[filterType] == filterValue) ? '' : filterValue
+    if (filterType == 'sort') {
+      // copy the sort filter from the state
+      let sortFilter = { ...this.state.sortFilter }
+      sortFilter[filterType] = filterValue
 
-    // update the state accordingly
-    this.setState({ currentFilter, modifyOriginalRestaurants: false }, () => {
-      console.log('Current filter types are updated, Proceed to filter restaurants')
-      this.filterRestaurants(filterType, filterValue)
-    })
+      // update the state accordingly
+      this.setState({ sortFilter }, () => {
+        console.log('Sort filter applied')
+        this.sortRestaurants(filterType, filterValue)
+      })
 
-    this.markActiveFilters()
+    } else {
+
+      // copy the current filter from the state
+      let currentFilter = { ...this.state.currentFilter }
+
+      // if the filter is removed set it null
+      // otherwise update it accordingly
+      currentFilter[filterType] = (currentFilter[filterType] && currentFilter[filterType] == filterValue) ? '' : filterValue
+
+      // update the state accordingly
+      this.setState({ currentFilter }, () => {
+        console.log('Current filter types are updated, Proceed to filter restaurants')
+        this.filterRestaurants(filterType, filterValue, currentFilter)
+      })
+    }
   }
 
-  markActiveFilters() {
-    let activeFilters = []
+  sortRestaurants(filterType, filterValue) {
+    let restaurantSorted = [...this.state.restaurants]
+    switch (filterValue) {
+      case 'inc':
+        restaurantSorted = restaurantSorted.sort((a, b) => { return a.cost > b.cost })
+        break;
+      case 'dec':
+        restaurantSorted = restaurantSorted.sort((a, b) => { return a.cost < b.cost })
+        break;
+      case 'rating':
+        restaurantSorted = restaurantSorted.sort((a, b) => { return a.rating < b.rating })
+        break;
+    }
+
+    this.props.updateFilter(restaurantSorted)
   }
 
-  filterRestaurants(filterType, filterValue) {
+  // function to filter restaurants accoring to cost, establishment and locality
+  filterRestaurants(filterType, filterValue, currentFilter) {
 
     // copy the list of original restaurants saved in the state
     let restaurantsFiltered = [...this.state.restaurantsOrig]
-    let currentFilter = { ...this.state.currentFilter }
 
     if (filterType == 'establishment' && currentFilter[filterType]) {
       restaurantsFiltered = restaurantsFiltered.filter((restaurant) => {
@@ -159,9 +184,8 @@ class FilterRestaurants extends Component {
     }
 
     this.setState({ restaurants: restaurantsFiltered }, () => {
-      console.log('Restaurants are filtered, update filter count...')
       this.computeFilters()
-      console.log('Fltered restaurants are', this.state)
+      // console.log('Filtered restaurants are', this.state)
       this.props.updateFilter(restaurantsFiltered)
     })
   }
@@ -169,12 +193,12 @@ class FilterRestaurants extends Component {
   // render 
   render() {
 
-    let { cost, establishments, locality, sort, currentFilter } = this.state
+    let { cost, establishments, locality, sort, currentFilter, sortFilter } = this.state
+    currentFilter['sort'] = sortFilter['sort']
     return (
 
-
       <div className="filter-restaurants">
-        <Filter name={'sort'} items={sort} />
+        <Filter name={'sort'} items={sort} applyFilter={this.applyFilter} currentFilter={currentFilter} />
 
         <Filter name={'cost'} items={cost} applyFilter={this.applyFilter} currentFilter={currentFilter} />
         <Filter name={'establishment'} items={establishments} applyFilter={this.applyFilter} currentFilter={currentFilter} />
