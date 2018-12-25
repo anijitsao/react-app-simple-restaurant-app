@@ -72,6 +72,7 @@ let makeGetRestaurants = async (db, req, res, client, output) => {
 		let data = await db
 			.collection(COLLECTION_RESTAURANTS)
 			.find(query)
+			.sort({ rating: -1 })
 			.toArray()
 
 		output = (data.length > 0) ? [...data] : []
