@@ -4,7 +4,7 @@ let app = express()
 const morgan = require('morgan')
 
 // router
-const router = require('./routes')
+const route = require('./routes')
 
 // PORT 3000
 const PORT = 3000
@@ -14,7 +14,7 @@ app.use(morgan("dev"))
 app.use(express.static('../dist'))
 
 
-app.use('/services', router)
+app.use('/services', route)
 app.listen(PORT, () => {
 	console.log('Server is running on ', PORT)
 })

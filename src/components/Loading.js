@@ -3,7 +3,7 @@ import React from 'react'
 const Loading = (props) => {
 	return (
 		<div className="loading-div">
-			<img src="images/loading.gif" className="loading-gif"/>
+			<i className="fa fa-spinner fa-spin"></i>
 		</div>
 	);
 }

@@ -5,6 +5,7 @@ import axios from 'axios';
 // components
 import SearchBar from './search/SearchBar'
 import ShowRestaurants from './ShowRestaurants'
+import Loading from './Loading'
 
 // constants
 import Constants from './Constants'
@@ -69,8 +70,8 @@ class Content extends Component {
     })
       .then((res) => {
         console.log('Response from back end', res.data)
-        
-        this.setState({ restaurants: [...res.data] })
+
+        this.setState({ restaurants: [...res.data], showLoading: false })
       })
       .catch((err) => {
         console.log('unable to get the data', err)
@@ -79,15 +80,17 @@ class Content extends Component {
 
   render() {
 
-    let { restaurants } = this.state
+    let { restaurants, showLoading } = this.state
+    console.log('State in the Content', this.state)
+
     return (
       <div className="content-div">
 
         <SearchBar
           searchByValue={this.searchByValue}
           searchTextChange={this.searchTextChange} />
-
-        <ShowRestaurants restaurants={restaurants} />
+        {(showLoading == true) ? <Loading /> : null}
+        <ShowRestaurants showLoading={showLoading} restaurants={restaurants} />
       </div>
     );
   }

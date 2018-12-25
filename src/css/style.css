@@ -371,10 +371,17 @@ a {
 /* Loading image related */
 .loading-div {
   display: grid;
+  color: #ab14ab;
+  font-size: 4em;
   align-items: center;
   justify-items: center;
 }
 
 .loading-gif {
   width: 100px;
+}
+
+/* hide div related */
+.hide-div {
+  display: none;
 }

@@ -20,7 +20,7 @@ class ShowRestaurants extends Component {
       this.setState({ restaurants: [...nextProps.restaurants] })
     }
   }
-  
+
   updateFilter(restaurants) {
     console.log('FilterRestaurants are', restaurants)
     this.setState({ restaurants })
@@ -29,11 +29,14 @@ class ShowRestaurants extends Component {
   render() {
 
     let { restaurants } = this.state
+    let { showLoading } = this.props
+    let showRestaurantsStyle = (showLoading == true) ? "restaurants-list hide-div" : "restaurants-list"
+    
     return (
-      <div className="restaurants-list">
-    	<FilterRestaurants restaurants={restaurants} updateFilter={this.updateFilter}/>
-    	<ListRestaurants restaurants={restaurants}/>
-    </div>
+      <div className={showRestaurantsStyle}>
+        <FilterRestaurants restaurants={restaurants} updateFilter={this.updateFilter} />
+        <ListRestaurants restaurants={restaurants} />
+      </div>
     );
   }
 };
