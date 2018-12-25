@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import Filter from './Filter'
 import EstablishmentFilter from './EstablishmentFilter'
 
-const COST_CATEGORY = { low: 250, medium: 500 }
+const COST_CATEGORY = { low: 250, medium: 500, high: 500 }
 
 class FilterRestaurants extends Component {
   constructor(props) {
@@ -28,7 +28,9 @@ class FilterRestaurants extends Component {
         cost: '',
         establishment: '',
         locality: ''
-      }
+      },
+
+      modifyOriginalRestaurants: true
     }
 
     this.applyFilter = this.applyFilter.bind(this)
@@ -36,10 +38,8 @@ class FilterRestaurants extends Component {
 
   componentWillReceiveProps(nextProps) {
     // console.log('nextProps and current are', nextProps, this.props)
-
-    if (nextProps.restaurants.length != this.props.restaurants.length) {
-      this.setState({ restaurants: [...nextProps.restaurants] }, () => {
-
+    if (this.state.modifyOriginalRestaurants == true) {
+      this.setState({ restaurants: [...nextProps.restaurants], restaurantsOrig: [...nextProps.restaurants] }, () => {
         this.computeFilters()
       })
 
@@ -47,7 +47,7 @@ class FilterRestaurants extends Component {
   }
 
   computeFilters() {
-    let { restaurants } = this.state
+    let restaurants = [...this.state.restaurants]
 
     let establishments = {}
     let cost = { "low": 0, "medium": 0, "high": 0 }
@@ -102,35 +102,68 @@ class FilterRestaurants extends Component {
     let filterType = filterId.substring(0, filterId.indexOf('-'))
     let filterValue = filterId.substr(filterId.indexOf('-') + 1)
 
-    // update the current filter
-    currentFilter[filterType] = filterValue
-    let restaurantsFiltered = []
-    let restaurantsOrig = [...this.state.restaurants]
+    // if the filter is removed set it null
+    // otherwise update it accordingly
+    currentFilter[filterType] = (currentFilter[filterType] && currentFilter[filterType] == filterValue) ? '' : filterValue
 
-    if (filterType == 'establishment') {
+    // update the state accordingly
+    this.setState({ currentFilter, modifyOriginalRestaurants: false }, () => {
+      console.log('Current filter types are updated, Proceed to filter restaurants')
+      this.filterRestaurants(filterType, filterValue)
+    })
 
-      restaurantsFiltered = restaurantsOrig.filter((restaurant) => {
-        console.log('restaurant here', restaurant, ' and filter ', filterType, ' and value', filterValue)
-        return restaurant.establishment.join(',').toLowerCase().indexOf(filterValue) > -1
-      })
-    }
-
-    if (filterType == 'locality') {
-      restaurantsFiltered = restaurantsOrig.filter((restaurant) => {
-        return restaurant.locality == filterValue
-      })
-    }
-
-
-    console.log('Fltered restaurants are', restaurantsFiltered)
-    this.props.updateFilter(restaurantsFiltered)
-
-    this.setState({currentFilter})
     this.markActiveFilters()
   }
 
   markActiveFilters() {
     let activeFilters = []
+  }
+
+  filterRestaurants(filterType, filterValue) {
+
+    // copy the list of original restaurants saved in the state
+    let restaurantsFiltered = [...this.state.restaurantsOrig]
+    let currentFilter = { ...this.state.currentFilter }
+
+    if (filterType == 'establishment' && currentFilter[filterType]) {
+      restaurantsFiltered = restaurantsFiltered.filter((restaurant) => {
+        return restaurant.establishment.join(',').toLowerCase().indexOf(filterValue) > -1
+      })
+    }
+
+    if (filterType == 'locality' && currentFilter[filterType]) {
+      restaurantsFiltered = restaurantsFiltered.filter((restaurant) => {
+        return restaurant.locality == filterValue
+      })
+    }
+
+    if (filterType == 'cost' && currentFilter[filterType]) {
+      console.log('cost catergory', filterValue)
+      switch (filterValue) {
+        case 'low':
+          restaurantsFiltered = restaurantsFiltered.filter((restaurant) => {
+            return restaurant.cost < COST_CATEGORY[filterValue]
+          })
+          break;
+        case 'medium':
+          restaurantsFiltered = restaurantsFiltered.filter((restaurant) => {
+            return restaurant.cost <= COST_CATEGORY[filterValue]
+          })
+          break;
+        case 'high':
+          restaurantsFiltered = restaurantsFiltered.filter((restaurant) => {
+            return restaurant.cost > COST_CATEGORY[filterValue]
+          })
+          break;
+      }
+    }
+
+    this.setState({ restaurants: restaurantsFiltered }, () => {
+      console.log('Restaurants are filtered, update filter count...')
+      this.computeFilters()
+      console.log('Fltered restaurants are', this.state)
+      this.props.updateFilter(restaurantsFiltered)
+    })
   }
 
   // render 
@@ -141,13 +174,13 @@ class FilterRestaurants extends Component {
 
 
       <div className="filter-restaurants">
-          <Filter name={'sort'} items={sort}/>
+        <Filter name={'sort'} items={sort} />
 
-          <Filter name={'cost'} items={cost} applyFilter={this.applyFilter}  currentFilter={currentFilter}/>
-          <Filter name={'establishment'} items={establishments} applyFilter={this.applyFilter} currentFilter={currentFilter}/>
-          <Filter name={'locality'} items={locality} applyFilter={this.applyFilter} currentFilter={currentFilter}/>
+        <Filter name={'cost'} items={cost} applyFilter={this.applyFilter} currentFilter={currentFilter} />
+        <Filter name={'establishment'} items={establishments} applyFilter={this.applyFilter} currentFilter={currentFilter} />
+        <Filter name={'locality'} items={locality} applyFilter={this.applyFilter} currentFilter={currentFilter} />
 
-        </div>
+      </div>
     );
   }
 };
