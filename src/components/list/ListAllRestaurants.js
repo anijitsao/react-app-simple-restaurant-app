@@ -12,7 +12,12 @@ const ListAllRestaurants = (props) => {
 				<div key={restaurant._id} className="restaurant-info">
 					<div className="name-address">
 						<div className="logo-div">
-							<Link to={`/showrestaurant/${restaurant.name}`}><img src="images/hero.jpg" className="logo" /></Link>
+							<Link to={
+								{
+									pathname: `/showrestaurant/${restaurant._id}`,
+									restaurant
+								}
+							}><img src="images/hero.jpg" className="logo" /></Link>
 						</div>
 						<div>
 							<div className="restaurant-name">{restaurant.name}</div>
@@ -34,7 +39,7 @@ const ListAllRestaurants = (props) => {
 						</div>
 					</div>
 					<div className="book-table">Book a table </div>
-				</div>
+				</div >
 			)
 		})
 	);

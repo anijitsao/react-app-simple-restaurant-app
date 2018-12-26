@@ -5,9 +5,10 @@ import { Link } from 'react-router-dom';
 const ListEachRestaurant = (props) => {
 	console.log('Props received', props)
 	return (
-		<h1>This restaurant has id 
-			<Link to="/">click to back</Link>
-		</h1>
+		<div className="restaurant-details">
+			<Link to="/"><i className="fa fa-arrow-left"></i></Link>
+			
+		</div>
 	);
 }
 
