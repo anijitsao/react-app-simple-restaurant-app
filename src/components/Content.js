@@ -1,6 +1,7 @@
 // dependencies
 import React, { Component } from 'react';
 import axios from 'axios';
+import uuidv4 from 'uuid/v4';
 
 // components
 import SearchBar from './search/SearchBar'
@@ -23,7 +24,9 @@ class Content extends Component {
 
     this.state = {
       restaurants: [],
-      showLoading: false
+      showLoading: false,
+      modifyOrig: false,
+      responseId: ''
     }
 
     this.allConstants = new Constants()
@@ -63,15 +66,18 @@ class Content extends Component {
     // set state to show the Loading icon
     this.setState({ showLoading: true })
 
+    let searchText = (this.state.searchText && (this.props.searchText !== this.state.searchText)) ? this.state.searchText : this.props.searchText
+    console.log('search text is GETResTAURANTS: ', searchText, ' from props: ', this.props.searchText, ' And from from state: ', this.state.searchText)
+
     axios({
       method: allConstants.method.POST,
-      url: allConstants.getRestaurants.replace('{value}', this.props.searchText),
+      url: allConstants.getRestaurants.replace('{value}', searchText),
       header: allConstants.header
     })
       .then((res) => {
         console.log('Response from back end', res.data)
 
-        this.setState({ restaurants: [...res.data], showLoading: false })
+        this.setState({ restaurants: [...res.data], showLoading: false, modifyOrig: true, responseId: uuidv4() })
       })
       .catch((err) => {
         console.log('unable to get the data', err)
@@ -80,7 +86,7 @@ class Content extends Component {
 
   render() {
 
-    let { restaurants, showLoading } = this.state
+    let { restaurants, showLoading, modifyOrig, responseId } = this.state
     console.log('State in the Content', this.state)
 
     return (
@@ -90,7 +96,7 @@ class Content extends Component {
           searchByValue={this.searchByValue}
           searchTextChange={this.searchTextChange} />
         {(showLoading == true) ? <Loading /> : null}
-        <ShowRestaurants showLoading={showLoading} restaurants={restaurants} />
+        <ShowRestaurants showLoading={showLoading} restaurants={restaurants} modifyOrig={modifyOrig} responseId={responseId} />
       </div>
     );
   }

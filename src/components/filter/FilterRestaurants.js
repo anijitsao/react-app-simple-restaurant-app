@@ -31,19 +31,32 @@ class FilterRestaurants extends Component {
         locality: ''
       },
 
-      modifyOriginalRestaurants: true
+      modifyOriginalRestaurants: true,
+      responseId: this.props.responseId
+
     }
 
     this.applyFilter = this.applyFilter.bind(this)
   }
 
   componentWillReceiveProps(nextProps) {
-    // console.log('nextProps and current are', nextProps, this.props)
-    if (this.state.modifyOriginalRestaurants == true) {
+    console.log('Response IDs in FilterRestaurant', nextProps.responseId, ' and current ', this.props.responseId)
+    // if (nextProps.modifyOrig == true && (nextProps.modifyOrig != this.props.modifyOrig)) {
+    //   console.log('code comes here...New restaurant list found')
+    //   this.setState({ restaurants: [...nextProps.restaurants], restaurantsOrig: [...nextProps.restaurants] }, () => {
+    //     this.computeFilters()
+    //   })
+
+    // } else if (nextProps.modifyOrig == true && this.state.modifyOriginalRestaurants == false) {
+    //   this.setState({ restaurants: [...nextProps.restaurants], restaurantsOrig: [...nextProps.restaurants] }, () => {
+    //     this.computeFilters()
+    //   })
+    // }
+
+    if (nextProps.responseId != this.props.responseId) {
       this.setState({ restaurants: [...nextProps.restaurants], restaurantsOrig: [...nextProps.restaurants] }, () => {
         this.computeFilters()
       })
-
     }
   }
 
