@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
 // components
-import FilterRestaurants from './filter/FilterRestaurants'
-import ListRestaurants from './list/ListRestaurants'
+import FilterPanel from './filter/FilterPanel'
+import ListPanel from './list/ListPanel'
 
-class ShowRestaurants extends Component {
+class RestaurantsPanel extends Component {
 
   constructor(props) {
     super(props)
@@ -18,13 +18,7 @@ class ShowRestaurants extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('responseid from nextprops and currentProps', nextProps.responseId, ' and current ', this.props.responseId)
-    // if (nextProps.modifyOrig !== this.props.modifyOrig) {
-    //   this.setState({ restaurants: [...nextProps.restaurants], modifyOrig: true })
-    // } else if (nextProps.modifyOrig == true && this.state.modifyOrig == false) {
-    //   this.setState({ restaurants: [...nextProps.restaurants], modifyOrig: true })
-    // }
-
+    // console.log('responseid from nextprops and currentProps', nextProps.responseId, ' and current ', this.props.responseId)
     if (nextProps.responseId != this.props.responseId) {
       this.setState({ restaurants: [...nextProps.restaurants], modifyOrig: true, responseId: nextProps.responseId })
     }
@@ -44,8 +38,8 @@ class ShowRestaurants extends Component {
 
     return (
       <div className={showRestaurantsStyle}>
-        <FilterRestaurants restaurants={restaurants} updateFilter={this.updateFilter} modifyOrig={modifyOrig} responseId={responseId} />
-        <ListRestaurants restaurants={restaurants} />
+        <FilterPanel restaurants={restaurants} updateFilter={this.updateFilter} modifyOrig={modifyOrig} responseId={responseId} />
+        <ListPanel restaurants={restaurants} />        
       </div>
     );
   }
@@ -53,4 +47,4 @@ class ShowRestaurants extends Component {
 
 
 
-export default ShowRestaurants;
+export default RestaurantsPanel;

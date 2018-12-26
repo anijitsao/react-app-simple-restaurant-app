@@ -5,7 +5,7 @@ import Filter from './Filter'
 
 const COST_CATEGORY = { low: 250, medium: 500, high: 500 }
 
-class FilterRestaurants extends Component {
+class FilterPanel extends Component {
   constructor(props) {
     super(props);
 
@@ -40,18 +40,8 @@ class FilterRestaurants extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('Response IDs in FilterRestaurant', nextProps.responseId, ' and current ', this.props.responseId)
-    // if (nextProps.modifyOrig == true && (nextProps.modifyOrig != this.props.modifyOrig)) {
-    //   console.log('code comes here...New restaurant list found')
-    //   this.setState({ restaurants: [...nextProps.restaurants], restaurantsOrig: [...nextProps.restaurants] }, () => {
-    //     this.computeFilters()
-    //   })
-
-    // } else if (nextProps.modifyOrig == true && this.state.modifyOriginalRestaurants == false) {
-    //   this.setState({ restaurants: [...nextProps.restaurants], restaurantsOrig: [...nextProps.restaurants] }, () => {
-    //     this.computeFilters()
-    //   })
-    // }
+    // console.log('Response IDs in FilterRestaurant', nextProps.responseId, ' and current ', this.props.responseId)
+    
 
     if (nextProps.responseId != this.props.responseId) {
       this.setState({ restaurants: [...nextProps.restaurants], restaurantsOrig: [...nextProps.restaurants] }, () => {
@@ -225,4 +215,4 @@ class FilterRestaurants extends Component {
 
 
 
-export default FilterRestaurants;
+export default FilterPanel;

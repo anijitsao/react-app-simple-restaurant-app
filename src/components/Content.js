@@ -5,7 +5,7 @@ import uuidv4 from 'uuid/v4';
 
 // components
 import SearchBar from './search/SearchBar'
-import ShowRestaurants from './ShowRestaurants'
+import RestaurantPanel from './RestaurantPanel'
 import Loading from './Loading'
 
 // constants
@@ -30,7 +30,7 @@ class Content extends Component {
     }
 
     this.allConstants = new Constants()
-    console.log('Received props', this.props)
+    // console.log('Received props', this.props)
   }
 
 
@@ -67,7 +67,6 @@ class Content extends Component {
     this.setState({ showLoading: true })
 
     let searchText = (this.state.searchText && (this.props.searchText !== this.state.searchText)) ? this.state.searchText : this.props.searchText
-    console.log('search text is GETResTAURANTS: ', searchText, ' from props: ', this.props.searchText, ' And from from state: ', this.state.searchText)
 
     axios({
       method: allConstants.method.POST,
@@ -77,6 +76,7 @@ class Content extends Component {
       .then((res) => {
         console.log('Response from back end', res.data)
 
+        // add the response along with an unique id for each response
         this.setState({ restaurants: [...res.data], showLoading: false, modifyOrig: true, responseId: uuidv4() })
       })
       .catch((err) => {
@@ -87,7 +87,7 @@ class Content extends Component {
   render() {
 
     let { restaurants, showLoading, modifyOrig, responseId } = this.state
-    console.log('State in the Content', this.state)
+    // console.log('State in the Content', this.state)
 
     return (
       <div className="content-div">
@@ -96,7 +96,7 @@ class Content extends Component {
           searchByValue={this.searchByValue}
           searchTextChange={this.searchTextChange} />
         {(showLoading == true) ? <Loading /> : null}
-        <ShowRestaurants showLoading={showLoading} restaurants={restaurants} modifyOrig={modifyOrig} responseId={responseId} />
+        <RestaurantPanel showLoading={showLoading} restaurants={restaurants} modifyOrig={modifyOrig} responseId={responseId} />
       </div>
     );
   }

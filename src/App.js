@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BrowserRouter } from 'react-router-dom';
 
 // components 
 import Header from './components/layout/Header';
@@ -34,14 +35,16 @@ class App extends Component {
   render() {
     let { showContent, userInfo, searchByValue, searchText } = this.state
     return (
-      <div className="container">
-      { /* including the Title and other components */ }
-        <Header/>
-      { (showContent == false) 
-        ? <Hero searchByValue={this.searchByValue}/>
-        : <Content searchText={searchText} userInfo={userInfo}/> }
-      
-    </div>
+      <BrowserRouter>
+        <div className="container">
+          { /* including the Title and other components */}
+          <Header />
+          {(showContent == false)
+            ? <Hero searchByValue={this.searchByValue} />
+            : <Content searchText={searchText} userInfo={userInfo} />}
+
+        </div>
+      </BrowserRouter>
     );
   }
 }
