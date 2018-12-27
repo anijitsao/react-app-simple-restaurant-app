@@ -311,9 +311,12 @@ input[type=text]:focus {
   position: absolute;
   top: 0;
   right: 0;
-  background-color: #fbc3fb;
+  /* background-color: #fbc3fb; */
   padding: 0.6em;
   border-radius: 3px;
+  background: linear-gradient(#ba36ba, #c075d6);
+  color: #fff;
+  font-weight: bold;
 }
 
 .details-description {
@@ -384,4 +387,47 @@ a {
 /* hide div related */
 .hide-div {
   display: none;
+}
+
+/* Each restaurant info related */
+.restaurant-details {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  position: relative;
+}
+
+.restaurant-photo {
+  border-radius: 5px;
+  border: solid 1px #ddd;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(http://localhost:3000/images/hero.jpg);
+
+  margin-bottom: 8px;
+}
+
+.restaurant-name-description {
+  color: #fff;
+}
+
+
+.restaurant-description {
+  display: grid;
+  text-transform: capitalize;
+  grid-template-columns: 1fr 1fr;
+
+  background-color: #fff;
+  border-radius: 5px;
+  border: solid 1px #ddd;
+}
+
+.category-title{
+  font-size: 1.5em;
+}
+
+.category-description {
+  font-size: 0.7em;
+  color: #999;
+}
+
+.category-div {
+  padding: 1em;
 }
