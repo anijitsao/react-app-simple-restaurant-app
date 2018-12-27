@@ -1,15 +1,16 @@
 import React from 'react';
+import Parser from 'html-react-parser';
 
 const MAPPING = {
-	low: "less Than 250",
-	medium: "250 To 500",
-	high: "more Than 500",
+	low: "less Than &#8377;250",
+	medium: "&#8377;250 To &#8377;500",
+	high: "more Than &#8377;500",
 
 	inc: "Price low to high",
 	dec: "Price high to low",
 	rating: "Rating"
 }
-const CostFilter = ({ name, items, applyFilter, currentFilter }) => {
+const Filter = ({ name, items, applyFilter, currentFilter }) => {
 	const keys = Object.keys(items)
 
 	return (
@@ -18,12 +19,11 @@ const CostFilter = ({ name, items, applyFilter, currentFilter }) => {
 			{
 				keys.map((key, index) => {
 
-					let classRupee = (name == 'Cost') ? 'item-name' : 'item-name';
 					let filterClass = (currentFilter && currentFilter[name] !== key) ? "item-info" : (name == 'sort') ? "item-info active-item-sort" : "item-info active-item"
 
 					return (
 						<div key={index} id={`${name}-${key}`} className={filterClass} onClick={applyFilter}>
-							<div className={classRupee}>{(MAPPING[key]) ? MAPPING[key] : key}
+							<div className="item-name">{(MAPPING[key]) ? Parser(MAPPING[key]) : key}
 							</div>
 							<div className="item-count">{items[key]}</div>
 						</div>
@@ -36,4 +36,4 @@ const CostFilter = ({ name, items, applyFilter, currentFilter }) => {
 
 
 
-export default CostFilter;
+export default Filter;

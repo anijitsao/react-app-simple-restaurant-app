@@ -4,7 +4,11 @@ import { Link } from 'react-router-dom';
 
 const ListEachRestaurant = (props) => {
 	console.log('Props received', props)
+
 	let { restaurant } = props.location
+	let cuisines = restaurant["cuisines"].join(', ')
+	console.log("Cuisines", cuisines)
+
 	return (
 		<div className="restaurant-details">
 			<div className="restaurant-photo">
@@ -16,14 +20,17 @@ const ListEachRestaurant = (props) => {
 				<div className="restaurant-rating">{restaurant.rating}</div>
 			</div>
 			<div className="restaurant-description">
-				<div className="category-div">
-					<div className="category-title">cuisine</div>
-					<div className="category-description">{restaurant.cuisines.join(', ')}</div>
-				</div>
-				<div className="category-div">
-					<div className="category-title">address</div>
-					<div className="category-description">{restaurant.address}</div>
-				</div>
+				{
+					["cost", "address", "cuisines", "establishment"].map((ele, index) => {
+						console.log('Index here', index)
+						return (
+							<div className="category-div" key={index}>
+								<div className="category-title">{ele}</div>
+								<div className="category-description">{(Array.isArray(restaurant[ele])) ? restaurant[ele].join(', ') : restaurant[ele]}</div>
+							</div>
+						)
+					})
+				}			
 			</div>
 		</div>
 	);

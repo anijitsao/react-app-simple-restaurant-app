@@ -217,6 +217,8 @@ input[type=text]:focus {
 
 .search-box {
   background-color: #ccc;
+  border: solid 1px #ccc;
+  border-radius: 3px;
 }
 
 .search-box:hover {
@@ -227,15 +229,23 @@ input[type=text]:focus {
 .content-div {
   display: grid;
   grid-template-rows: 50px auto;
+  background-color: #fff2ff;
 }
 
+.content-div-search-bar {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+}
 
 .restaurants-list {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  background-color: #fff2ff;
+  /* background-color: #fff2ff; */
   padding: 1em;
   grid-gap: 0.9em;
+  margin-right: 5%;
+  margin-left: 5%;
 }
 
 
@@ -399,8 +409,9 @@ a {
 .restaurant-photo {
   border-radius: 5px;
   border: solid 1px #ddd;
+  
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(http://localhost:3000/images/hero.jpg);
-
+  background-size: cover;
   margin-bottom: 8px;
 }
 
@@ -420,7 +431,7 @@ a {
 }
 
 .category-title{
-  font-size: 1.5em;
+  font-size: 1.2em;
 }
 
 .category-description {

@@ -28,22 +28,34 @@ const ListAllRestaurants = (props) => {
 					</div>
 
 					<div>
-						<div className="details">
-							<div className="details-title">cuisines</div>
-							<div className="details-description">{`${restaurant.cuisines.join(', ')}`}</div>
-						</div>
-
-						<div className="details">
-							<div className="details-title">cost for two</div>
-							<div className="details-description">{restaurant.cost}</div>
-						</div>
+						{
+							["cuisines", "cost"].map((ele, index) => {
+								return (
+									<div className="details" key={index}>
+										<div className="details-title">{(ele == "cost") ? "cost for two" : ele}</div>
+										<div className="details-description">
+											{
+												(Array.isArray(restaurant[ele]) == true)
+													? restaurant[ele].join(', ')
+													:
+													<Rupee value={restaurant[ele]} />
+											}
+										</div>
+									</div>
+								)
+							})
+						}
 					</div>
-					<div className="book-table">Book a table </div>
 				</div >
 			)
 		})
 	);
 }
 
+const Rupee = ({ value }) => {
+	return (
+		<span>&#8377;{value}</span>
+	)
+}
 
 export default ListAllRestaurants

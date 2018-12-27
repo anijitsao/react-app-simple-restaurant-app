@@ -91,10 +91,11 @@ class Content extends Component {
 
     return (
       <div className="content-div">
-
-        <SearchBar
-          searchByValue={this.searchByValue}
-          searchTextChange={this.searchTextChange} />
+        <div className="content-div-search-bar">
+          <SearchBar
+            searchByValue={this.searchByValue}
+            searchTextChange={this.searchTextChange} />
+        </div>
         {(showLoading == true) ? <Loading /> : null}
         <RestaurantPanel showLoading={showLoading} restaurants={restaurants} modifyOrig={modifyOrig} responseId={responseId} />
       </div>

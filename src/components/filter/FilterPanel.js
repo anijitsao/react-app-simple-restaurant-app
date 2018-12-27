@@ -41,8 +41,7 @@ class FilterPanel extends Component {
 
   componentWillReceiveProps(nextProps) {
     // console.log('Response IDs in FilterRestaurant', nextProps.responseId, ' and current ', this.props.responseId)
-    
-
+    // console.log('Next props are ', nextProps)
     if (nextProps.responseId != this.props.responseId) {
       this.setState({ restaurants: [...nextProps.restaurants], restaurantsOrig: [...nextProps.restaurants] }, () => {
         this.computeFilters()
@@ -153,35 +152,37 @@ class FilterPanel extends Component {
 
     // copy the list of original restaurants saved in the state
     let restaurantsFiltered = [...this.state.restaurantsOrig]
+    console.log('restaurantsFiltered is now', )
 
-    if (filterType == 'establishment' && currentFilter[filterType]) {
+    // apply all the filters one by one    
+    if (currentFilter['establishment']) {
       restaurantsFiltered = restaurantsFiltered.filter((restaurant) => {
-        return restaurant.establishment.join(',').toLowerCase().indexOf(filterValue) > -1
+        return restaurant.establishment.join(',').toLowerCase().indexOf(currentFilter['establishment']) > -1
       })
     }
 
-    if (filterType == 'locality' && currentFilter[filterType]) {
+    if (currentFilter['locality']) {
       restaurantsFiltered = restaurantsFiltered.filter((restaurant) => {
-        return restaurant.locality == filterValue
+        return restaurant.locality == currentFilter['locality']
       })
     }
 
-    if (filterType == 'cost' && currentFilter[filterType]) {
-      console.log('cost catergory', filterValue)
-      switch (filterValue) {
+    if (currentFilter['cost']) {
+      // console.log('cost catergory', filterValue)
+      switch (currentFilter['cost']) {
         case 'low':
           restaurantsFiltered = restaurantsFiltered.filter((restaurant) => {
-            return restaurant.cost < COST_CATEGORY[filterValue]
+            return restaurant.cost < COST_CATEGORY[currentFilter['cost']]
           })
           break;
         case 'medium':
           restaurantsFiltered = restaurantsFiltered.filter((restaurant) => {
-            return restaurant.cost <= COST_CATEGORY[filterValue]
+            return restaurant.cost <= COST_CATEGORY[currentFilter['cost']]
           })
           break;
         case 'high':
           restaurantsFiltered = restaurantsFiltered.filter((restaurant) => {
-            return restaurant.cost > COST_CATEGORY[filterValue]
+            return restaurant.cost > COST_CATEGORY[currentFilter['cost']]
           })
           break;
       }
@@ -199,14 +200,24 @@ class FilterPanel extends Component {
 
     let { cost, establishments, locality, sort, currentFilter, sortFilter } = this.state
     currentFilter['sort'] = sortFilter['sort']
+
+    let allFilters = [
+      { name: 'sort', items: sort },
+      { name: 'cost', items: cost },
+      { name: 'establishment', items: establishments },
+      { name: 'locality', items: locality }
+    ]
+
     return (
 
       <div className="filter-restaurants">
-        <Filter name={'sort'} items={sort} applyFilter={this.applyFilter} currentFilter={currentFilter} />
-
-        <Filter name={'cost'} items={cost} applyFilter={this.applyFilter} currentFilter={currentFilter} />
-        <Filter name={'establishment'} items={establishments} applyFilter={this.applyFilter} currentFilter={currentFilter} />
-        <Filter name={'locality'} items={locality} applyFilter={this.applyFilter} currentFilter={currentFilter} />
+        {
+          allFilters.map((ele, index) => {
+            return (
+              <Filter key={index} name={ele.name} items={ele.items} applyFilter={this.applyFilter} currentFilter={currentFilter} />
+            )
+          })
+        }
 
       </div>
     );
