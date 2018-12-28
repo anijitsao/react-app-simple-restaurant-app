@@ -222,6 +222,7 @@ input[type=text] {
 .details-title {
   text-transform: uppercase;
   font-size: 0.7em;
+  color: #939393;
 }
 
 .restaurant-address {
@@ -287,6 +288,10 @@ a {
   padding: 0.4em;
   font-size: 0.8em;
   cursor: pointer;
+}
+
+.item-count {
+  color: #939393;
 }
 
 /* both active item have same color and font */
