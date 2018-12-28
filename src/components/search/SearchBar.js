@@ -10,6 +10,7 @@ const SearchBar = ({ searchText, searchTextChange, searchByValue }) => {
         onKeyPress={searchTextChange}
         onChange={searchTextChange}
         placeholder="Search restaurants by name, cuisines etc." />
+      <i className="fa fa-search search-icon"></i>
 
       <button className="btn search-btn"
         onClick={searchByValue}> search </button>

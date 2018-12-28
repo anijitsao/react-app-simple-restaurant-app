@@ -14,7 +14,7 @@ const ListEachRestaurant = (props) => {
 			<div className="restaurant-photo">
 
 				<div className="restaurant-name-description">
-					<Link to="/"><i className="fa fa-arrow-left"></i></Link>
+					<Link to="/"><i className="fa fa-arrow-left back-arrow"></i></Link>
 					{restaurant.name}
 				</div>
 				<div className="restaurant-rating">{restaurant.rating}</div>

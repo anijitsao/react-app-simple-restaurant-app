@@ -46,6 +46,15 @@ const ListAllRestaurants = (props) => {
 							})
 						}
 					</div>
+					<Link to={
+						{
+							pathname: `/showrestaurant/${restaurant._id}`,
+							restaurant
+						}
+
+					}>< div className="view-details-div">view details</div>
+					</Link>
+
 				</div >
 			)
 		})
