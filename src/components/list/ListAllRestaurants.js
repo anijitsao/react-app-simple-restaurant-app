@@ -45,7 +45,7 @@ const ListAllRestaurants = (props) => {
 					<div>
 						{
 
-							["cuisines", "cost"].map((ele, index) => {
+							["cuisines", "establishment", "cost"].map((ele, index) => {
 								return (
 									<div className="details" key={index}>
 										<div className="details-title">{(ele == "cost") ? "cost for two" : ele}</div>
