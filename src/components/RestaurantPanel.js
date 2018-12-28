@@ -39,11 +39,16 @@ class RestaurantsPanel extends Component {
     // if no restaurants found
     showRestaurantsStyle = (restaurants.length == 0) ? "restaurants-list hide-div" : "restaurants-list"
     return (
-      <div className={showRestaurantsStyle}>
-        {(restaurants.length == 0) ? "No restaurant found" : null}
-        <FilterPanel restaurants={restaurants} updateFilter={this.updateFilter} modifyOrig={modifyOrig} responseId={responseId} />
-        <ListPanel restaurants={restaurants} />
-      </div>
+      <React.Fragment>
+        {(restaurants.length == 0 && showLoading == false) ?
+          <div className="no-restaurant-div">No restaurant found</div>
+          : null
+        }
+        <div className={showRestaurantsStyle}>
+          <FilterPanel restaurants={restaurants} updateFilter={this.updateFilter} modifyOrig={modifyOrig} responseId={responseId} />
+          <ListPanel restaurants={restaurants} />
+        </div>
+      </React.Fragment>
     );
   }
 };

@@ -358,8 +358,14 @@ a {
   padding: 1em;
 }
 
+/* back arrow in the each restaurant details */
 .back-arrow {
   color: #fff;
   padding: 0.7em;
 }
 
+/* no results div */
+.no-restaurant-div {
+  align-self: center;
+  justify-self: center;
+}
