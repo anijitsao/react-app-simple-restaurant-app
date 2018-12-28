@@ -214,6 +214,9 @@ input[type=text] {
   text-transform: capitalize;
 }
 
+.underline-div:hover {
+  text-decoration: underline;
+}
 
 .details-title {
   text-transform: uppercase;

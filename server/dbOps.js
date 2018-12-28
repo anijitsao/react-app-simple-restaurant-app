@@ -62,7 +62,7 @@ let makeGetRestaurants = async (db, req, res, client, output) => {
 		console.log('body of the req is', body, ' having keys ', keys)
 		keys.forEach((key) => {
 			console.log('Key and its value :', key, body[key])
-			query[key] = { $regex: `${body[key]}`, $options: 'i' }
+			query[key] = (key == 'cost') ? parseInt(body[key]) : { $regex: `${body[key]}`, $options: 'i' }
 		})
 	}
 	console.log('Query is now\n', JSON.stringify(query, null, '\t'))

@@ -5,4 +5,4 @@ const SearchContext = React.createContext({});
 export const SearchProvider = SearchContext.Provider;
 export const SearchConsumer = SearchContext.Consumer;
 
-export default Component;
+// export default Component;

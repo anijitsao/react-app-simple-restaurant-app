@@ -30,6 +30,7 @@ class RestaurantsPanel extends Component {
     this.setState({ restaurants, modifyOrig: false })
   }
 
+
   render() {
 
     let { restaurants, modifyOrig, responseId } = this.state
@@ -46,7 +47,7 @@ class RestaurantsPanel extends Component {
         }
         <div className={showRestaurantsStyle}>
           <FilterPanel restaurants={restaurants} updateFilter={this.updateFilter} modifyOrig={modifyOrig} responseId={responseId} />
-          <ListPanel restaurants={restaurants} />
+          <ListPanel restaurants={restaurants}  />
         </div>
       </React.Fragment>
     );

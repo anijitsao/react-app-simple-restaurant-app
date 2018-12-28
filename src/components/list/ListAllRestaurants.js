@@ -1,10 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+// for parsing html content
+import Parser from 'html-react-parser';
+
+import { SearchConsumer } from '../search/SearchContext'
+
 const ListAllRestaurants = (props) => {
 	console.log('Props in ListAllRestaurant', props)
 
-	let { restaurants } = props
+	let { restaurants, searchByValue } = props
 
 	return (
 		restaurants.map((restaurant) => {
@@ -20,8 +25,18 @@ const ListAllRestaurants = (props) => {
 							}><img src="images/hero.jpg" className="logo" /></Link>
 						</div>
 						<div>
-							<div className="restaurant-name">{restaurant.name}</div>
-							<div className="restaurant-locality">{restaurant.locality}</div>
+							<SearchConsumer>
+								{
+									(context) => {
+										return (
+											<React.Fragment>
+												<div className="restaurant-name underline-div" id={`name-${restaurant.name}`} onClick={context}>{restaurant.name}</div>
+												<div className="restaurant-locality underline-div" id={`locality-${restaurant.locality}`} onClick={context}>{restaurant.locality}</div>
+											</React.Fragment>
+										)
+									}
+								}
+							</SearchConsumer>
 							<div className="restaurant-address">{restaurant.address}</div>
 							<div className="restaurant-rating">{restaurant.rating}</div>
 						</div>
@@ -29,21 +44,33 @@ const ListAllRestaurants = (props) => {
 
 					<div>
 						{
+
 							["cuisines", "cost"].map((ele, index) => {
 								return (
 									<div className="details" key={index}>
 										<div className="details-title">{(ele == "cost") ? "cost for two" : ele}</div>
-										<div className="details-description">
+										<SearchConsumer>
 											{
-												(Array.isArray(restaurant[ele]) == true)
-													? restaurant[ele].join(', ')
-													:
-													<Rupee value={restaurant[ele]} />
+												(context) => {
+													return (
+														<div className="details-description">
+															{
+																(Array.isArray(restaurant[ele]) == true)
+																	? restaurant[ele].map((value, index, valueArray) => { return <span className="underline-div" key={index} id={`${ele}-${value}`} onClick={context}>{(index != valueArray.length - 1) ? `${value}, ` : value}</span> })
+																	:
+																	<Rupee value={restaurant[ele]} searchingContext={context} />
+															}
+														</div>
+													)
+												}
+
 											}
-										</div>
+
+										</SearchConsumer>
 									</div>
 								)
 							})
+
 						}
 					</div>
 					<Link to={
@@ -61,9 +88,9 @@ const ListAllRestaurants = (props) => {
 	);
 }
 
-const Rupee = ({ value }) => {
+const Rupee = ({ value, searchingContext }) => {
 	return (
-		<span>&#8377;{value}</span>
+		<span className="underline-div" id={`cost-${value}`} onClick={searchingContext}>&#8377;{value}</span>
 	)
 }
 

@@ -5,7 +5,9 @@ import { Switch, Route, Link } from 'react-router-dom';
 import ListAllRestaurants from './ListAllRestaurants'
 import ListEachRestaurant from './ListEachRestaurant'
 
-const ListPanel = ({ restaurants }) => {
+const ListPanel = (props) => {
+  let { restaurants } = props 
+
   return (
     <div className="all-restaurants">
       <Switch>
@@ -14,7 +16,7 @@ const ListPanel = ({ restaurants }) => {
         )}>
         </Route>
         <Route path="/showrestaurant/:id" render={(props) => (
-          <ListEachRestaurant {...props} restaurants={restaurants}/>
+          <ListEachRestaurant {...props} restaurants={restaurants} />
         )}></Route>
 
       </Switch>
