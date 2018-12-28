@@ -36,10 +36,13 @@ class RestaurantsPanel extends Component {
     let { showLoading } = this.props
     let showRestaurantsStyle = (showLoading == true) ? "restaurants-list hide-div" : "restaurants-list"
 
+    // if no restaurants found
+    showRestaurantsStyle = (restaurants.length == 0) ? "restaurants-list hide-div" : "restaurants-list"
     return (
       <div className={showRestaurantsStyle}>
+        {(restaurants.length == 0) ? "No restaurant found" : null}
         <FilterPanel restaurants={restaurants} updateFilter={this.updateFilter} modifyOrig={modifyOrig} responseId={responseId} />
-        <ListPanel restaurants={restaurants} />        
+        <ListPanel restaurants={restaurants} />
       </div>
     );
   }
