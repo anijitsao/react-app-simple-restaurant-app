@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 // components
 import FilterPanel from './filter/FilterPanel'
 import ListPanel from './list/ListPanel'
+import Footer from './layout/Footer'
 
 class RestaurantsPanel extends Component {
 
@@ -39,6 +40,11 @@ class RestaurantsPanel extends Component {
 
     // if no restaurants found
     showRestaurantsStyle = (restaurants.length == 0) ? "restaurants-list hide-div" : "restaurants-list"
+
+    let showFooter = false
+    if (window.innerWidth < 500) {
+      showFooter = true
+    }
     return (
       <React.Fragment>
         {(restaurants.length == 0 && showLoading == false) ?
@@ -46,8 +52,14 @@ class RestaurantsPanel extends Component {
           : null
         }
         <div className={showRestaurantsStyle}>
-          <FilterPanel restaurants={restaurants} updateFilter={this.updateFilter} modifyOrig={modifyOrig} responseId={responseId} />
-          <ListPanel restaurants={restaurants}  />
+          {(showFooter == false) ?
+            <FilterPanel restaurants={restaurants} updateFilter={this.updateFilter} modifyOrig={modifyOrig} responseId={responseId} />
+            : null
+          }
+          <ListPanel restaurants={restaurants} />
+          {
+            (showFooter == true) ? <Footer restaurants={restaurants} updateFilter={this.updateFilter} modifyOrig={modifyOrig} responseId={responseId} /> : null
+          }
         </div>
       </React.Fragment>
     );

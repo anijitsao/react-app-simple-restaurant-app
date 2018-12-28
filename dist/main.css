@@ -377,3 +377,28 @@ a {
   align-self: center;
   justify-self: center;
 }
+
+
+/* media queries */
+@media screen and (max-width: 500px){
+  .restaurants-list { 
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 50px;
+    padding: 1em;
+    grid-gap: 0.9em;
+    margin-right: 2%;
+    margin-left: 2%;
+    height: calc(100vh - 50px);
+  }
+
+  .footer {
+    background-color: #fff;
+    align-self: end;
+    padding: 1em;
+    align-items: center;
+    justify-items: center;
+    display: grid;
+  }
+  
+}
