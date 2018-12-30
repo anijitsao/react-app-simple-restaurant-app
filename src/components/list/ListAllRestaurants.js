@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-// for parsing html content
-import Parser from 'html-react-parser';
 
 import { SearchConsumer } from '../search/SearchContext'
 

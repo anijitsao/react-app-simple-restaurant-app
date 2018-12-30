@@ -57,10 +57,9 @@ class RestaurantsPanel extends Component {
             : null
           }
           <ListPanel restaurants={restaurants} />
-          {
-            (showFooter == true) ? <Footer restaurants={restaurants} updateFilter={this.updateFilter} modifyOrig={modifyOrig} responseId={responseId} /> : null
-          }
+
         </div>
+        {(showFooter == true) ? <Footer showRestaurantsStyle={showRestaurantsStyle} restaurants={restaurants} updateFilter={this.updateFilter} modifyOrig={modifyOrig} responseId={responseId} /> : null}
       </React.Fragment>
     );
   }
