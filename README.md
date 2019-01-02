@@ -16,22 +16,15 @@ This is a *responsive web application* for viewing in both Mobile and Desktop.
 
 ## Features
 <ul>
- <li> This is Simple Chat Application </li>
+ <li> This is Simple Restaurant Application </li>
  <li> It is a Full Stack Application </li>
 </ul>
 
-- All the user details, rooms and conversations are stored in the [MongoDB Atlas](https://www.mongodb.com/cloud/atlas). This is a *free/ shared* account on [Atlas](https://www.mongodb.com/cloud/atlas). **So Please use it wisely** 
+- All the restaurant details namely *cusines, establishment type, address, locality, rating, cost for two persons* are stored in the [MongoDB Atlas](https://www.mongodb.com/cloud/atlas). This is a *free/ shared* account on [Atlas](https://www.mongodb.com/cloud/atlas). **So Please use it wisely** 
 
 <ul>
- <li>Login as well as Logout feature is added </li>
- <li>Error will be shown if the credentials are not correct</li>
-</ul>
-
-  - *for simplicity passwords are not encrypted*
-
-<ul>
- <li> Real time communication is supported using <a href="https://www.npmjs.com/package/socket.io">Socket.io</a>
- <li> Rooms with users are supported </li>
+ <li> Searching facility using <pre> locality, name </pre> and <pre> cuisines </pre> are supported
+ <li> Sorting of the searched restaurants can be done using </li>
  <li> Conversation of a specific rooms will be shown on clicking the corresponding room</li>  
 </ul>
 
