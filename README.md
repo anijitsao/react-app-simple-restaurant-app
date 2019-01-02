@@ -48,22 +48,16 @@ This is a *responsive web application* for viewing in both Mobile and Desktop.
 
 ## Installation
 
-1. Clone the repository using `git clone https://github.com/anijitsahu/react-app-simple-chat-app.git` from `Git Bash / Command Prompt`
-2. Navigate inside the directory by `cd react-app-simple-chat-app`
+1. Clone the repository using `git clone https://github.com/anijitsahu/react-app-simple-restaurant-app.git` from `Git Bash / Command Prompt`
+2. Navigate inside the directory by `cd react-app-simple-restaurant-app`
 3. Install all the necessary dependecies by using `npm install` 
 4. Navigate to the directory `cd server`
 5. Run the server by `node server.js`
-6. Open the `2` web browser and type`http://localhost:3000` in the address bar to load the application in each of them
-7. In one browser login with username `anijit` and password `anijit123`
-8. In another one login with username `jeetm` and password `jeetm76` and enjoy chatting
-
-**Test users**
-
-
-Username | Password
----    | ---
-` anijit ` | ` anijit123`
-`jeetm` | `jeetm76 `
+6. Open the web browser and type`http://localhost:3000` in the address bar to load the application 
+7. Search restaurants using `name`, `cuisines`, `locality` etc
+8. Filter the search results by `cost for 2 persons`, `establishment type` and `locality`
+9. Sort the results by `price` and `rating`
+10. View details of each restaurant by clicking `View Details` button
 
  
 *tested with <img src="screenshots/chrome.png" width="20px" title="Google Chrome">Google Chrome v70 and <img src="screenshots/firefox.png" width="25px" title="Firefox Developer edition">Mozilla Firefox Developer Editon*  
