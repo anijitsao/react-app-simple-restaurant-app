@@ -22,7 +22,7 @@ const ListEachRestaurant = (props) => {
 			<div className="restaurant-description">
 				{
 					["cost", "address", "cuisines", "establishment"].map((ele, index) => {
-						console.log('Index here', index)
+						// console.log('Index here', index)
 						return (
 							<div className="category-div" key={index}>
 								<div className="category-title">{ele}</div>

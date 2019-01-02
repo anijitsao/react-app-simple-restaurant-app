@@ -2,9 +2,11 @@ import React from 'react';
 import Parser from 'html-react-parser';
 
 const MAPPING = {
+	cost: "cost for two",
+	establishment: "establishment type",
 	low: "less Than &#8377;250",
 	medium: "&#8377;250 To &#8377;500",
-	high: "more Than &#8377;500",
+	high: "&#8377;500+",
 
 	inc: "Price low to high",
 	dec: "Price high to low",
@@ -15,7 +17,7 @@ const Filter = ({ name, items, applyFilter, currentFilter }) => {
 
 	return (
 		<div className="filter-info">
-			<div className="filter-title">{name}</div>
+			<div className="filter-title">{(MAPPING[name]) ? MAPPING[name] : name}</div>
 			{
 				keys.map((key, index) => {
 

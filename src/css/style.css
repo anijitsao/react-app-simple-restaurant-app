@@ -98,12 +98,19 @@ input[type=text] {
   margin-left: 1em;
 }
 
+.search-btn:hover {
+  cursor: pointer;
+}
+
 .search-box {
   background-color: #ccc;
   border: solid 1px #ccc;
   border-radius: 3px;
 }
 
+.search-box:hover {
+  cursor: pointer;
+}
 
 .search-icon {
   color: #605e5e;
@@ -208,6 +215,7 @@ input[type=text] {
 
 .underline-div:hover {
   text-decoration: underline;
+  cursor: pointer;
 }
 
 .details-title {
@@ -249,6 +257,11 @@ a {
   background-color: #ab14ab;
   padding: 1em;
   text-align: center;
+}
+
+.view-details-div:hover {
+  cursor: pointer;
+  color: #ddd;
 }
 
 /* Filter Restaurant related */

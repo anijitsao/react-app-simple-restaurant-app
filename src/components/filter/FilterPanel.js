@@ -31,9 +31,7 @@ class FilterPanel extends Component {
         locality: ''
       },
 
-      modifyOriginalRestaurants: true,
       responseId: this.props.responseId
-
     }
 
     this.applyFilter = this.applyFilter.bind(this)
@@ -108,8 +106,7 @@ class FilterPanel extends Component {
 
       // update the state accordingly
       this.setState({ sortFilter }, () => {
-        console.log('Sort filter applied')
-        this.sortRestaurants(filterType, filterValue)
+        this.sortRestaurants(filterValue)
       })
 
     } else {
@@ -129,22 +126,23 @@ class FilterPanel extends Component {
     }
   }
 
-  sortRestaurants(filterType, filterValue) {
+  sortRestaurants(filterValue) {
     let restaurantSorted = [...this.state.restaurants]
+
     switch (filterValue) {
       case 'inc':
-        restaurantSorted = restaurantSorted.sort((a, b) => { return a.cost > b.cost })
+        restaurantSorted = restaurantSorted.sort((a, b) => { return a.cost - b.cost })
         break;
       case 'dec':
-        restaurantSorted = restaurantSorted.sort((a, b) => { return a.cost < b.cost })
+        restaurantSorted = restaurantSorted.sort((a, b) => { return b.cost - a.cost })
         break;
       case 'rating':
-        restaurantSorted = restaurantSorted.sort((a, b) => { return a.rating < b.rating })
+        restaurantSorted = restaurantSorted.sort((a, b) => { return b.rating - a.rating })
         break;
     }
 
     this.props.updateFilter(restaurantSorted)
-    this.setState({ modifyOriginalRestaurants: false })
+    // this.setState({ modifyOriginalRestaurants: false })
   }
 
   // function to filter restaurants accoring to cost, establishment and locality
@@ -152,7 +150,6 @@ class FilterPanel extends Component {
 
     // copy the list of original restaurants saved in the state
     let restaurantsFiltered = [...this.state.restaurantsOrig]
-    console.log('restaurantsFiltered is now', )
 
     // apply all the filters one by one    
     if (currentFilter['establishment']) {
@@ -188,7 +185,7 @@ class FilterPanel extends Component {
       }
     }
 
-    this.setState({ restaurants: restaurantsFiltered, modifyOriginalRestaurants: false }, () => {
+    this.setState({ restaurants: restaurantsFiltered }, () => {
       this.computeFilters()
       // console.log('Filtered restaurants are', this.state)
       this.props.updateFilter(restaurantsFiltered)

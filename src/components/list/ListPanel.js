@@ -16,7 +16,7 @@ const ListPanel = (props) => {
         )}>
         </Route>
         <Route path="/showrestaurant/:id" render={(props) => (
-          <ListEachRestaurant {...props} restaurants={restaurants} />
+          <ListEachRestaurant {...props} />
         )}></Route>
 
       </Switch>

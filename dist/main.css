@@ -97,12 +97,19 @@ input[type=text] {
   margin-left: 1em;
 }
 
+.search-btn:hover {
+  cursor: pointer;
+}
+
 .search-box {
   background-color: #ccc;
   border: solid 1px #ccc;
   border-radius: 3px;
 }
 
+.search-box:hover {
+  cursor: pointer;
+}
 
 .search-icon {
   color: #605e5e;
@@ -207,6 +214,7 @@ input[type=text] {
 
 .underline-div:hover {
   text-decoration: underline;
+  cursor: pointer;
 }
 
 .details-title {
@@ -250,6 +258,11 @@ a {
   text-align: center;
 }
 
+.view-details-div:hover {
+  cursor: pointer;
+  color: #ddd;
+}
+
 /* Filter Restaurant related */
 .filter-restaurants {
   display: grid;
@@ -257,6 +270,7 @@ a {
   background-color: #fff;
   border: solid 1px #ddd;
   border-radius: 5px;
+  overflow-y: auto;
 }
 
 .filter-info {

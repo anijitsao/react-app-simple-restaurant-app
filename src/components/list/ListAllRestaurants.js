@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { SearchConsumer } from '../search/SearchContext'
 
 const ListAllRestaurants = (props) => {
-	console.log('Props in ListAllRestaurant', props)
+	// console.log('Props in ListAllRestaurant', props)
 
 	let { restaurants, searchByValue } = props
 
