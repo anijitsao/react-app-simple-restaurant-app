@@ -40,7 +40,8 @@ class Hero extends Component {
     let { searchByValue } = this.props
 
     return (
-      <div className="hero-div" >
+      <div className="hero-div">
+        <div className="find-title">Find the best restaurants, cafés, and bars</div>
         <SearchBar
           searchText={searchText}
           searchTextChange={this.searchTextChange}

@@ -71,7 +71,16 @@ input[type=text] {
 
 	/* height: calc(100vh - 50px); */
 	align-items: end;
-	justify-items: center;
+  justify-items: center;
+  position: relative;
+}
+
+.find-title {
+  color: #fff;
+  font-size: 2em;
+  position: absolute;
+  bottom: 63px;
+  font-weight: 300;
 }
 
 /* Search bar related */
