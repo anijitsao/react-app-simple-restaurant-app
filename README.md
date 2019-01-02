@@ -91,7 +91,7 @@ Desktop as well as Mobile version of the screenshots are given side by side.
  <img src="screenshots/mobile 6.png" width="190px" title="Sorting with ascending prices screen"/> 
 </p>
 
-<p> Apply the filter <span> <code> bar </code> </span> <br/> 
+<p> Apply the filter <span> <code>bar</code> </span> <br/> 
  <img src="screenshots/desktop 7.png" width="590px" title="Apply the filter bar screen"/>
  <img src="screenshots/mobile 7.png" width="190px" title="Apply the filter bar screen"/> 
 </p>
