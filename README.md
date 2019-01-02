@@ -22,21 +22,19 @@ This is a *responsive web application* for viewing in both Mobile and Desktop.
 
 - All the restaurant details namely *cusines, establishment type, address, locality, rating, cost for two persons* are stored in the [MongoDB Atlas](https://www.mongodb.com/cloud/atlas). This is a *free/ shared* account on [Atlas](https://www.mongodb.com/cloud/atlas). **So Please use it wisely** 
 
-<ul>
- <li> Searching facility using <pre> locality, name </pre> and <pre> cuisines </pre> are supported
- <li> Sorting of the searched restaurants can be done using </li>
- <li> Conversation of a specific rooms will be shown on clicking the corresponding room</li>  
-</ul>
 
-  - *for mobile screen user can go to the rooms page by clicking the `<-` icon at the end of the screen*
-  - Multiline message can be send by hitting `Ctrl + ENTER`
-  - To send a message hit `ENTER` key
+- Searching facility using `locality, name` and `cuisines` are supported
+- Searching can be done from *two* places - the *Search box* and clicking on the several features of a restaurant like *name, locality* and so on.
+- Sorting of the searched restaurants can be done using `price` *both ascending and descending order* and `rating` *only descending order*
+- Filters namely `cost for two persons, establishment type, locality` can be applied on a list of searched results   
+
 
 <ul>
- <li> Online / Offline status are shown by the <i>violet dot</i> </li>
- <li> Read / Unread status of conversation is supported
- <li> All the conversation are stored in the database i.e. <i>persistant</i>
- <li> All the timestamps are shown in <i>UTC</i> format to taken into cross browser differences
+ <li> Viewing the details of a restaurant can be done <i>clicking the photo/ logo </i> of the restaurant or <i>clicking the View Details </i> button </li>
+ <li> Viewing the details of all restaurants can be done <i>clicking the <code><-</code> </i> of the individula restaurant page </li>
+ <li> Listing of restaurants both <i>all</i> and <i>individual</i> are done using <a href="https://www.npmjs.com/package/react-router-dom">React Router</a></li>
+ <li> All the restaurant details are stored in the database i.e. <i>persistant</i>
+ <li> All the currencies are shown in <i>INR</i> &#8377; format
 </ul>
 
 ## Installation
