@@ -6,7 +6,7 @@ combined to get a single build for production purpose using [Webpack 4](https://
 
 ES6 `module` creation along with `import /export` is used. [Babel](https://babeljs.io/docs/en/babel-preset-react) is used to *transpile* all [JSX](https://reactjs.org/docs/jsx-in-depth.html) code to vanilla JavaScript code. To install all the dependecies `npm` is used.
 
-Back end is implemented using [Node JS](https://nodejs.org/docs/latest-v8.x/api/), [Express JS](https://expressjs.com/en/api.html) and [MongoDB](https://docs.mongodb.com/). [Atlas](https://www.mongodb.com/cloud/atlas), the *Cloud* version of [MongoDB](https://docs.mongodb.com/) is used. Real time communication is done using [Socket.io](https://www.npmjs.com/package/socket.io)
+Back end is implemented using [Node JS](https://nodejs.org/docs/latest-v8.x/api/), [Express JS](https://expressjs.com/en/api.html) and [MongoDB](https://docs.mongodb.com/). [Atlas](https://www.mongodb.com/cloud/atlas), the *Cloud* version of [MongoDB](https://docs.mongodb.com/) is used. 
 
 
 For UI creation [HTML5](https://www.w3schools.com/html/html5_intro.asp) and [CSS3](https://www.w3schools.com/css/) are used. [Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout), the new feature of [CSS3](https://www.w3schools.com/css/) is used for layout creation purpose.
@@ -68,55 +68,38 @@ Some screens of the application is given below for better understanding.
 
 Desktop as well as Mobile version of the screenshots are given side by side.
 
-<p> Login Screen <br/> 
- <img src="screenshots/desktop 1.png" width="590px" title="Login screen"/>
- <img src="screenshots/mobile 1.png" width="190px" title="Login screen"/> 
+<p> Home Screen <br/> 
+ <img src="screenshots/desktop 1.png" width="590px" title="Home screen"/>
+ <img src="screenshots/mobile 1.png" width="190px" title="Home screen"/> 
 </p>
  
- <p> Entering credentials <br/> 
- <img src="screenshots/desktop 2.png" width="590px" title="Entering credentials screen"/>
- <img src="screenshots/mobile 2.png" width="190px" title="Entering credentials screen"/> 
+ <p> Entering search text <br/> 
+ <img src="screenshots/desktop 2.png" width="590px" title="Entering search text screen"/>
+ <img src="screenshots/mobile 2.png" width="190px" title="Entering search text screen"/> 
 </p>
 
-<p> After submitting credentials <br/> 
- <img src="screenshots/desktop 3.png" width="590px" title="After submitting credentials screen"/>
- <img src="screenshots/mobile 3.png" width="190px" title="After submitting credentials screen"/> 
+<p> Loading results <br/> 
+ <img src="screenshots/desktop 3.png" width="590px" title="Loading results screen"/>
+ <img src="screenshots/mobile 3.png" width="190px" title="Loading results screen"/> 
 </p>
 
-<p> If credentials are not correct <br/> 
- <img src="screenshots/desktop 4.png" width="590px" title="If credentials are not correct screen"/>
- <img src="screenshots/mobile 4.png" width="190px" title="If credentials are not correct screen"/> 
+<p> When results are loaded <br/> 
+ <img src="screenshots/desktop 4.png" width="590px" title="When results are loaded screen"/>
+ <img src="screenshots/mobile 4.png" width="190px" title="When results are loaded screen"/> 
 </p>
 
-<p> After a successful login  <br/> 
- <img src="screenshots/desktop 5.png" width="590px" title="After a successful login screen"/>
- <img src="screenshots/mobile 5.png" width="190px" title="After a successful login screen"/> 
+<p> View Individual restaurant  <br/> 
+ <img src="screenshots/desktop 5.png" width="590px" title="View Individual restaurant screen"/>
+ <img src="screenshots/mobile 5.png" width="190px" title="View Individual restaurant screen"/> 
 </p>
 
-<p> When a new user joins <br/> 
- <img src="screenshots/desktop 6.png" width="590px" title="When a new user joins screen"/>
- <img src="screenshots/mobile 6.png" width="190px" title="When a new user joins screen"/> 
+<p> Sorting with ascending prices <br/> 
+ <img src="screenshots/desktop 6.png" width="590px" title="Sorting with ascending prices screen"/>
+ <img src="screenshots/mobile 6.png" width="190px" title="Sorting with ascending prices screen"/> 
 </p>
 
-<p> When a new user joins (2nd browser) <br/> 
- <img src="screenshots/desktop 7.png" width="590px" title="When a new user joins (2nd browser) screen"/>
- <img src="screenshots/mobile 7.png" width="190px" title="When a new user joins (2nd browser) screen"/> 
+<p> Apply the filter <pre> bar </pre> <br/> 
+ <img src="screenshots/desktop 7.png" width="590px" title="Apply the filter bar screen"/>
+ <img src="screenshots/mobile 7.png" width="190px" title="Apply the filter bar screen"/> 
 </p>
-
-<p> Sender type some message <br/> 
- <img src="screenshots/desktop 9.png" width="590px" title="Sender type some message screen"/>
- <img src="screenshots/mobile 9.png" width="190px" title="Sender type some message screen"/> 
-</p>
-
-<p> Receiver's room is updated <br/> 
- <img src="screenshots/desktop 10.png" width="590px" title="Receiver's room is updated screen"/>
- <img src="screenshots/mobile 10.png" width="190px" title="Receiver's room is updated screen"/> 
-</p>
-
-<p> Logout functionality <br/> 
- <img src="screenshots/desktop 11.png" width="590px" title="Logout functionality screen"/>
- <img src="screenshots/mobile 11.png" width="250px" title="Logout functionality screen"/> 
-</p>
-
-
 
