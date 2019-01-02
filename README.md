@@ -22,16 +22,17 @@ This is a *responsive web application* for viewing in both Mobile and Desktop.
 
 - All the restaurant details namely *cusines, establishment type, address, locality, rating, cost for two persons* are stored in the [MongoDB Atlas](https://www.mongodb.com/cloud/atlas). This is a *free/ shared* account on [Atlas](https://www.mongodb.com/cloud/atlas). **So Please use it wisely** 
 
-
-- Searching facility using `locality, name` and `cuisines` are supported
-- Searching can be done from *two* places - the *Search box* and clicking on the several features of a restaurant like *name, locality* and so on.
-- Sorting of the searched restaurants can be done using `price` *both ascending and descending order* and `rating` *only descending order*
-- Filters namely `cost for two persons, establishment type, locality` can be applied on a list of searched results   
+<ul>
+ <li> Searching facility using <code>locality, name</code and <code>cuisines</code are supported
+  <li> Searching can be done from <i>two</i> places - the <i>Search box</i> and clicking on the several features of a restaurant like    <i>name, locality</i> and so on.
+  <li> Sorting of the searched restaurants can be done using <code>price</code> <i>both ascending and descending order</i> and <code>rating</code> <i>only descending order</i> </li>
+  <li> Filters namely <code>cost for two persons, establishment type, locality</code> can be applied on a list of searched results </li>
+</ul>
 
 
 <ul>
  <li> Viewing the details of a restaurant can be done <i>clicking the photo/ logo </i> of the restaurant or <i>clicking the View Details </i> button </li>
- <li> Viewing the details of all restaurants can be done <i>clicking the <code><-</code> </i> of the individula restaurant page </li>
+ <li> Viewing the details of all restaurants can be done <i>clicking the <code><-</code> </i> of the individual restaurant page </li>
  <li> Listing of restaurants both <i>all</i> and <i>individual</i> are done using <a href="https://www.npmjs.com/package/react-router-dom">React Router</a></li>
  <li> All the restaurant details are stored in the database i.e. <i>persistant</i>
  <li> All the currencies are shown in <i>INR</i> &#8377; format
