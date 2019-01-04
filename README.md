@@ -40,8 +40,8 @@ This is a *responsive web application* for viewing in both Mobile and Desktop.
 <br/> 
 
 <ul>
- <li> Viewing the details of a restaurant can be done <i>clicking the photo/ logo </i> of the restaurant or <i>clicking the View Details </i> button </li>
- <li> Viewing the details of all restaurants can be done <i>clicking the <code><-</code> </i> of the individual restaurant page </li>
+ <li> Viewing the details of <i>a</i> restaurant can be done <i>clicking the photo/ logo </i> of the restaurant or <i>clicking the View Details </i> button </li>
+ <li> Viewing the details of <i>all</i> restaurants can be done by <i>clicking the <code><-</code> </i> of the individual restaurant page </li>
  <li> Listing of restaurants both <i>all</i> and <i>individual</i> are done using <a href="https://www.npmjs.com/package/react-router-dom">React Router</a></li>
  <li> All the restaurant details are stored in the database i.e. <i>persistant</i>
  <li> All the currencies are shown in <i>INR</i> &#8377; format
