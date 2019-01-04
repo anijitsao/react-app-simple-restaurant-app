@@ -29,6 +29,10 @@ This is a *responsive web application* for viewing in both Mobile and Desktop.
   <li> <b>Searching</b> can be done from <i>two</i> places - the <i>Search box</i> and clicking on the several features of a restaurant like <i>name, locality</i> and so on </li>
   <li> <b>Sorting</b> of the searched restaurants can be done using <code>price</code> both<i> ascending and descending order</i> and <code>rating</code> in <i>descending order</i> only </li>
  <li> <strong>Filters</strong> namely <code>cost for two persons, establishment type, locality</code> can be applied on a list of searched results </li>
+  <ul>
+   <li> Only one filter can be selected from a particular category </li>
+   <li> Click on an active filter will deselect the filter</li>
+  </ul>
 </ul>
 
 <br/> 
