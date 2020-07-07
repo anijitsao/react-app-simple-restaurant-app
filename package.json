@@ -24,7 +24,7 @@
     "express": "^4.16.4",
     "mongodb": "^2.2.36",
     "morgan": "^1.9.1",
-    "npm": "^6.5.0"
+    "npm": "^6.14.6"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
