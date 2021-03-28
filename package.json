@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "node -r dotenv/config server/server.js dotenv_config_path=server/.env"
   },
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/anijitsahu/react-app-simple-restaurant-app.git"

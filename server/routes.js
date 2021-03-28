@@ -1,30 +1,16 @@
 // imports dependencies
-const express = require('express')
-const cors = require('cors')
-
-const morgan = require('morgan')
-const bodyParser = require('body-parser')
-
+import { Router } from "express"
 
 // local file dependencies
-const dbOps = require('./dbOps')
-let router = express.Router()
-
-
-// middlewares
-router.use(cors())
-router.use(bodyParser.json({ type: 'application/json' }))
-router.use(morgan('dev'))
+import { connectDbAndRunQueries } from './dbOps.js'
+const router = Router()
 
 // most important to serve static pages don't forget
 // router.use(express.static('../public'))
 
-router.post('/getrestaurants/:item?', (req, res)=>{
-	dbOps.connectDbAndRunQueries('getRestaurants', req, res)
+router.post('/getrestaurants/:item?', (req, res) => {
+	connectDbAndRunQueries('getRestaurants', req, res)
 
 })
 
-
-
- 
-module.exports = router
+export default router
