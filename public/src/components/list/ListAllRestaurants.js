@@ -1,12 +1,11 @@
-import React from 'react';
+// dependencies
 import { Link } from 'react-router-dom';
 
-
+// local file dependencies
 import { SearchConsumer } from '../search/SearchContext'
 
 const ListAllRestaurants = (props) => {
 	// console.log('Props in ListAllRestaurant', props)
-
 	let { restaurants, searchByValue } = props
 
 	return (

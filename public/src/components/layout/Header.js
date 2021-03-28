@@ -1,18 +1,10 @@
-import React from 'react';
-
 // components
 import Title from './Title'
 
-
-const Header = ({ userInfo }) => {
+export default ({ userInfo }) => {
   return (
     <div className="header">
       <Title />
     </div>
   );
 };
-
-
-
-
-export default Header;

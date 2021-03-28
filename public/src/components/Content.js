@@ -1,7 +1,7 @@
 // dependencies
 import React, { Component } from 'react';
 import axios from 'axios';
-import uuidv4 from 'uuid/v4';
+import { v4 as uuidv4 } from 'uuid';
 
 // components
 import SearchBar from './search/SearchBar'
@@ -61,14 +61,14 @@ class Content extends Component {
 
       let searchType = id.substring(0, id.indexOf('-'))
       let searchValue = id.substr(id.indexOf('-') + 1)
-      
+
       // define the data
       let data = {}
       data[searchType] = searchValue
 
       // define url
       let url = allConstants.getRestaurants.replace('{value}', '')
-      
+
       // API call to the back end
       this.getRestaurants(url, data)
 

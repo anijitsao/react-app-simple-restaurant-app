@@ -1,7 +1,5 @@
-import React from 'react';
-
-
-const SearchBar = ({ searchText, searchTextChange, searchByValue }) => {
+// SearchBar component
+export default ({ searchText, searchTextChange, searchByValue }) => {
   return (
     <div className="search-bar" >
       <input className="search-box"
@@ -17,7 +15,3 @@ const SearchBar = ({ searchText, searchTextChange, searchByValue }) => {
     </div>
   );
 };
-
-
-
-export default SearchBar;

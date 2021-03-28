@@ -1,8 +1,6 @@
-import React from 'react';
+import { createContext } from 'react';
 
-const SearchContext = React.createContext({});
+const SearchContext = createContext({});
 
 export const SearchProvider = SearchContext.Provider;
 export const SearchConsumer = SearchContext.Consumer;
-
-// export default Component;
