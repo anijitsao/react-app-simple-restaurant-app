@@ -1,20 +1,32 @@
 // imports dependencies
-let express = require('express')
-let app = express()
-const morgan = require('morgan')
+import express from 'express'
+import cors from 'cors'
+import morgan from 'morgan'
+import helmet from 'helmet'
+import { fileURLToPath } from 'url'
+import path, { dirname } from 'path'
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
-// router
-const route = require('./routes')
 
-// PORT 3000
-const PORT = 3000
+// local file dependencies
+import router from './routes.js'
+
+const app = express()
+
+// middlewares
+app.use(cors())
+app.use(express.json({ type: 'application/json' }))
+app.use(morgan('dev'))
+app.use(helmet({ contentSecurityPolicy: false }))
 
 // serve the static pages
-app.use(morgan("dev"))
-app.use(express.static('../dist'))
+app.use(express.static(path.join(__dirname, '../public/dist')))
 
+// different routes
+app.use('/services', router)
 
-app.use('/services', route)
-app.listen(PORT, () => {
-	console.log('Server is running on ', PORT)
+// listen
+app.listen(process.env.PORT, () => {
+	console.log('Server is running on ', process.env.PORT)
 })

@@ -1,12 +1,11 @@
 {
   "name": "react-app-simple-restaurant-app",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Simple restaurant application",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack --mode development",
-    "build": "webpack --mode production"
+    "server": "node -r dotenv/config server/server.js dotenv_config_path=server/.env"
   },
   "repository": {
     "type": "git",
@@ -18,31 +17,25 @@
     "url": "https://github.com/anijitsahu/react-app-simple-restaurant-app/issues"
   },
   "homepage": "https://github.com/anijitsahu/react-app-simple-restaurant-app#readme",
-  "dependencies": {
-    "assert": "^1.4.1",
-    "cors": "^2.8.5",
-    "express": "^4.16.4",
-    "mongodb": "^2.2.36",
-    "morgan": "^1.9.1",
-    "npm": "^6.5.0"
-  },
   "devDependencies": {
-    "@babel/core": "^7.1.2",
-    "@babel/preset-env": "^7.1.0",
-    "@babel/preset-react": "^7.0.0",
-    "axios": "^0.18.0",
-    "babel-loader": "^8.0.4",
-    "css-loader": "^1.0.0",
-    "file-loader": "^2.0.0",
-    "html-react-parser": "^0.6.0",
-    "mini-css-extract-plugin": "^0.4.4",
-    "prop-types": "^15.6.2",
-    "react": "^16.5.2",
-    "react-dom": "^16.5.2",
-    "react-router-dom": "^4.3.1",
-    "style-loader": "^0.23.1",
-    "uuid": "^3.3.2",
-    "webpack": "^4.20.2",
-    "webpack-cli": "^3.1.2"
+    "@babel/core": "^7.13.10",
+    "@babel/preset-react": "^7.12.13",
+    "axios": "^0.21.1",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^5.1.3",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-router-dom": "^5.2.0",
+    "style-loader": "^2.0.0",
+    "webpack": "^5.26.3",
+    "webpack-cli": "^4.5.0"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^4.4.1",
+    "mongodb": "^3.6.5",
+    "morgan": "^1.10.0"
   }
 }

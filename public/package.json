@@ -1,0 +1,8 @@
+{
+    "name": "react-app-simple-restaurant-app",
+    "version": "2.0.0",
+    "scripts": {
+        "dev": "webpack --mode development",
+        "build": "webpack --mode production"
+    }
+}
