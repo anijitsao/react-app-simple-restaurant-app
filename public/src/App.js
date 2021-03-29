@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { useState } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
 // components 
@@ -6,47 +6,37 @@ import Header from './components/layout/Header';
 import Content from './components/Content';
 import Hero from './components/layout/Hero'
 
-
 // css
 import './css/style.css'
 
+const App = () => {
 
-class App extends Component {
-  // static propTypes = {
-  //   className: PropTypes.string,
-  // };
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
+  // Initialize the initial state and its modifier function
+  const [panelData, setPanelData] = useState(
+    {
       showContent: false,
       searchText: ''
-    }
-    this.searchByValue = this.searchByValue.bind(this)
-  }
+    })
 
-  searchByValue(searchText) {
+
+  const searchByValue = (searchText) => {
     console.log('Search text is now', searchText)
-    this.setState({ showContent: true, searchText })
+    setPanelData({ ...panelData, showContent: true, searchText })
   }
 
+  const { showContent, userInfo, searchText } = panelData
+  return (
+    <BrowserRouter>
+      <div className="container">
+        { /* including the Title and other components */}
+        <Header />
+        {(showContent == false)
+          ? <Hero searchByValue={searchByValue} />
+          : <Content searchText={searchText} userInfo={userInfo} />}
 
-  render() {
-    let { showContent, userInfo, searchByValue, searchText } = this.state
-    return (
-      <BrowserRouter>
-        <div className="container">
-          { /* including the Title and other components */}
-          <Header />
-          {(showContent == false)
-            ? <Hero searchByValue={this.searchByValue} />
-            : <Content searchText={searchText} userInfo={userInfo} />}
-
-        </div>
-      </BrowserRouter>
-    );
-  }
+      </div>
+    </BrowserRouter>
+  );
 }
 
 export default App;

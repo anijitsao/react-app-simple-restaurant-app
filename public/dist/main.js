@@ -1964,48 +1964,38 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-class App extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
-  // static propTypes = {
-  //   className: PropTypes.string,
-  // };
-  constructor(props) {
-    super(props);
-    this.state = {
-      showContent: false,
-      searchText: ''
-    };
-    this.searchByValue = this.searchByValue.bind(this);
-  }
+const App = () => {
+  // Initialize the initial state and its modifier function
+  const [panelData, setPanelData] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    showContent: false,
+    searchText: ''
+  });
 
-  searchByValue(searchText) {
+  const searchByValue = searchText => {
     console.log('Search text is now', searchText);
-    this.setState({
+    setPanelData({ ...panelData,
       showContent: true,
       searchText
     });
-  }
+  };
 
-  render() {
-    let {
-      showContent,
-      userInfo,
-      searchByValue,
-      searchText
-    } = this.state;
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.BrowserRouter, {
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-        className: "container",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_layout_Header__WEBPACK_IMPORTED_MODULE_1__.default, {}), showContent == false ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_layout_Hero__WEBPACK_IMPORTED_MODULE_3__.default, {
-          searchByValue: this.searchByValue
-        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_Content__WEBPACK_IMPORTED_MODULE_2__.default, {
-          searchText: searchText,
-          userInfo: userInfo
-        })]
-      })
-    });
-  }
-
-}
+  const {
+    showContent,
+    userInfo,
+    searchText
+  } = panelData;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.BrowserRouter, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+      className: "container",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_layout_Header__WEBPACK_IMPORTED_MODULE_1__.default, {}), showContent == false ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_layout_Hero__WEBPACK_IMPORTED_MODULE_3__.default, {
+        searchByValue: searchByValue
+      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_Content__WEBPACK_IMPORTED_MODULE_2__.default, {
+        searchText: searchText,
+        userInfo: userInfo
+      })]
+    })
+  });
+};
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
 
@@ -2022,58 +2012,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-// import React, { Component } from 'react';
-class Constants {
-  constructor() {
-    // list of all the constants
+// list of all the constants
+const Constants = () => {
+  const url = 'http://localhost:3000/services';
+  return {
+    url,
     // all the URLs
-    this.url = 'http://localhost:3000/services';
-    this.login = `${this.url}/login`;
-    this.getRestaurants = `${this.url}/getrestaurants/{value}`;
-    this.getRooms = `${this.url}/getrooms/{id}`; // the Content-Type
-
-    this.header = {
+    login: `${url}/login`,
+    getRestaurants: `${url}/getrestaurants/{value}`,
+    getRooms: `${url}/getrooms/{id}`,
+    // the Content-Type
+    header: {
       'Content-Type': 'application/json'
-    }; // HTTP verbs
-
-    this.method = {
+    },
+    // HTTP verbs
+    method: {
       "POST": "POST",
       "GET": "GET"
-    }; // initialize
-
-    this.theWeek = makeFormattedWeek();
-
-    this.formatDates = dateReceived => {
-      if (this.theWeek[dateReceived.substring(0, dateReceived.indexOf('T'))]) {
-        let formattedDate = this.theWeek[dateReceived.substring(0, dateReceived.indexOf('T'))];
-        return formattedDate == 'Today' ? dateReceived.substr(dateReceived.indexOf('T') + 1, 5) : formattedDate;
-      } else {
-        return `${new Date(dateReceived).getDate()}/${new Date(dateReceived).getMonth() + 1}/${new Date(dateReceived).getFullYear()}`;
-      }
-    };
-  }
-
-}
-
-function makeFormattedWeek() {
-  let theWeek = {}; // list of day names
-
-  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-
-  for (let i = 0; i < 7; i++) {
-    // reset today
-    let today = new Date(); // get the previous dates one at a time
-
-    let prevDate = today.setDate(today.getDate() - i); // format previous date as per the need
-
-    let prevDateStr = new Date(prevDate).toISOString();
-    prevDateStr = prevDateStr.substring(0, prevDateStr.indexOf('T')); // fill the object accordingly
-
-    theWeek[prevDateStr] = i == 0 ? 'Today' : days[new Date(prevDate).getDay()];
-  }
-
-  return theWeek;
-}
+    }
+  };
+};
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Constants);
 
@@ -2114,76 +2072,60 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-class Content extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
-  // static propTypes = {
-  //     className: PropTypes.string,
-  // };
-  constructor(props) {
-    super(props);
-    this.searchTextChange = this.searchTextChange.bind(this);
-    this.searchByValue = this.searchByValue.bind(this);
-    this.state = {
-      restaurants: [],
-      showLoading: false,
-      modifyOrig: false,
-      responseId: ''
-    };
-    this.allConstants = new _Constants__WEBPACK_IMPORTED_MODULE_6__.default(); // console.log('Received props', this.props)
-  }
+const Content = props => {
+  // Initialize the initial state and its modifier function
+  const [content, setContent] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    restaurants: [],
+    showLoading: false,
+    modifyOrig: false,
+    responseId: ''
+  });
+  const allConstants = (0,_Constants__WEBPACK_IMPORTED_MODULE_6__.default)();
 
-  searchTextChange(event) {
-    event.persist(); // change the state with the value typed in the search box
-
-    this.setState({
-      searchText: event.target.value
+  const searchTextChange = e => {
+    // change the state with the value typed in the search box
+    setContent({ ...content,
+      searchText: e.target.value
     });
 
-    if (event.keyCode == 13 || event.which == 13) {
-      this.searchByValue();
+    if (e.keyCode == 13 || e.which == 13) {
+      searchByValue();
     }
-  }
+  };
 
-  componentDidMount() {
-    this.getRestaurants();
-  }
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    getRestaurants();
+  }, []);
 
-  searchByValue(event) {
-    const {
-      allConstants
-    } = this;
-
-    if (event) {
-      event.persist();
-      let id = event.target.id;
+  const searchByValue = e => {
+    if (e) {
+      const id = e.target.id;
       console.log('Function clicked from COntext', id);
-      let searchType = id.substring(0, id.indexOf('-'));
-      let searchValue = id.substr(id.indexOf('-') + 1); // define the data
+      const searchType = id.substring(0, id.indexOf('-'));
+      const searchValue = id.substr(id.indexOf('-') + 1); // define the data
 
-      let data = {};
+      const data = {};
       data[searchType] = searchValue; // define url
 
-      let url = allConstants.getRestaurants.replace('{value}', ''); // API call to the back end
+      const url = allConstants.getRestaurants.replace('{value}', ''); // API call to the back end
 
-      this.getRestaurants(url, data);
-    } else if (this.state.searchText != "") {
+      getRestaurants(url, data);
+    } else if (state.searchText != "") {
       // if ENTER key is pressed
-      console.log('ENTER key pressed / SEARCH button clicked...', this.state.searchText); // API call to the back end
+      console.log('ENTER key pressed / SEARCH button clicked...', content.searchText); // API call to the back end
 
-      this.getRestaurants();
+      getRestaurants();
     }
-  } // get all the restaurants
+  }; // get all the restaurants
 
 
-  getRestaurants(url, data) {
+  const getRestaurants = async (url, data) => {
     // set state to show the Loading icon
-    this.setState({
+    setContent({ ...content,
       showLoading: true
     });
-    const {
-      allConstants
-    } = this;
-    let searchText = this.state.searchText && this.props.searchText !== this.state.searchText ? this.state.searchText : this.props.searchText;
-    let axiosConfig = {
+    const searchText = content.searchText && props.searchText !== content.searchText ? content.searchText : props.searchText;
+    const axiosConfig = {
       url: url ? url : allConstants.getRestaurants.replace('{value}', searchText),
       method: allConstants.method.POST,
       header: allConstants.header
@@ -2191,52 +2133,48 @@ class Content extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
 
     if (data) {
       axiosConfig["data"] = data;
-    } // console.log('CONFIG is now', axiosConfig)
+    }
 
+    try {
+      const res = await axios__WEBPACK_IMPORTED_MODULE_1___default()(axiosConfig); // add the response along with an unique id for each response
 
-    axios__WEBPACK_IMPORTED_MODULE_1___default()(axiosConfig).then(res => {
-      console.log('Response from back end', res.data); // add the response along with an unique id for each response
-
-      this.setState({
+      setContent({
         restaurants: [...res.data],
         showLoading: false,
         modifyOrig: true,
         responseId: (0,uuid__WEBPACK_IMPORTED_MODULE_8__.default)()
       });
-    }).catch(err => {
+    } catch (err) {
       console.log('unable to get the data', err);
-    });
-  }
+    }
+  };
 
-  render() {
-    let {
-      restaurants,
-      showLoading,
-      modifyOrig,
-      responseId
-    } = this.state; // console.log('State in the Content', this.state)
+  const {
+    restaurants,
+    showLoading,
+    modifyOrig,
+    responseId
+  } = content; // console.log('State in the Content', state)
 
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-      className: "content-div",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-        className: "content-div-search-bar",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_search_SearchBar__WEBPACK_IMPORTED_MODULE_2__.default, {
-          searchByValue: this.searchByValue,
-          searchTextChange: this.searchTextChange
-        })
-      }), showLoading == true ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Loading__WEBPACK_IMPORTED_MODULE_4__.default, {}) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_search_SearchContext__WEBPACK_IMPORTED_MODULE_5__.SearchProvider, {
-        value: this.searchByValue,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_RestaurantPanel__WEBPACK_IMPORTED_MODULE_3__.default, {
-          showLoading: showLoading,
-          restaurants: restaurants,
-          modifyOrig: modifyOrig,
-          responseId: responseId
-        })
-      })]
-    });
-  }
-
-}
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+    className: "content-div",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+      className: "content-div-search-bar",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_search_SearchBar__WEBPACK_IMPORTED_MODULE_2__.default, {
+        searchByValue: searchByValue,
+        searchTextChange: searchTextChange
+      })
+    }), showLoading == true ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Loading__WEBPACK_IMPORTED_MODULE_4__.default, {}) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_search_SearchContext__WEBPACK_IMPORTED_MODULE_5__.SearchProvider, {
+      value: searchByValue,
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_RestaurantPanel__WEBPACK_IMPORTED_MODULE_3__.default, {
+        showLoading: showLoading,
+        restaurants: restaurants,
+        modifyOrig: modifyOrig,
+        responseId: responseId
+      })
+    })]
+  });
+};
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Content);
 
@@ -2291,81 +2229,70 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-class RestaurantsPanel extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      restaurants: [...this.props.restaurants],
-      modifyOrig: false,
-      responseId: this.props.responseId
-    };
-    this.updateFilter = this.updateFilter.bind(this);
-  }
 
-  componentWillReceiveProps(nextProps) {
-    // console.log('responseid from nextprops and currentProps', nextProps.responseId, ' and current ', this.props.responseId)
-    if (nextProps.responseId != this.props.responseId) {
-      this.setState({
-        restaurants: [...nextProps.restaurants],
-        modifyOrig: true,
-        responseId: nextProps.responseId
-      });
-    }
-  }
+const RestaurantsPanel = props => {
+  // Initialize the initial restaurantPanelData and its modifier function
+  const [restaurantPanelData, setRestaurantPanelData] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    restaurants: [...props.restaurants],
+    modifyOrig: false,
+    responseId: props.responseId
+  }); // componentWillReceiveProps(nextProps) {
+  // console.log('responseid from nextprops and currentProps', nextProps.responseId, ' and current ', props.responseId)
+  // if (nextProps.responseId != props.responseId) {
+  // }
+  // }
 
-  updateFilter(restaurants) {
-    console.log('FilterRestaurants are', restaurants);
-    this.setState({
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    setRestaurantPanelData({ ...restaurantPanelData,
+      restaurants: [...props.restaurants],
+      modifyOrig: true,
+      responseId: props.responseId
+    });
+  }, [props.responseId]);
+
+  const updateFilter = restaurants => {
+    setRestaurantPanelData({ ...restaurantPanelData,
       restaurants,
       modifyOrig: false
     });
-  }
+  };
 
-  render() {
-    let {
-      restaurants,
-      modifyOrig,
-      responseId
-    } = this.state;
-    let {
-      showLoading
-    } = this.props;
-    let showRestaurantsStyle = showLoading == true ? "restaurants-list hide-div" : "restaurants-list"; // if no restaurants found
+  const {
+    restaurants,
+    modifyOrig,
+    responseId
+  } = restaurantPanelData;
+  const {
+    showLoading
+  } = props;
+  let showRestaurantsStyle = showLoading == true ? "restaurants-list hide-div" : "restaurants-list"; // if no restaurants found
 
-    showRestaurantsStyle = restaurants.length == 0 ? "restaurants-list hide-div" : "restaurants-list";
-    let showFooter = false;
-
-    if (window.innerWidth < 500) {
-      showFooter = true;
-    }
-
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-      children: [restaurants.length == 0 && showLoading == false ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-        className: "no-restaurant-div",
-        children: "No restaurant found"
-      }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-        className: showRestaurantsStyle,
-        children: [showFooter == false ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_filter_FilterPanel__WEBPACK_IMPORTED_MODULE_1__.default, {
-          restaurants: restaurants,
-          updateFilter: this.updateFilter,
-          modifyOrig: modifyOrig,
-          responseId: responseId
-        }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_list_ListPanel__WEBPACK_IMPORTED_MODULE_2__.default, {
-          restaurants: restaurants
-        })]
-      }), showFooter == true ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_layout_Footer__WEBPACK_IMPORTED_MODULE_3__.default, {
-        showRestaurantsStyle: showRestaurantsStyle,
+  showRestaurantsStyle = restaurants.length == 0 ? "restaurants-list hide-div" : "restaurants-list";
+  const showFooter = window.innerWidth < 500 ? true : false;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+    children: [restaurants.length == 0 && showLoading == false && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+      className: "no-restaurant-div",
+      children: "No restaurant found"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      className: showRestaurantsStyle,
+      children: [showFooter == false && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_filter_FilterPanel__WEBPACK_IMPORTED_MODULE_1__.default, {
         restaurants: restaurants,
-        updateFilter: this.updateFilter,
+        updateFilter: updateFilter,
         modifyOrig: modifyOrig,
         responseId: responseId
-      }) : null]
-    });
-  }
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_list_ListPanel__WEBPACK_IMPORTED_MODULE_2__.default, {
+        restaurants: restaurants
+      })]
+    }), showFooter == true ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_layout_Footer__WEBPACK_IMPORTED_MODULE_3__.default, {
+      showRestaurantsStyle: showRestaurantsStyle,
+      restaurants: restaurants,
+      updateFilter: updateFilter,
+      modifyOrig: modifyOrig,
+      responseId: responseId
+    }) : null]
+  });
+};
 
-}
-
-;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RestaurantsPanel);
 
 /***/ }),
@@ -2923,12 +2850,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const ListAllRestaurants = props => {
+
+const ListAllRestaurants = ({
+  restaurants
+}) => {
   // console.log('Props in ListAllRestaurant', props)
-  let {
-    restaurants,
-    searchByValue
-  } = props;
   return restaurants.map(restaurant => {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
       className: "restaurant-info",
@@ -2949,7 +2875,7 @@ const ListAllRestaurants = props => {
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_search_SearchContext__WEBPACK_IMPORTED_MODULE_0__.SearchConsumer, {
             children: context => {
-              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(React.Fragment, {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
                   className: "restaurant-name underline-div",
                   id: `name-${restaurant.name}`,

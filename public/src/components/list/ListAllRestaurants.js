@@ -4,9 +4,8 @@ import { Link } from 'react-router-dom';
 // local file dependencies
 import { SearchConsumer } from '../search/SearchContext'
 
-const ListAllRestaurants = (props) => {
+const ListAllRestaurants = ({ restaurants }) => {
 	// console.log('Props in ListAllRestaurant', props)
-	let { restaurants, searchByValue } = props
 
 	return (
 		restaurants.map((restaurant) => {
@@ -26,10 +25,10 @@ const ListAllRestaurants = (props) => {
 								{
 									(context) => {
 										return (
-											<React.Fragment>
+											<>
 												<div className="restaurant-name underline-div" id={`name-${restaurant.name}`} onClick={context}>{restaurant.name}</div>
 												<div className="restaurant-locality underline-div" id={`locality-${restaurant.locality}`} onClick={context}>{restaurant.locality}</div>
-											</React.Fragment>
+											</>
 										)
 									}
 								}
@@ -60,14 +59,11 @@ const ListAllRestaurants = (props) => {
 														</div>
 													)
 												}
-
 											}
-
 										</SearchConsumer>
 									</div>
 								)
 							})
-
 						}
 					</div>
 					<Link to={
@@ -78,7 +74,6 @@ const ListAllRestaurants = (props) => {
 
 					}>< div className="view-details-div">view details</div>
 					</Link>
-
 				</div >
 			)
 		})

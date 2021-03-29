@@ -1,5 +1,5 @@
 // dependencies
-import React, { Component } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -12,83 +12,65 @@ import { SearchProvider, SearchConsumer } from './search/SearchContext'
 // constants
 import Constants from './Constants'
 
-class Content extends Component {
-  // static propTypes = {
-  //     className: PropTypes.string,
-  // };
+const Content = (props) => {
 
-  constructor(props) {
-    super(props);
-
-    this.searchTextChange = this.searchTextChange.bind(this)
-    this.searchByValue = this.searchByValue.bind(this)
-
-    this.state = {
+  // Initialize the initial state and its modifier function
+  const [content, setContent] = useState(
+    {
       restaurants: [],
       showLoading: false,
       modifyOrig: false,
       responseId: ''
-    }
+    })
 
-    this.allConstants = new Constants()
-    // console.log('Received props', this.props)
-  }
+  const allConstants = Constants()
 
-
-  searchTextChange(event) {
-    event.persist()
+  const searchTextChange = (e) => {
     // change the state with the value typed in the search box
-    this.setState({ searchText: event.target.value })
-
-    if (event.keyCode == 13 || event.which == 13) {
-      this.searchByValue()
+    setContent({ ...content, searchText: e.target.value })
+    if (e.keyCode == 13 || e.which == 13) {
+      searchByValue()
     }
-
   }
 
-  componentDidMount() {
-    this.getRestaurants()
-  }
+  useEffect(() => {
+    getRestaurants()
+  }, [])
 
-  searchByValue(event) {
-
-    const { allConstants } = this
-
-    if (event) {
-      event.persist()
-      let id = event.target.id
+  const searchByValue = (e) => {
+    if (e) {
+      const id = e.target.id
       console.log('Function clicked from COntext', id)
 
-      let searchType = id.substring(0, id.indexOf('-'))
-      let searchValue = id.substr(id.indexOf('-') + 1)
+      const searchType = id.substring(0, id.indexOf('-'))
+      const searchValue = id.substr(id.indexOf('-') + 1)
 
       // define the data
-      let data = {}
+      const data = {}
       data[searchType] = searchValue
 
       // define url
-      let url = allConstants.getRestaurants.replace('{value}', '')
+      const url = allConstants.getRestaurants.replace('{value}', '')
 
       // API call to the back end
-      this.getRestaurants(url, data)
+      getRestaurants(url, data)
 
-    } else if (this.state.searchText != "") {
+    } else if (state.searchText != "") {
       // if ENTER key is pressed
-      console.log('ENTER key pressed / SEARCH button clicked...', this.state.searchText)
+      console.log('ENTER key pressed / SEARCH button clicked...', content.searchText)
 
       // API call to the back end
-      this.getRestaurants()
+      getRestaurants()
     }
   }
 
   // get all the restaurants
-  getRestaurants(url, data) {
+  const getRestaurants = async (url, data) => {
     // set state to show the Loading icon
-    this.setState({ showLoading: true })
-    const { allConstants } = this
+    setContent({ ...content, showLoading: true })
 
-    let searchText = (this.state.searchText && (this.props.searchText !== this.state.searchText)) ? this.state.searchText : this.props.searchText
-    let axiosConfig = {
+    const searchText = (content.searchText && (props.searchText !== content.searchText)) ? content.searchText : props.searchText
+    const axiosConfig = {
       url: (url) ? url : allConstants.getRestaurants.replace('{value}', searchText),
       method: allConstants.method.POST,
       header: allConstants.header
@@ -97,39 +79,33 @@ class Content extends Component {
     if (data) {
       axiosConfig["data"] = data
     }
-    // console.log('CONFIG is now', axiosConfig)
 
-    axios(axiosConfig)
-      .then((res) => {
-        console.log('Response from back end', res.data)
+    try {
+      const res = await axios(axiosConfig)
 
-        // add the response along with an unique id for each response
-        this.setState({ restaurants: [...res.data], showLoading: false, modifyOrig: true, responseId: uuidv4() })
-      })
-      .catch((err) => {
-        console.log('unable to get the data', err)
-      })
+      // add the response along with an unique id for each response
+      setContent({ restaurants: [...res.data], showLoading: false, modifyOrig: true, responseId: uuidv4() })
+    } catch (err) {
+      console.log('unable to get the data', err)
+    }
   }
 
-  render() {
+  const { restaurants, showLoading, modifyOrig, responseId } = content
+  // console.log('State in the Content', state)
 
-    let { restaurants, showLoading, modifyOrig, responseId } = this.state
-    // console.log('State in the Content', this.state)
-
-    return (
-      <div className="content-div">
-        <div className="content-div-search-bar">
-          <SearchBar
-            searchByValue={this.searchByValue}
-            searchTextChange={this.searchTextChange} />
-        </div>
-        {(showLoading == true) ? <Loading /> : null}
-        <SearchProvider value={this.searchByValue}>
-          <RestaurantPanel showLoading={showLoading} restaurants={restaurants} modifyOrig={modifyOrig} responseId={responseId} />
-        </SearchProvider>
+  return (
+    <div className="content-div">
+      <div className="content-div-search-bar">
+        <SearchBar
+          searchByValue={searchByValue}
+          searchTextChange={searchTextChange} />
       </div>
-    );
-  }
+      {(showLoading == true) ? <Loading /> : null}
+      <SearchProvider value={searchByValue}>
+        <RestaurantPanel showLoading={showLoading} restaurants={restaurants} modifyOrig={modifyOrig} responseId={responseId} />
+      </SearchProvider>
+    </div>
+  );
 }
 
 export default Content;

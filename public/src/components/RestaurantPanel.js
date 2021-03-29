@@ -1,70 +1,59 @@
-import React, { Component } from 'react';
+import { useEffect, useState } from 'react';
 
 // components
 import FilterPanel from './filter/FilterPanel'
 import ListPanel from './list/ListPanel'
 import Footer from './layout/Footer'
 
-class RestaurantsPanel extends Component {
+const RestaurantsPanel = (props) => {
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      restaurants: [...this.props.restaurants],
+  // Initialize the initial restaurantPanelData and its modifier function
+  const [restaurantPanelData, setRestaurantPanelData] = useState(
+    {
+      restaurants: [...props.restaurants],
       modifyOrig: false,
-      responseId: this.props.responseId
-    }
+      responseId: props.responseId
+    })
 
-    this.updateFilter = this.updateFilter.bind(this)
+  // componentWillReceiveProps(nextProps) {
+  // console.log('responseid from nextprops and currentProps', nextProps.responseId, ' and current ', props.responseId)
+  // if (nextProps.responseId != props.responseId) {
+  // }
+  // }
+
+  useEffect(() => {
+    setRestaurantPanelData({ ...restaurantPanelData, restaurants: [...props.restaurants], modifyOrig: true, responseId: props.responseId })
+  }, [props.responseId])
+
+  const updateFilter = (restaurants) => {
+    setRestaurantPanelData({ ...restaurantPanelData, restaurants, modifyOrig: false })
   }
 
-  componentWillReceiveProps(nextProps) {
-    // console.log('responseid from nextprops and currentProps', nextProps.responseId, ' and current ', this.props.responseId)
-    if (nextProps.responseId != this.props.responseId) {
-      this.setState({ restaurants: [...nextProps.restaurants], modifyOrig: true, responseId: nextProps.responseId })
-    }
+  const { restaurants, modifyOrig, responseId } = restaurantPanelData
+  const { showLoading } = props
+  let showRestaurantsStyle = (showLoading == true) ? "restaurants-list hide-div" : "restaurants-list"
 
-  }
+  // if no restaurants found
+  showRestaurantsStyle = (restaurants.length == 0) ? "restaurants-list hide-div" : "restaurants-list"
 
-  updateFilter(restaurants) {
-    console.log('FilterRestaurants are', restaurants)
-    this.setState({ restaurants, modifyOrig: false })
-  }
+  const showFooter = (window.innerWidth < 500) ? true : false
 
+  return (
+    <>
+      {(restaurants.length == 0 && showLoading == false) &&
+        <div className="no-restaurant-div">No restaurant found</div>
+      }
 
-  render() {
-
-    let { restaurants, modifyOrig, responseId } = this.state
-    let { showLoading } = this.props
-    let showRestaurantsStyle = (showLoading == true) ? "restaurants-list hide-div" : "restaurants-list"
-
-    // if no restaurants found
-    showRestaurantsStyle = (restaurants.length == 0) ? "restaurants-list hide-div" : "restaurants-list"
-
-    let showFooter = false
-    if (window.innerWidth < 500) {
-      showFooter = true
-    }
-    return (
-      <React.Fragment>
-        {(restaurants.length == 0 && showLoading == false) ?
-          <div className="no-restaurant-div">No restaurant found</div>
-          : null
+      <div className={showRestaurantsStyle}>
+        {(showFooter == false) &&
+          <FilterPanel restaurants={restaurants} updateFilter={updateFilter} modifyOrig={modifyOrig} responseId={responseId} />
         }
-        <div className={showRestaurantsStyle}>
-          {(showFooter == false) ?
-            <FilterPanel restaurants={restaurants} updateFilter={this.updateFilter} modifyOrig={modifyOrig} responseId={responseId} />
-            : null
-          }
-          <ListPanel restaurants={restaurants} />
+        <ListPanel restaurants={restaurants} />
 
-        </div>
-        {(showFooter == true) ? <Footer showRestaurantsStyle={showRestaurantsStyle} restaurants={restaurants} updateFilter={this.updateFilter} modifyOrig={modifyOrig} responseId={responseId} /> : null}
-      </React.Fragment>
-    );
-  }
+      </div>
+      {(showFooter == true) ? <Footer showRestaurantsStyle={showRestaurantsStyle} restaurants={restaurants} updateFilter={updateFilter} modifyOrig={modifyOrig} responseId={responseId} /> : null}
+    </>
+  );
 };
-
-
 
 export default RestaurantsPanel;
