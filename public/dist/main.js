@@ -1973,10 +1973,13 @@ const App = () => {
 
   const searchByValue = searchText => {
     console.log('Search text is now', searchText);
-    setPanelData({ ...panelData,
-      showContent: true,
-      searchText
-    });
+
+    if (searchText) {
+      setPanelData({ ...panelData,
+        showContent: true,
+        searchText
+      });
+    }
   };
 
   const {
@@ -2234,12 +2237,7 @@ const RestaurantsPanel = props => {
     restaurants: [...props.restaurants],
     modifyOrig: false,
     responseId: props.responseId
-  }); // componentWillReceiveProps(nextProps) {
-  // console.log('responseid from nextprops and currentProps', nextProps.responseId, ' and current ', props.responseId)
-  // if (nextProps.responseId != props.responseId) {
-  // }
-  // }
-
+  });
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     setRestaurantPanelData({ ...restaurantPanelData,
       restaurants: [...props.restaurants],
@@ -2743,59 +2741,38 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-class Hero extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      searchText: ''
-    };
-    this.searchTextChange = this.searchTextChange.bind(this);
-    this.searchByValue = this.searchByValue.bind(this);
-  }
+const Hero = props => {
+  // Initialize the initial heroData and its modifier function
+  const [heroData, setHeroData] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    searchText: ''
+  }); // change the heroData with the value typed in the search box
 
-  searchTextChange(event) {
-    event.persist(); // change the state with the value typed in the search box
-
-    this.setState({
-      searchText: event.target.value
+  const searchTextChange = e => {
+    setHeroData({ ...heroData,
+      searchText: e.target.value
     });
 
-    if (event.keyCode == 13 || event.which == 13) {
-      this.searchByValue();
+    if ((e.keyCode == 13 || e.which == 13) && heroData.searchText) {
+      props.searchByValue(heroData.searchText);
     }
-  }
+  };
 
-  searchByValue() {
-    // if ENTER key is pressed
-    if (this.state.searchText != "") {
-      console.log('ENTER key pressed / SEARCH button clicked...', this.state.searchText);
-      this.props.searchByValue(this.state.searchText);
-    }
-  }
+  const {
+    searchText
+  } = heroData;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+    className: "hero-div",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      className: "find-title",
+      children: "Find the best restaurants, caf\xE9s, and bars"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_search_SearchBar__WEBPACK_IMPORTED_MODULE_1__.default, {
+      searchText: searchText,
+      searchTextChange: searchTextChange,
+      searchByValue: props.searchByValue
+    })]
+  });
+};
 
-  render() {
-    let {
-      searchText
-    } = this.state;
-    let {
-      searchByValue
-    } = this.props;
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-      className: "hero-div",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-        className: "find-title",
-        children: "Find the best restaurants, caf\xE9s, and bars"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_search_SearchBar__WEBPACK_IMPORTED_MODULE_1__.default, {
-        searchText: searchText,
-        searchTextChange: this.searchTextChange,
-        searchByValue: this.searchByValue
-      })]
-    });
-  }
-
-}
-
-;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Hero);
 
 /***/ }),
@@ -2963,47 +2940,43 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "../node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "../node_modules/react/jsx-runtime.js");
-
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "../node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "../node_modules/react/jsx-runtime.js");
+// dependencies
 
 
 
 
 const ListEachRestaurant = props => {
-  console.log('Props received', props);
-  let {
+  const {
     restaurant
   } = props.location;
-  let cuisines = restaurant["cuisines"].join(', ');
-  console.log("Cuisines", cuisines);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
     className: "restaurant-details",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
       className: "restaurant-photo",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
         className: "restaurant-name-description",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
           to: "/",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("i", {
             className: "fa fa-arrow-left back-arrow"
           })
         }), restaurant.name]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
         className: "restaurant-rating",
         children: restaurant.rating
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
       className: "restaurant-description",
       children: ["cost", "address", "cuisines", "establishment"].map((ele, index) => {
         // console.log('Index here', index)
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
           className: "category-div",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
             className: "category-title",
             children: ele
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
             className: "category-description",
             children: Array.isArray(restaurant[ele]) ? restaurant[ele].join(', ') : restaurant[ele]
           })]
@@ -3042,24 +3015,22 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const ListPanel = props => {
-  let {
+  const {
     restaurants
   } = props;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
     className: "all-restaurants",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Switch, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Route, {
-        exact: true,
-        path: "/",
-        render: props => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ListAllRestaurants__WEBPACK_IMPORTED_MODULE_1__.default, { ...props,
-          restaurants: restaurants
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Route, {
-        path: "/showrestaurant/:id",
-        render: props => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ListEachRestaurant__WEBPACK_IMPORTED_MODULE_2__.default, { ...props
-        })
-      })]
-    })
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Route, {
+      exact: true,
+      path: "/",
+      render: props => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ListAllRestaurants__WEBPACK_IMPORTED_MODULE_1__.default, { ...props,
+        restaurants: restaurants
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Route, {
+      path: "/showrestaurant/:id",
+      render: props => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ListEachRestaurant__WEBPACK_IMPORTED_MODULE_2__.default, { ...props
+      })
+    })]
   });
 };
 
@@ -3100,7 +3071,7 @@ __webpack_require__.r(__webpack_exports__);
       className: "fa fa-search search-icon"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", {
       className: "btn search-btn",
-      onClick: searchByValue,
+      onClick: () => searchByValue(searchText),
       children: " search "
     })]
   });

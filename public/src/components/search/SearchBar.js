@@ -11,7 +11,7 @@ export default ({ searchText, searchTextChange, searchByValue }) => {
       <i className="fa fa-search search-icon"></i>
 
       <button className="btn search-btn"
-        onClick={searchByValue}> search </button>
+        onClick={() => searchByValue(searchText)}> search </button>
     </div>
   );
 };

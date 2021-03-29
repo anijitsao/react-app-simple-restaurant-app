@@ -21,7 +21,9 @@ const App = () => {
 
   const searchByValue = (searchText) => {
     console.log('Search text is now', searchText)
-    setPanelData({ ...panelData, showContent: true, searchText })
+    if (searchText) {
+      setPanelData({ ...panelData, showContent: true, searchText })
+    }
   }
 
   const { showContent, searchText } = panelData

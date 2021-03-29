@@ -1,13 +1,8 @@
-import React from 'react';
+// dependencies
 import { Link } from 'react-router-dom';
 
-
 const ListEachRestaurant = (props) => {
-	console.log('Props received', props)
-
-	let { restaurant } = props.location
-	let cuisines = restaurant["cuisines"].join(', ')
-	console.log("Cuisines", cuisines)
+	const { restaurant } = props.location
 
 	return (
 		<div className="restaurant-details">
@@ -30,11 +25,10 @@ const ListEachRestaurant = (props) => {
 							</div>
 						)
 					})
-				}			
+				}
 			</div>
 		</div>
 	);
 }
-
 
 export default ListEachRestaurant;

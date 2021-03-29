@@ -1,56 +1,33 @@
-import React, { Component } from 'react';
+import { useState } from 'react';
 
 // components
 import SearchBar from '../search/SearchBar'
 
-class Hero extends Component {
-  constructor(props) {
-    super(props);
+const Hero = (props) => {
 
-    this.state = {
-      searchText: ''
-    }
+  // Initialize the initial heroData and its modifier function
+  const [heroData, setHeroData] = useState({ searchText: '' })
 
-    this.searchTextChange = this.searchTextChange.bind(this)
-    this.searchByValue = this.searchByValue.bind(this)
-  }
+  // change the heroData with the value typed in the search box
+  const searchTextChange = (e) => {
+    setHeroData({ ...heroData, searchText: e.target.value })
 
-  searchTextChange(event) {
-    event.persist()
-    // change the state with the value typed in the search box
-    this.setState({ searchText: event.target.value })
-
-    if (event.keyCode == 13 || event.which == 13) {
-      this.searchByValue()
-    }
-
-  }
-
-  searchByValue() {
-    // if ENTER key is pressed
-    if (this.state.searchText != "") {
-      console.log('ENTER key pressed / SEARCH button clicked...', this.state.searchText)
-      this.props.searchByValue(this.state.searchText)
+    if ((e.keyCode == 13 || e.which == 13) && heroData.searchText) {
+      props.searchByValue(heroData.searchText)
     }
   }
 
-  render() {
+  const { searchText } = heroData
 
-    let { searchText } = this.state
-    let { searchByValue } = this.props
-
-    return (
-      <div className="hero-div">
-        <div className="find-title">Find the best restaurants, cafés, and bars</div>
-        <SearchBar
-          searchText={searchText}
-          searchTextChange={this.searchTextChange}
-          searchByValue={this.searchByValue} />
-      </div>
-    );
-  }
+  return (
+    <div className="hero-div">
+      <div className="find-title">Find the best restaurants, cafés, and bars</div>
+      <SearchBar
+        searchText={searchText}
+        searchTextChange={searchTextChange}
+        searchByValue={props.searchByValue} />
+    </div>
+  );
 };
-
-
 
 export default Hero;

@@ -15,12 +15,6 @@ const RestaurantsPanel = (props) => {
       responseId: props.responseId
     })
 
-  // componentWillReceiveProps(nextProps) {
-  // console.log('responseid from nextprops and currentProps', nextProps.responseId, ' and current ', props.responseId)
-  // if (nextProps.responseId != props.responseId) {
-  // }
-  // }
-
   useEffect(() => {
     setRestaurantPanelData({ ...restaurantPanelData, restaurants: [...props.restaurants], modifyOrig: true, responseId: props.responseId })
   }, [props.responseId])
