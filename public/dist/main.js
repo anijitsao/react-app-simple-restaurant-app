@@ -2638,57 +2638,50 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-class Footer extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showFilters: false
-    };
-    this.toggeleFilterPanel = this.toggeleFilterPanel.bind(this);
-  }
+const Footer = props => {
+  // Initialize the initial state and its modifier function
+  const [footerData, setFooterData] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    showFilters: false
+  });
 
-  toggeleFilterPanel() {
-    console.log('code reached');
-    this.setState((prevState, prevProps) => ({
-      showFilters: !prevState.showFilters
-    }));
-  }
-
-  render() {
-    let {
-      restaurants,
-      updateFilter,
-      responseId,
-      showRestaurantsStyle
-    } = this.props;
-    let {
-      showFilters
-    } = this.state;
-    let showFiltersStyle = showFilters == true ? 'filter-panel' : 'filter-panel hide-div';
-    let showFooterStyle = showRestaurantsStyle == false ? 'footer hide-div' : 'footer';
-    console.log('ShowFilters is here', showFilters);
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-      className: showFooterStyle,
-      onClick: this.toggeleFilterPanel,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
-          className: "fa fa-filter",
-          "aria-hidden": "true"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-          children: "filter"
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-        className: showFiltersStyle,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_filter_FilterPanel__WEBPACK_IMPORTED_MODULE_1__.default, {
-          restaurants: restaurants,
-          updateFilter: updateFilter,
-          responseId: responseId
-        })
-      })]
+  const toggeleFilterPanel = () => {
+    setFooterData({ ...footerData,
+      showFilters: !footerData.showFilters
     });
-  }
+  };
 
-}
+  const {
+    restaurants,
+    updateFilter,
+    responseId,
+    showRestaurantsStyle
+  } = props;
+  const {
+    showFilters
+  } = footerData;
+  const showFiltersStyle = showFilters == true ? 'filter-panel' : 'filter-panel hide-div';
+  const showFooterStyle = showRestaurantsStyle == false ? 'footer hide-div' : 'footer';
+  console.log('ShowFilters is here', showFilters);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+    className: showFooterStyle,
+    onClick: toggeleFilterPanel,
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
+        className: "fa fa-filter",
+        "aria-hidden": "true"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+        children: "filter"
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      className: showFiltersStyle,
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_filter_FilterPanel__WEBPACK_IMPORTED_MODULE_1__.default, {
+        restaurants: restaurants,
+        updateFilter: updateFilter,
+        responseId: responseId
+      })
+    })]
+  });
+};
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Footer);
 

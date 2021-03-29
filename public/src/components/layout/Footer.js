@@ -1,49 +1,36 @@
-import React, { Component } from 'react';
+import { useState } from 'react';
 
 // component 
 import FilterPanel from '../filter/FilterPanel'
 
-class Footer extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      showFilters: false
-    }
-    this.toggeleFilterPanel = this.toggeleFilterPanel.bind(this)
+const Footer = (props) => {
+
+  // Initialize the initial state and its modifier function
+  const [footerData, setFooterData] = useState({ showFilters: false })
+
+  const toggeleFilterPanel = () => {
+    setFooterData({ ...footerData, showFilters: !footerData.showFilters })
   }
 
-  toggeleFilterPanel() {
-    console.log('code reached')
-    this.setState((prevState, prevProps) =>
-      (
-        { showFilters: !prevState.showFilters }
-      ))
-  }
+  const { restaurants, updateFilter, responseId, showRestaurantsStyle } = props
+  const { showFilters } = footerData
 
-  render() {
+  const showFiltersStyle = (showFilters == true) ? 'filter-panel' : 'filter-panel hide-div'
+  const showFooterStyle = (showRestaurantsStyle == false) ? 'footer hide-div' : 'footer'
 
-    let { restaurants, updateFilter, responseId, showRestaurantsStyle } = this.props
-    let { showFilters } = this.state
-
-    let showFiltersStyle = (showFilters == true) ? 'filter-panel' : 'filter-panel hide-div'
-    let showFooterStyle = (showRestaurantsStyle == false) ? 'footer hide-div' : 'footer'
-
-    console.log('ShowFilters is here', showFilters)
-    return (
-      <div className={showFooterStyle} onClick={this.toggeleFilterPanel}>
-        <div>
-          <i className="fa fa-filter" aria-hidden="true"></i>
-          <span>filter</span>
-        </div>
-
-        <div className={showFiltersStyle}>
-          <FilterPanel restaurants={restaurants} updateFilter={updateFilter} responseId={responseId} />
-        </div>
+  console.log('ShowFilters is here', showFilters)
+  return (
+    <div className={showFooterStyle} onClick={toggeleFilterPanel}>
+      <div>
+        <i className="fa fa-filter" aria-hidden="true"></i>
+        <span>filter</span>
       </div>
-    )
-  }
+
+      <div className={showFiltersStyle}>
+        <FilterPanel restaurants={restaurants} updateFilter={updateFilter} responseId={responseId} />
+      </div>
+    </div>
+  )
 }
-
-
 
 export default Footer;
