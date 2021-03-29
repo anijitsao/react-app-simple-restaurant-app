@@ -24,7 +24,7 @@ const App = () => {
     setPanelData({ ...panelData, showContent: true, searchText })
   }
 
-  const { showContent, userInfo, searchText } = panelData
+  const { showContent, searchText } = panelData
   return (
     <BrowserRouter>
       <div className="container">
@@ -32,7 +32,7 @@ const App = () => {
         <Header />
         {(showContent == false)
           ? <Hero searchByValue={searchByValue} />
-          : <Content searchText={searchText} userInfo={userInfo} />}
+          : <Content searchText={searchText} />}
 
       </div>
     </BrowserRouter>

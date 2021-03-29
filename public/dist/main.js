@@ -1981,7 +1981,6 @@ const App = () => {
 
   const {
     showContent,
-    userInfo,
     searchText
   } = panelData;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.BrowserRouter, {
@@ -1990,8 +1989,7 @@ const App = () => {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_layout_Header__WEBPACK_IMPORTED_MODULE_1__.default, {}), showContent == false ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_layout_Hero__WEBPACK_IMPORTED_MODULE_3__.default, {
         searchByValue: searchByValue
       }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_Content__WEBPACK_IMPORTED_MODULE_2__.default, {
-        searchText: searchText,
-        userInfo: userInfo
+        searchText: searchText
       })]
     })
   });
@@ -2073,7 +2071,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const Content = props => {
-  // Initialize the initial state and its modifier function
+  // Initialize the initial content and its modifier function
   const [content, setContent] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
     restaurants: [],
     showLoading: false,
@@ -2083,7 +2081,7 @@ const Content = props => {
   const allConstants = (0,_Constants__WEBPACK_IMPORTED_MODULE_6__.default)();
 
   const searchTextChange = e => {
-    // change the state with the value typed in the search box
+    // change the content with the value typed in the search box
     setContent({ ...content,
       searchText: e.target.value
     });
@@ -2110,7 +2108,7 @@ const Content = props => {
       const url = allConstants.getRestaurants.replace('{value}', ''); // API call to the back end
 
       getRestaurants(url, data);
-    } else if (state.searchText != "") {
+    } else if (content.searchText != "") {
       // if ENTER key is pressed
       console.log('ENTER key pressed / SEARCH button clicked...', content.searchText); // API call to the back end
 
@@ -2120,7 +2118,7 @@ const Content = props => {
 
 
   const getRestaurants = async (url, data) => {
-    // set state to show the Loading icon
+    // set content to show the Loading icon
     setContent({ ...content,
       showLoading: true
     });
@@ -2154,7 +2152,7 @@ const Content = props => {
     showLoading,
     modifyOrig,
     responseId
-  } = content; // console.log('State in the Content', state)
+  } = content; // console.log('content in the Content', content)
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
     className: "content-div",
@@ -2164,7 +2162,7 @@ const Content = props => {
         searchByValue: searchByValue,
         searchTextChange: searchTextChange
       })
-    }), showLoading == true ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Loading__WEBPACK_IMPORTED_MODULE_4__.default, {}) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_search_SearchContext__WEBPACK_IMPORTED_MODULE_5__.SearchProvider, {
+    }), showLoading == true && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Loading__WEBPACK_IMPORTED_MODULE_4__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_search_SearchContext__WEBPACK_IMPORTED_MODULE_5__.SearchProvider, {
       value: searchByValue,
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_RestaurantPanel__WEBPACK_IMPORTED_MODULE_3__.default, {
         showLoading: showLoading,

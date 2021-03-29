@@ -14,7 +14,7 @@ import Constants from './Constants'
 
 const Content = (props) => {
 
-  // Initialize the initial state and its modifier function
+  // Initialize the initial content and its modifier function
   const [content, setContent] = useState(
     {
       restaurants: [],
@@ -26,7 +26,7 @@ const Content = (props) => {
   const allConstants = Constants()
 
   const searchTextChange = (e) => {
-    // change the state with the value typed in the search box
+    // change the content with the value typed in the search box
     setContent({ ...content, searchText: e.target.value })
     if (e.keyCode == 13 || e.which == 13) {
       searchByValue()
@@ -55,7 +55,7 @@ const Content = (props) => {
       // API call to the back end
       getRestaurants(url, data)
 
-    } else if (state.searchText != "") {
+    } else if (content.searchText != "") {
       // if ENTER key is pressed
       console.log('ENTER key pressed / SEARCH button clicked...', content.searchText)
 
@@ -66,7 +66,7 @@ const Content = (props) => {
 
   // get all the restaurants
   const getRestaurants = async (url, data) => {
-    // set state to show the Loading icon
+    // set content to show the Loading icon
     setContent({ ...content, showLoading: true })
 
     const searchText = (content.searchText && (props.searchText !== content.searchText)) ? content.searchText : props.searchText
@@ -91,7 +91,7 @@ const Content = (props) => {
   }
 
   const { restaurants, showLoading, modifyOrig, responseId } = content
-  // console.log('State in the Content', state)
+  // console.log('content in the Content', content)
 
   return (
     <div className="content-div">
@@ -100,7 +100,7 @@ const Content = (props) => {
           searchByValue={searchByValue}
           searchTextChange={searchTextChange} />
       </div>
-      {(showLoading == true) ? <Loading /> : null}
+      {(showLoading == true) && <Loading />}
       <SearchProvider value={searchByValue}>
         <RestaurantPanel showLoading={showLoading} restaurants={restaurants} modifyOrig={modifyOrig} responseId={responseId} />
       </SearchProvider>
