@@ -74,7 +74,7 @@ cd server
 ```
 Run the server
 ```
-node server.js
+npm run server
 ```
 Open the web browser and type`http://localhost:3000` in the address bar to load the application 
 
