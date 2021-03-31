@@ -1,12 +1,12 @@
 # react-app-simple-restaurant-app
-A Simple Restaurant Application using [React JS](https://reactjs.org/docs/getting-started.html), a JavaScript library to make awesome UI by Facebook, [Node JS](https://nodejs.org/docs/latest-v8.x/api/), [Express JS](https://expressjs.com/en/api.html) and [MongoDB](https://docs.mongodb.com/).
+A Simple Restaurant Application using [React JS](https://reactjs.org/docs/getting-started.html), a JavaScript library to make awesome UI by Facebook, [Node JS](https://nodejs.org/en/docs/), [Express JS](https://expressjs.com/en/api.html) and [MongoDB](https://docs.mongodb.com/).
 
 This application uses [React JS](https://reactjs.org/docs/getting-started.html) component oriented UI creation paradigm. All components are written in [JSX](https://reactjs.org/docs/jsx-in-depth.html) and ES6 style and are
-combined to get a single build for production purpose using [Webpack 4](https://webpack.js.org/concepts/). 
+combined to get a single build for production purpose using [Webpack 5](https://webpack.js.org/concepts/). 
 
 ES6 `module` creation along with `import /export` is used. [Babel](https://babeljs.io/docs/en/babel-preset-react) is used to *transpile* all [JSX](https://reactjs.org/docs/jsx-in-depth.html) code to vanilla JavaScript code. To install all the dependecies `npm` is used.
 
-Back end is implemented using [Node JS](https://nodejs.org/docs/latest-v8.x/api/), [Express JS](https://expressjs.com/en/api.html) and [MongoDB](https://docs.mongodb.com/). [Atlas](https://www.mongodb.com/cloud/atlas), the *Cloud* version of [MongoDB](https://docs.mongodb.com/) is used. 
+Back end is implemented using [Node JS](https://nodejs.org/en/docs), [Express JS](https://expressjs.com/en/api.html) and [MongoDB](https://docs.mongodb.com/). [Atlas](https://www.mongodb.com/cloud/atlas), the *Cloud* version of [MongoDB](https://docs.mongodb.com/) is used. 
 
 
 For UI creation [HTML5](https://www.w3schools.com/html/html5_intro.asp) and [CSS3](https://www.w3schools.com/css/) are used. [Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout), the new feature of [CSS3](https://www.w3schools.com/css/) is used for layout creation purpose.
@@ -15,6 +15,13 @@ This is a *responsive web application* for viewing in both Mobile and Desktop.
 
 
 ## Features
+- Code is rewritten with [React JS 17](https://reactjs.org/docs/getting-started.html) and [Node JS 15](https://nodejs.org/en/docs/)
+- Latest features of JavaScript i.e. ES6, ES7, ES8 is used
+- [React JS Hooks](https://reactjs.org/docs/hooks-intro.html) are used with Functional components
+- ES8 `async/await` is used
+
+<br/>
+
 <ul>
  <li> This is Simple Restaurant Application </li>
  <li> It is a Full Stack Application </li>
@@ -49,19 +56,37 @@ This is a *responsive web application* for viewing in both Mobile and Desktop.
 
 ## Installation
 
-1. Clone the repository using `git clone https://github.com/anijitsahu/react-app-simple-restaurant-app.git` from `Git Bash / Command Prompt`
-2. Navigate inside the directory by `cd react-app-simple-restaurant-app`
-3. Install all the necessary dependecies by using `npm install` 
-4. Navigate to the directory `cd server`
-5. Run the server by `node server.js`
-6. Open the web browser and type`http://localhost:3000` in the address bar to load the application 
-7. Search restaurants using `name`, `cuisines`, `locality` etc
-8. Filter the search results by `cost for 2 persons`, `establishment type` and `locality`
-9. Sort the results by `price` and `rating`
-10. View details of each restaurant by clicking `View Details` button
+Clone the repository: 
+```
+git clone https://github.com/anijitsahu/react-app-simple-restaurant-app.git
+``` 
+Navigate inside the directory:
+```
+cd react-app-simple-restaurant-app
+```
+Install all the necessary dependecies:
+```
+npm install
+``` 
+Navigate to the directory:
+```
+cd server
+```
+Run the server
+```
+node server.js
+```
+Open the web browser and type`http://localhost:3000` in the address bar to load the application 
+
+
+### Search
+1. Search restaurants using `name`, `cuisines`, `locality` etc
+2. Filter the search results by `cost for 2 persons`, `establishment type` and `locality`
+3. Sort the results by `price` and `rating`
+4. View details of each restaurant by clicking `View Details` button
 
  
-*tested with <img src="screenshots/chrome.png" width="20px" title="Google Chrome">Google Chrome v70 and <img src="screenshots/firefox.png" width="25px" title="Firefox Developer edition">Mozilla Firefox Developer Editon*  
+*tested with <img src="screenshots/chrome.png" width="20px" title="Google Chrome">[Google Chrome 89](https://www.google.com/chrome/) and <img src="screenshots/firefox.png" width="25px" title="Firefox Developer edition">[Mozilla Firefox 86](https://www.mozilla.org/en-US/firefox/new/)*  
 
 ## Screenshots
 
