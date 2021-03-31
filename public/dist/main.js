@@ -2030,6 +2030,21 @@ const Constants = () => {
     method: {
       "POST": "POST",
       "GET": "GET"
+    },
+    COST_CATEGORY: {
+      low: 250,
+      medium: 500,
+      high: 500
+    },
+    MAPPING: {
+      cost: "cost for two",
+      establishment: "establishment type",
+      low: "less Than &#8377;250",
+      medium: "&#8377;250 To &#8377;500",
+      high: "&#8377;500+",
+      inc: "Price low to high",
+      dec: "Price high to low",
+      rating: "Rating"
     }
   };
 };
@@ -2304,23 +2319,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../node_modules/react/index.js");
-/* harmony import */ var html_react_parser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! html-react-parser */ "../node_modules/html-react-parser/index.mjs");
+/* harmony import */ var html_react_parser__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! html-react-parser */ "../node_modules/html-react-parser/index.mjs");
+/* harmony import */ var _Constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Constants */ "./src/components/Constants.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "../node_modules/react/jsx-runtime.js");
 
 
 
 
-const MAPPING = {
-  cost: "cost for two",
-  establishment: "establishment type",
-  low: "less Than &#8377;250",
-  medium: "&#8377;250 To &#8377;500",
-  high: "&#8377;500+",
-  inc: "Price low to high",
-  dec: "Price high to low",
-  rating: "Rating"
-};
 
 const Filter = ({
   name,
@@ -2328,6 +2333,9 @@ const Filter = ({
   applyFilter,
   currentFilter
 }) => {
+  const {
+    MAPPING
+  } = (0,_Constants__WEBPACK_IMPORTED_MODULE_1__.default)();
   const keys = Object.keys(items);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     className: "filter-info",
@@ -2342,7 +2350,7 @@ const Filter = ({
         onClick: applyFilter,
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
           className: "item-name",
-          children: MAPPING[key] ? (0,html_react_parser__WEBPACK_IMPORTED_MODULE_1__.default)(MAPPING[key]) : key
+          children: MAPPING[key] ? (0,html_react_parser__WEBPACK_IMPORTED_MODULE_0__.default)(MAPPING[key]) : key
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
           className: "item-count",
           children: items[key]
@@ -2369,70 +2377,67 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../node_modules/react/index.js");
 /* harmony import */ var _Filter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Filter */ "./src/components/filter/Filter.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "../node_modules/react/jsx-runtime.js");
+/* harmony import */ var _Constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Constants */ "./src/components/Constants.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "../node_modules/react/jsx-runtime.js");
  // components
 
+ // constants
 
 
-const COST_CATEGORY = {
-  low: 250,
-  medium: 500,
-  high: 500
-};
 
-class FilterPanel extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      restaurants: [],
-      establishments: {},
-      locality: {},
-      cost: {},
-      sort: {
-        "inc": '',
-        "dec": '',
-        "rating": ''
-      },
-      sortFilter: {
-        "sort": 'rating'
-      },
-      currentFilter: {
-        cost: '',
-        establishment: '',
-        locality: ''
-      },
-      responseId: this.props.responseId
-    };
-    this.applyFilter = this.applyFilter.bind(this);
-  }
 
-  componentWillReceiveProps(nextProps) {
-    // console.log('Response IDs in FilterRestaurant', nextProps.responseId, ' and current ', this.props.responseId)
-    // console.log('Next props are ', nextProps)
-    if (nextProps.responseId != this.props.responseId) {
-      this.setState({
-        restaurants: [...nextProps.restaurants],
-        restaurantsOrig: [...nextProps.restaurants]
-      }, () => {
-        this.computeFilters();
-      });
+const FilterPanel = props => {
+  // Initialize the initial filterPanelData and its modifier function
+  const [filterPanelData, setFilterPanelData] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    establishments: {},
+    locality: {},
+    cost: {},
+    sort: {
+      "inc": '',
+      "dec": '',
+      "rating": ''
+    },
+    sortFilter: {
+      "sort": 'rating'
+    },
+    currentFilter: {
+      cost: '',
+      establishment: '',
+      locality: ''
     }
-  }
+  });
+  const [restaurantsData, setResturantsData] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    restaurants: [],
+    restaurantsOrig: []
+  });
+  const allConstants = (0,_Constants__WEBPACK_IMPORTED_MODULE_2__.default)();
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    updateFilterData();
+  }, [props.responseId]);
 
-  computeFilters() {
-    let restaurants = [...this.state.restaurants];
-    let establishments = {};
-    let cost = {
+  const updateFilterData = () => {
+    if (props.restaurants.length > 0) {
+      setResturantsData({ ...restaurantsData,
+        restaurants: [...props.restaurants],
+        restaurantsOrig: [...props.restaurants]
+      });
+      computeFilters(props.restaurants);
+    }
+  };
+
+  const computeFilters = (restaurants = [...restaurantsData.restaurants]) => {
+    const establishments = {};
+    const cost = {
       "low": 0,
       "medium": 0,
       "high": 0
     };
-    let locality = {};
+    const locality = {};
     restaurants.forEach(restaurant => {
       // set up the cost filter
-      if (restaurant.cost < COST_CATEGORY['low']) {
+      if (restaurant.cost < allConstants.COST_CATEGORY['low']) {
         cost["low"] += 1;
-      } else if (restaurant.cost <= COST_CATEGORY['medium']) {
+      } else if (restaurant.cost <= allConstants.COST_CATEGORY['medium']) {
         cost["medium"] += 1;
       } else {
         cost["high"] += 1;
@@ -2440,7 +2445,7 @@ class FilterPanel extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
 
 
       restaurant.establishment.forEach(establish => {
-        let typeOfEstablishment = establish.toLowerCase(); // if establishment is already present increment it
+        const typeOfEstablishment = establish.toLowerCase(); // if establishment is already present increment it
 
         if (establishments[typeOfEstablishment]) {
           establishments[typeOfEstablishment] += 1;
@@ -2455,52 +2460,45 @@ class FilterPanel extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
         locality[restaurant.locality] = 1;
       }
     });
-    this.setState({
+    setFilterPanelData({ ...filterPanelData,
       cost,
       establishments,
       locality
-    }, () => {
-      console.log('state updated with Filters', this.state);
     });
-  }
+  };
 
-  applyFilter(event) {
-    event.persist();
-    let filterId = event.target.parentElement.id;
-    console.log('event here', filterId);
-    let filterType = filterId.substring(0, filterId.indexOf('-'));
-    let filterValue = filterId.substr(filterId.indexOf('-') + 1);
+  const applyFilter = e => {
+    const filterId = e.target.parentElement.id;
+    console.log('e here', filterId);
+    const filterType = filterId.substring(0, filterId.indexOf('-'));
+    const filterValue = filterId.substr(filterId.indexOf('-') + 1);
 
     if (filterType == 'sort') {
-      // copy the sort filter from the state
-      let sortFilter = { ...this.state.sortFilter
+      // copy the sort filter from the filterPanelData
+      const sortFilter = { ...filterPanelData.sortFilter
       };
-      sortFilter[filterType] = filterValue; // update the state accordingly
+      sortFilter[filterType] = filterValue; // update the filterPanelData accordingly
 
-      this.setState({
+      setFilterPanelData({ ...filterPanelData,
         sortFilter
-      }, () => {
-        this.sortRestaurants(filterValue);
       });
+      sortRestaurants(filterValue);
     } else {
-      // copy the current filter from the state
-      let currentFilter = { ...this.state.currentFilter
-      }; // if the filter is removed set it null
-      // otherwise update it accordingly
+      // copy the current filter from the filterPanelData
+      const currentFilter = { ...filterPanelData.currentFilter
+      }; // if the filter is removed set it null, otherwise update it accordingly
 
-      currentFilter[filterType] = currentFilter[filterType] && currentFilter[filterType] == filterValue ? '' : filterValue; // update the state accordingly
+      currentFilter[filterType] = currentFilter[filterType] && currentFilter[filterType] == filterValue ? '' : filterValue; // update the filterPanelData accordingly
 
-      this.setState({
+      setFilterPanelData({ ...filterPanelData,
         currentFilter
-      }, () => {
-        console.log('Current filter types are updated, Proceed to filter restaurants');
-        this.filterRestaurants(filterType, filterValue, currentFilter);
       });
+      filterRestaurants(filterType, filterValue, currentFilter);
     }
-  }
+  };
 
-  sortRestaurants(filterValue) {
-    let restaurantSorted = [...this.state.restaurants];
+  const sortRestaurants = filterValue => {
+    let restaurantSorted = [...restaurantsData.restaurants];
 
     switch (filterValue) {
       case 'inc':
@@ -2522,13 +2520,13 @@ class FilterPanel extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
         break;
     }
 
-    this.props.updateFilter(restaurantSorted); // this.setState({ modifyOriginalRestaurants: false })
-  } // function to filter restaurants accoring to cost, establishment and locality
+    props.updateFilter(restaurantSorted);
+  }; // function to filter restaurants accoring to cost, establishment and locality
 
 
-  filterRestaurants(filterType, filterValue, currentFilter) {
-    // copy the list of original restaurants saved in the state
-    let restaurantsFiltered = [...this.state.restaurantsOrig]; // apply all the filters one by one    
+  const filterRestaurants = (filterType, filterValue, currentFilter) => {
+    // copy the list of original restaurants saved in the filterPanelData
+    let restaurantsFiltered = [...restaurantsData.restaurantsOrig]; // apply all the filters one by one    
 
     if (currentFilter['establishment']) {
       restaurantsFiltered = restaurantsFiltered.filter(restaurant => {
@@ -2547,73 +2545,67 @@ class FilterPanel extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
       switch (currentFilter['cost']) {
         case 'low':
           restaurantsFiltered = restaurantsFiltered.filter(restaurant => {
-            return restaurant.cost < COST_CATEGORY[currentFilter['cost']];
+            return restaurant.cost < allConstants.COST_CATEGORY[currentFilter['cost']];
           });
           break;
 
         case 'medium':
           restaurantsFiltered = restaurantsFiltered.filter(restaurant => {
-            return restaurant.cost <= COST_CATEGORY[currentFilter['cost']];
+            return restaurant.cost <= allConstants.COST_CATEGORY[currentFilter['cost']];
           });
           break;
 
         case 'high':
           restaurantsFiltered = restaurantsFiltered.filter(restaurant => {
-            return restaurant.cost > COST_CATEGORY[currentFilter['cost']];
+            return restaurant.cost > allConstants.COST_CATEGORY[currentFilter['cost']];
           });
           break;
       }
     }
 
-    this.setState({
+    setResturantsData({ ...restaurantsData,
       restaurants: restaurantsFiltered
-    }, () => {
-      this.computeFilters(); // console.log('Filtered restaurants are', this.state)
-
-      this.props.updateFilter(restaurantsFiltered);
     });
-  } // render 
+    computeFilters();
+    props.updateFilter(restaurantsFiltered);
+  };
 
+  const {
+    cost,
+    establishments,
+    locality,
+    sort,
+    currentFilter,
+    sortFilter
+  } = filterPanelData;
+  currentFilter['sort'] = sortFilter['sort'];
+  const allFilters = [{
+    name: 'sort',
+    items: sort
+  }, {
+    name: 'cost',
+    items: cost
+  }, {
+    name: 'establishment',
+    items: establishments
+  }, {
+    name: 'locality',
+    items: locality
+  }]; // render 
 
-  render() {
-    let {
-      cost,
-      establishments,
-      locality,
-      sort,
-      currentFilter,
-      sortFilter
-    } = this.state;
-    currentFilter['sort'] = sortFilter['sort'];
-    let allFilters = [{
-      name: 'sort',
-      items: sort
-    }, {
-      name: 'cost',
-      items: cost
-    }, {
-      name: 'establishment',
-      items: establishments
-    }, {
-      name: 'locality',
-      items: locality
-    }];
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-      className: "filter-restaurants",
-      children: allFilters.map((ele, index) => {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Filter__WEBPACK_IMPORTED_MODULE_1__.default, {
-          name: ele.name,
-          items: ele.items,
-          applyFilter: this.applyFilter,
-          currentFilter: currentFilter
-        }, index);
-      })
-    });
-  }
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+    className: "filter-restaurants",
+    children: allFilters.map((ele, index) => {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Filter__WEBPACK_IMPORTED_MODULE_1__.default, {
+        name: ele.name,
+        items: ele.items,
+        applyFilter: applyFilter,
+        currentFilter: currentFilter
+      }, index);
+    })
+  });
+};
 
-}
-
-;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (FilterPanel);
 
 /***/ }),
