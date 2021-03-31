@@ -80,6 +80,7 @@ Open the web browser and type`http://localhost:3000` in the address bar to load 
 
 
 ### Search
+
 1. Search restaurants using `name`, `cuisines`, `locality` etc
 2. Filter the search results by `cost for 2 persons`, `establishment type` and `locality`
 3. Sort the results by `price` and `rating`
