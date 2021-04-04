@@ -3,20 +3,40 @@
 * {
   margin: 0;
   padding: 0;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 
-html {
-  font-size: 16px;
-  font-family: 'Roboto', sans-serif;
+:root {
+  --font-small: 10px;
+  --font-regular: 16px;
+  --font-family: 'Roboto', sans-serif;
+
+  --font-weight-regular: 300;
+ 
+  --darker-grey: #605e5e;
+  --dark-grey: #ddd;
+  --light-grey: #eee;
+  --lighter-grey: #fff;
+
+  --darkest-black: #000;
+  --lighter-black: #988686;
+  --lightest-black: #939393;
+
+  --light-purple: #ab14ab;
+  --lighter-purple: #ba36ba;
+  --lightest-purple: #c075d6;
+
+  --light-red: #f02323;
+  --lighter-red: #e31a1a;
+
+  --dark-shadow: rgba(0, 0, 0, 0.8);
+  --light-shadow: rgba(0, 0, 0, 0.4);
+  --lighter-shadow: rgba(0, 0, 0, 0.2);
 }
 
-@media screen and (max-width: 500px) {
-  html {
-    font-size: 10px;
-  }
+body {
+  font-size: var(--font-regular);
+  font-family: var(--font-family);
 }
 
 .container {
@@ -27,22 +47,21 @@ html {
 
 .header {
   display: grid;
-  background-color: #ab14ab;
-  color: #fff;
+  background-color: var(--light-purple);
+  color: var(--lighter-grey);
 
   grid-template-columns:1fr;
   padding: 1em;
 }
 
-
 /* title of the application related */
 .title {
-  font-weight: 300;
+  font-weight: var(--font-weight-regular);
   text-transform: uppercase;
 }
 
 .bold-title {
-  font-weight: 700;
+  font-weight: var(--font-weight-dark);
 }
 
 input[type=text] {
@@ -51,49 +70,37 @@ input[type=text] {
   letter-spacing: 1px;  
 }
 
-
-/* Error message in the Login screen */
-.error-message {
-  font-size: 0.7em;
-  background-color: rgba(255, 0, 0, 0.1);
-  padding: 1em;
-  color: #bf5555;
-  max-height: 33px;
-  border-left: solid 2px;
-  border-radius: 2px;
-}
-
 /* Hero component related */
 .hero-div {
-  background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0, 0, 0,0.5)), url(http://localhost:3000/images/hero.jpg);
+  background-image: linear-gradient(var(--dark-shadow), var(--light-shadow)), url(http://localhost:3000/images/hero.jpg);
 	background-size: cover;
 	background-repeat: no-repeat;
 	display: grid;
 
-	/* height: calc(100vh - 50px); */
 	align-items: end;
   justify-items: center;
   position: relative;
 }
 
 .find-title {
-  color: #fff;
+  color: var(--lighter-grey);
   font-size: 2em;
   position: absolute;
   bottom: 63px;
-  font-weight: 300;
+  font-weight: var(--font-weight-regular);
 }
 
 /* Search bar related */
 .btn {
-  background-color: #ab14ab;
-  color: #fff;
+  background-color: var(--light-purple);
+  color: var(--lighter-grey);
   padding: 1.3em;
   letter-spacing: 2px;
   border-radius: 2px;
-  border: solid 1px #ab14ab;
+  border: solid 1px var(--light-purple);
   font-size: 0.7em;
 }
+
 .search-bar {
   display: grid;
   grid-template-columns: 4fr 1fr;
@@ -105,15 +112,12 @@ input[type=text] {
   text-transform: uppercase;
   display: inline-block;
   margin-left: 1em;
-}
-
-.search-btn:hover {
   cursor: pointer;
 }
 
 .search-box {
-  background-color: #ccc;
-  border: solid 1px #ccc;
+  background-color: var(--dark-grey);
+  border: solid 1px var(--dark-grey);
   border-radius: 3px;
 }
 
@@ -122,26 +126,25 @@ input[type=text] {
 }
 
 .search-icon {
-  color: #605e5e;
+  color: var(--darker-grey);
   position: absolute;
   left: 3px;
   align-self: center;
 }
 
 .search-box:focus {
-  background-color: #fff;
+  background-color: var(--lighter-grey);
 }
 
 .search-box:focus .search-icon {
-  color:black;
+  color: var(--darkest-black);
 }
-
 
 /* Listing of all the restaurants */
 .content-div {
   display: grid;
   grid-template-rows: 50px calc(100vh - 100px);
-  background-color: #fff2ff;
+  background-color: var(--lighter-grey);
   overflow-y: hidden;
 }
 
@@ -155,37 +158,32 @@ input[type=text] {
 .restaurants-list {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  /* background-color: #fff2ff; */
+
   padding: 1em;
   grid-gap: 0.9em;
   margin-right: 5%;
   margin-left: 5%;
-  /* height: calc(100vh - 50px); */
 }
-
 
 .all-restaurants {
-  /* display: grid; */
-  /* grid-template-columns: 1fr; */
   overflow-y: auto;
 }
-
 
 .restaurant-info {
   display: grid;
   grid-template-rows: repeat(2, 1fr);
-  border: solid 2px #eee;
+  border: solid 2px var(--light-grey);
   border-radius: 5px;
   padding: 1em;
   margin-bottom: 5px;
-  background-color: #fff;
+  background-color: var(--lighter-grey);
 }
 
 .name-address {
   display: grid;
   grid-template-columns: 100px 3fr;
   grid-gap: 10px;
-  border-bottom: solid 1px #ddd;
+  border-bottom: solid 1px var(--dark-grey);
   padding: 1em;
   position: relative;
 }
@@ -194,30 +192,23 @@ input[type=text] {
   display: grid;
   grid-template-columns: 1fr 3fr;
   grid-gap: 10px;
-  /*border-bottom: solid 1px #ddd;*/
   padding: 1em;
 }
 
 .logo {
   width: 100px;
-  /*height: 200px;*/
-  border: 1px solid #ddd;
+  border: 1px solid var(--dark-grey);
   border-radius: 2px;
 }
 
-.logo-div {
-  /*border: 1px solid #ddd;*/
-  /*border-radius: 2px;*/
-}
-
 .restaurant-name {
-  font-weight: 700;
-  color: #ab14ab;
+  font-weight: var(--font-weight-dark);
+  color: var(--light-purple);
   font-size: 1.5em;
 }
 
 .restaurant-locality {
-  font-weight: 700;
+  font-weight: var(--font-weight-dark);
   font-size: 1em;
   text-transform: capitalize;
 }
@@ -230,11 +221,11 @@ input[type=text] {
 .details-title {
   text-transform: uppercase;
   font-size: 0.7em;
-  color: #939393;
+  color: var(--lightest-black);
 }
 
 .restaurant-address {
-  color: #988686;
+  color: var(--lighter-black);
   font-size: 0.8em;
 }
 
@@ -245,8 +236,8 @@ input[type=text] {
   /* background-color: #fbc3fb; */
   padding: 0.6em;
   border-radius: 3px;
-  background: linear-gradient(#ba36ba, #c075d6);
-  color: #fff;
+  background: linear-gradient(var(--lighter-purple), var(--lightest-purple));
+  color: var(--lighter-grey);
   font-weight: bold;
 }
 
@@ -262,23 +253,23 @@ a {
 
 .view-details-div {
   text-transform: uppercase;
-  color: #fff;
-  background-color: #ab14ab;
+  color: var(--lighter-grey);
+  background-color: var(--light-purple);
   padding: 1em;
   text-align: center;
 }
 
 .view-details-div:hover {
   cursor: pointer;
-  color: #ddd;
+  color: var(--dark-grey);
 }
 
 /* Filter Restaurant related */
 .filter-restaurants {
   display: grid;
   grid-template-columns: 1fr;
-  background-color: #fff;
-  border: solid 1px #ddd;
+  background-color: var(--lighter-grey);
+  border: solid 1px var(--dark-grey);
   border-radius: 5px;
   overflow-y: auto;
 }
@@ -305,12 +296,12 @@ a {
 }
 
 .item-count {
-  color: #939393;
+  color: var(--lightest-black);
 }
 
 /* both active item have same color and font */
 .active-item, .active-item-sort {
-  color: #ab14ab;
+  color: var(--light-purple);
   font-weight: bold;
 }
 
@@ -322,7 +313,7 @@ a {
 /* Loading image related */
 .loading-div {
   display: grid;
-  color: #ab14ab;
+  color: var(--light-purple);
   font-size: 4em;
   align-items: center;
   justify-items: center;
@@ -346,15 +337,15 @@ a {
 
 .restaurant-photo {
   border-radius: 5px;
-  border: solid 1px #ddd;
+  border: solid 1px var(--dark-grey);
   
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(http://localhost:3000/images/hero.jpg);
+  background-image: linear-gradient(var(--light-shadow), var(--light-shadow)), url(http://localhost:3000/images/hero.jpg);
   background-size: cover;
   margin-bottom: 8px;
 }
 
 .restaurant-name-description {
-  color: #fff;
+  color: var(--lighter-grey);
 }
 
 
@@ -363,9 +354,9 @@ a {
   text-transform: capitalize;
   grid-template-columns: 1fr 1fr;
 
-  background-color: #fff;
+  background-color: var(--lighter-grey);
   border-radius: 5px;
-  border: solid 1px #ddd;
+  border: solid 1px var(--dark-grey);
 }
 
 .category-title{
@@ -374,7 +365,7 @@ a {
 
 .category-description {
   font-size: 0.7em;
-  color: #999;
+  color: var(--lightest-black);
 }
 
 .category-div {
@@ -383,7 +374,7 @@ a {
 
 /* back arrow in the each restaurant details */
 .back-arrow {
-  color: #fff;
+  color: var(--lighter-grey);
   padding: 0.7em;
 }
 
@@ -399,7 +390,7 @@ a {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #ccc;
+  background-color: var(--dark-grey);
   border-radius: 8px;
 }
 
@@ -407,6 +398,10 @@ a {
 /* media queries */
 @media screen and (max-width: 500px) {
 
+  body {
+    font-size: var(--font-small);
+  }
+ 
   .container {
     display: grid;
     grid-template-columns: 1fr;
@@ -416,7 +411,7 @@ a {
   .content-div {
     display: grid;
     grid-template-rows: 50px calc(100vh - 100px) 20px;
-    background-color: #fff2ff;
+    background-color: var(--lighter-grey);
     overflow-y: hidden;
   }
 
@@ -430,7 +425,7 @@ a {
   }
 
   .footer {
-    background-color: #fff;
+    background-color: var(--lighter-grey);
     align-self: end;
     padding: 1em;
     align-items: center;
@@ -445,7 +440,6 @@ a {
     bottom: 31px;
     z-index: 2;
     width: 100%;
-    /* height: calc(100vh - 62px); */
   }
   
 }
