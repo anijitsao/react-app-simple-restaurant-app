@@ -18,15 +18,6 @@ const FilterPanel = (props) => {
         "inc": '',
         "dec": '',
         "rating": ''
-      },
-      sortFilter: {
-        "sort": 'rating'
-      },
-
-      currentFilter: {
-        cost: '',
-        establishment: '',
-        locality: ''
       }
     })
 
@@ -34,6 +25,8 @@ const FilterPanel = (props) => {
     restaurants: [],
     restaurantsOrig: []
   })
+
+  const [currentFilter, setCurrentFilter] = useState({ cost: '', establishment: '', locality: '', sort: 'rating' })
 
   const allConstants = Constants()
 
@@ -96,30 +89,20 @@ const FilterPanel = (props) => {
     const filterValue = filterId.substr(filterId.indexOf('-') + 1)
 
     if (filterType == 'sort') {
-      // copy the sort filter from the filterPanelData
-      const sortFilter = { ...filterPanelData.sortFilter }
-      sortFilter[filterType] = filterValue
-
-      // update the filterPanelData accordingly
-      setFilterPanelData({ ...filterPanelData, sortFilter })
-      sortRestaurants(filterValue)
-
+      currentFilter[filterType] = filterValue
     } else {
-
-      // copy the current filter from the filterPanelData
-      const currentFilter = { ...filterPanelData.currentFilter }
 
       // if the filter is removed set it null, otherwise update it accordingly
       currentFilter[filterType] = (currentFilter[filterType] && currentFilter[filterType] == filterValue) ? '' : filterValue
 
-      // update the filterPanelData accordingly
-      setFilterPanelData({ ...filterPanelData, currentFilter })
-      filterRestaurants(filterType, filterValue, currentFilter)
     }
+    // update the currentFilter accordingly
+    setCurrentFilter(currentFilter)
+    filterRestaurants(currentFilter)
   }
 
-  const sortRestaurants = (filterValue) => {
-    let restaurantSorted = [...restaurantsData.restaurants]
+  const sortRestaurants = (filterValue, restaurantSorted) => {
+    // let restaurantSorted = [...restaurantsData.restaurantsOrig]
 
     switch (filterValue) {
       case 'inc':
@@ -137,7 +120,7 @@ const FilterPanel = (props) => {
   }
 
   // function to filter restaurants accoring to cost, establishment and locality
-  const filterRestaurants = (filterType, filterValue, currentFilter) => {
+  const filterRestaurants = (currentFilter) => {
 
     // copy the list of original restaurants saved in the filterPanelData
     let restaurantsFiltered = [...restaurantsData.restaurantsOrig]
@@ -176,14 +159,14 @@ const FilterPanel = (props) => {
       }
     }
 
+    // apply sort filters if any
+    sortRestaurants(currentFilter.sort, restaurantsFiltered)
     setResturantsData({ ...restaurantsData, restaurants: restaurantsFiltered })
-    computeFilters()
     props.updateFilter(restaurantsFiltered)
   }
 
 
-  const { cost, establishments, locality, sort, currentFilter, sortFilter } = filterPanelData
-  currentFilter['sort'] = sortFilter['sort']
+  const { cost, establishments, locality, sort } = filterPanelData
 
   const allFilters = [
     { name: 'sort', items: sort },
