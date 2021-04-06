@@ -87,32 +87,29 @@ const FilterPanel = (props) => {
 
     const filterType = filterId.substring(0, filterId.indexOf('-'))
     const filterValue = filterId.substr(filterId.indexOf('-') + 1)
-
+    const currentFilterCopy = { ...currentFilter }
     if (filterType == 'sort') {
-      currentFilter[filterType] = filterValue
+      currentFilterCopy[filterType] = filterValue
     } else {
-
       // if the filter is removed set it null, otherwise update it accordingly
-      currentFilter[filterType] = (currentFilter[filterType] && currentFilter[filterType] == filterValue) ? '' : filterValue
-
+      currentFilterCopy[filterType] = (currentFilterCopy[filterType] == filterValue) ? '' : filterValue
     }
+
     // update the currentFilter accordingly
-    setCurrentFilter(currentFilter)
-    filterRestaurants(currentFilter)
+    setCurrentFilter(currentFilterCopy)
+    filterRestaurants(currentFilterCopy)
   }
 
   const sortRestaurants = (filterValue, restaurantSorted) => {
-    // let restaurantSorted = [...restaurantsData.restaurantsOrig]
-
     switch (filterValue) {
       case 'inc':
-        restaurantSorted = restaurantSorted.sort((a, b) => { return a.cost - b.cost })
+        restaurantSorted.sort((a, b) => { return a.cost - b.cost })
         break;
       case 'dec':
-        restaurantSorted = restaurantSorted.sort((a, b) => { return b.cost - a.cost })
+        restaurantSorted.sort((a, b) => { return b.cost - a.cost })
         break;
       case 'rating':
-        restaurantSorted = restaurantSorted.sort((a, b) => { return b.rating - a.rating })
+        restaurantSorted.sort((a, b) => { return b.rating - a.rating })
         break;
     }
 
@@ -128,7 +125,7 @@ const FilterPanel = (props) => {
     // apply all the filters one by one    
     if (currentFilter['establishment']) {
       restaurantsFiltered = restaurantsFiltered.filter((restaurant) => {
-        return restaurant.establishment.join(',').toLowerCase().indexOf(currentFilter['establishment']) > -1
+        return restaurant.establishment.join(',').toLowerCase().includes(currentFilter['establishment'])
       })
     }
 
@@ -159,12 +156,12 @@ const FilterPanel = (props) => {
       }
     }
 
-    // apply sort filters if any
+    // apply sort filters if any and re-compute the filters 
+    computeFilters(restaurantsFiltered)
     sortRestaurants(currentFilter.sort, restaurantsFiltered)
     setResturantsData({ ...restaurantsData, restaurants: restaurantsFiltered })
     props.updateFilter(restaurantsFiltered)
   }
-
 
   const { cost, establishments, locality, sort } = filterPanelData
 
