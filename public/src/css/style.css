@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700');
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,700");
 
 * {
   margin: 0;
@@ -9,11 +9,11 @@
 :root {
   --font-small: 10px;
   --font-regular: 16px;
-  --font-family: 'Roboto', sans-serif;
+  --font-family: "Roboto", sans-serif;
 
   --font-weight-regular: 300;
   --font-weight-dark: 700;
- 
+
   --darker-grey: #605e5e;
   --dark-grey: #ddd;
   --light-grey: #eee;
@@ -51,7 +51,7 @@ body {
   background-color: var(--light-purple);
   color: var(--lighter-grey);
 
-  grid-template-columns:1fr;
+  grid-template-columns: 1fr;
   padding: 1em;
 }
 
@@ -65,20 +65,21 @@ body {
   font-weight: var(--font-weight-dark);
 }
 
-input[type=text] {
+input[type="text"] {
   padding: 1.9em;
   font-size: 0.7em;
-  letter-spacing: 1px;  
+  letter-spacing: 1px;
 }
 
 /* Hero component related */
 .hero-div {
-  background-image: linear-gradient(var(--dark-shadow), var(--light-shadow)), url(http://localhost:3000/images/hero.jpg);
-	background-size: cover;
-	background-repeat: no-repeat;
-	display: grid;
+  background-image: linear-gradient(var(--dark-shadow), var(--light-shadow)),
+    url(http://localhost:3000/images/hero.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: grid;
 
-	align-items: end;
+  align-items: end;
   justify-items: center;
   position: relative;
 }
@@ -247,7 +248,6 @@ input[type=text] {
   font-size: 0.7em;
 }
 
-
 a {
   text-decoration: none;
 }
@@ -301,7 +301,8 @@ a {
 }
 
 /* both active item have same color and font */
-.active-item, .active-item-sort {
+.active-item,
+.active-item-sort {
   color: var(--light-purple);
   font-weight: bold;
 }
@@ -309,7 +310,6 @@ a {
 .active-item:hover {
   text-decoration: line-through;
 }
-
 
 /* Loading image related */
 .loading-div {
@@ -339,8 +339,9 @@ a {
 .restaurant-photo {
   border-radius: 5px;
   border: solid 1px var(--dark-grey);
-  
-  background-image: linear-gradient(var(--light-shadow), var(--light-shadow)), url(http://localhost:3000/images/hero.jpg);
+
+  background-image: linear-gradient(var(--light-shadow), var(--light-shadow)),
+    url(http://localhost:3000/images/hero.jpg);
   background-size: cover;
   margin-bottom: 8px;
 }
@@ -348,7 +349,6 @@ a {
 .restaurant-name-description {
   color: var(--lighter-grey);
 }
-
 
 .restaurant-description {
   display: grid;
@@ -360,7 +360,7 @@ a {
   border: solid 1px var(--dark-grey);
 }
 
-.category-title{
+.category-title {
   font-size: 1.2em;
 }
 
@@ -395,14 +395,12 @@ a {
   border-radius: 8px;
 }
 
-
 /* media queries */
 @media screen and (max-width: 500px) {
-
   body {
     font-size: var(--font-small);
   }
- 
+
   .container {
     display: grid;
     grid-template-columns: 1fr;
@@ -416,11 +414,11 @@ a {
     overflow-y: hidden;
   }
 
-  .restaurants-list { 
+  .restaurants-list {
     display: grid;
     grid-template-columns: 1fr;
   }
-  
+
   .category-div {
     padding: 1.2em;
   }
@@ -442,5 +440,4 @@ a {
     z-index: 2;
     width: 100%;
   }
-  
 }

@@ -1,10 +1,9 @@
-import { useState } from 'react';
+import { useState } from "react"
 
-// component 
-import FilterPanel from '../filter/FilterPanel'
+// component
+import FilterPanel from "../filter/FilterPanel"
 
 const Footer = (props) => {
-
   // Initialize the initial state and its modifier function
   const [footerData, setFooterData] = useState({ showFilters: false })
 
@@ -15,10 +14,12 @@ const Footer = (props) => {
   const { restaurants, updateFilter, responseId, showRestaurantsStyle } = props
   const { showFilters } = footerData
 
-  const showFiltersStyle = (showFilters == true) ? 'filter-panel' : 'filter-panel hide-div'
-  const showFooterStyle = (showRestaurantsStyle == false) ? 'footer hide-div' : 'footer'
+  const showFiltersStyle =
+    showFilters == true ? "filter-panel" : "filter-panel hide-div"
+  const showFooterStyle =
+    showRestaurantsStyle == false ? "footer hide-div" : "footer"
 
-  console.log('ShowFilters is here', showFilters)
+  console.log("ShowFilters is here", showFilters)
   return (
     <div className={showFooterStyle} onClick={toggeleFilterPanel}>
       <div>
@@ -27,10 +28,14 @@ const Footer = (props) => {
       </div>
 
       <div className={showFiltersStyle}>
-        <FilterPanel restaurants={restaurants} updateFilter={updateFilter} responseId={responseId} />
+        <FilterPanel
+          restaurants={restaurants}
+          updateFilter={updateFilter}
+          responseId={responseId}
+        />
       </div>
     </div>
   )
 }
 
-export default Footer;
+export default Footer

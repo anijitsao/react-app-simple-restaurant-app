@@ -1,8 +1,6 @@
-
 // list of all the constants
 const Constants = () => {
-
-  const url = 'http://localhost:3000/services'
+  const url = "http://localhost:3000/services"
   return {
     url,
 
@@ -13,18 +11,18 @@ const Constants = () => {
     getRooms: `${url}/getrooms/{id}`,
 
     // the Content-Type
-    header: { 'Content-Type': 'application/json' },
+    header: { "Content-Type": "application/json" },
 
     // HTTP verbs
     method: {
-      "POST": "POST",
-      "GET": "GET"
+      POST: "POST",
+      GET: "GET",
     },
 
     COST_CATEGORY: {
       low: 250,
       medium: 500,
-      high: 500
+      high: 500,
     },
 
     MAPPING: {
@@ -36,9 +34,9 @@ const Constants = () => {
 
       inc: "Price low to high",
       dec: "Price high to low",
-      rating: "Rating"
-    }
+      rating: "Rating",
+    },
   }
 }
 
-export default Constants;
+export default Constants
