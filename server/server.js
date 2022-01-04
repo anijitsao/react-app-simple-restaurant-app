@@ -25,6 +25,11 @@ app.use(express.static(path.join(__dirname, "../public/dist")))
 // different routes
 app.use("/services", router)
 
+// to stop not found when react router is not ready
+app.get("*", (req, res) => {
+	res.redirect("/")
+})
+
 // listen
 app.listen(process.env.PORT, () => {
 	console.log("Server is running on ", process.env.PORT)
