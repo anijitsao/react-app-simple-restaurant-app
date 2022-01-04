@@ -1,8 +1,9 @@
-// dependencies
-import { Link } from "react-router-dom"
+// must use useLocation hook to work with react-router v6
+import { Link, useLocation } from "react-router-dom"
 
 const ListEachRestaurant = (props) => {
-	const { restaurant } = props.location
+	const location = useLocation()
+	const { restaurant } = location.state
 
 	return (
 		<div className="restaurant-details">

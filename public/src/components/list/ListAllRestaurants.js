@@ -1,4 +1,5 @@
 // dependencies
+// must give a state prop while using Link to send params in react-router v6
 import { Link } from "react-router-dom"
 
 // local file dependencies
@@ -15,8 +16,8 @@ const ListAllRestaurants = ({ restaurants }) => {
 						<Link
 							to={{
 								pathname: `/showrestaurant/${restaurant._id}`,
-								restaurant,
 							}}
+							state={{ restaurant }}
 						>
 							<img src="images/hero.jpg" className="logo" />
 						</Link>
@@ -44,8 +45,12 @@ const ListAllRestaurants = ({ restaurants }) => {
 								)
 							}}
 						</SearchConsumer>
-						<div className="restaurant-address">{restaurant.address}</div>
-						<div className="restaurant-rating">{restaurant.rating}</div>
+						<div className="restaurant-address">
+							{restaurant.address}
+						</div>
+						<div className="restaurant-rating">
+							{restaurant.rating}
+						</div>
 					</div>
 				</div>
 
@@ -60,25 +65,39 @@ const ListAllRestaurants = ({ restaurants }) => {
 									{(context) => {
 										return (
 											<div className="details-description">
-												{Array.isArray(restaurant[ele]) == true ? (
-													restaurant[ele].map((value, index, valueArray) => {
-														return (
-															<span
-																className="underline-div"
-																key={index}
-																id={`${ele}-${value}`}
-																onClick={context}
-															>
-																{index != valueArray.length - 1
-																	? `${value}, `
-																	: value}
-															</span>
-														)
-													})
+												{Array.isArray(
+													restaurant[ele]
+												) == true ? (
+													restaurant[ele].map(
+														(
+															value,
+															index,
+															valueArray
+														) => {
+															return (
+																<span
+																	className="underline-div"
+																	key={index}
+																	id={`${ele}-${value}`}
+																	onClick={
+																		context
+																	}
+																>
+																	{index !=
+																	valueArray.length -
+																		1
+																		? `${value}, `
+																		: value}
+																</span>
+															)
+														}
+													)
 												) : (
 													<Rupee
 														value={restaurant[ele]}
-														searchingContext={context}
+														searchingContext={
+															context
+														}
 													/>
 												)}
 											</div>
@@ -92,8 +111,8 @@ const ListAllRestaurants = ({ restaurants }) => {
 				<Link
 					to={{
 						pathname: `/showrestaurant/${restaurant._id}`,
-						restaurant,
 					}}
+					state={{ restaurant }}
 				>
 					<div className="view-details-div">view details</div>
 				</Link>

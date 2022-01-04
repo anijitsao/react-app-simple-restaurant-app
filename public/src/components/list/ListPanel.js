@@ -1,5 +1,5 @@
 import React from "react"
-import { Route } from "react-router-dom"
+import { Routes, Route } from "react-router-dom"
 
 // components
 import ListAllRestaurants from "./ListAllRestaurants"
@@ -10,17 +10,16 @@ const ListPanel = (props) => {
 
   return (
     <div className="all-restaurants">
-      <Route
-        exact
-        path="/"
-        render={(props) => (
-          <ListAllRestaurants {...props} restaurants={restaurants} />
-        )}
-      ></Route>
-      <Route
-        path="/showrestaurant/:id"
-        render={(props) => <ListEachRestaurant {...props} />}
-      ></Route>
+      <Routes>
+        <Route
+          path="/"
+          element={<ListAllRestaurants restaurants={restaurants} />}
+        ></Route>
+        <Route
+          path="/showrestaurant/:id"
+          element={<ListEachRestaurant {...props} />}
+        ></Route>
+      </Routes>
     </div>
   )
 }
