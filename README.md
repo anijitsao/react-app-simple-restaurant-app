@@ -59,7 +59,7 @@ This is a *responsive web application* for viewing in both Mobile and Desktop.
 
 Clone the repository: 
 ```
-git clone https://github.com/anijitsahu/react-app-simple-restaurant-app.git
+git clone https://github.com/anijitsao/react-app-simple-restaurant-app.git
 ``` 
 Navigate inside the directory:
 ```
