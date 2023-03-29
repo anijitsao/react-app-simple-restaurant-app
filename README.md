@@ -18,8 +18,8 @@ Back end is implemented using [Node JS](https://nodejs.org/en/docs), [Express JS
 <br/>
 
 <ul>
- <li> This is Simple Restaurant Application </li>
- <li> It is a Full Stack Application </li>
+ <li> This is Full Stack  Simple Restaurant Application. </li>
+
 </ul>
 
 - All the restaurant details namely *cusines, establishment type, address, locality, rating, cost for two persons* are stored in the [MongoDB Atlas](https://www.mongodb.com/cloud/atlas). This example uses a _free/ shared_ account. **So Please use it wisely**.
@@ -27,26 +27,26 @@ Back end is implemented using [Node JS](https://nodejs.org/en/docs), [Express JS
 <br/> 
 
 <ul>
- <li> <b>Searching</b> facility using <code>locality, name</code> and <code>cuisines</code are supported </li>
+ <li> <b>Searching</b> facility using <code>locality, name</code> and <code>cuisines</code are supported. </li>
   <ul>
-    <li> <b>Searching</b> can be done from <i>two</i> places - the <i>Search box</i> and clicking on the several features of a restaurant like <i>name, locality</i> and so on </li>
+    <li> <b>Searching</b> can be done from <i>two</i> places - the <i>Search box</i> and clicking on the several features of a restaurant like <i>name, locality</i> and so on. </li>
   </ul>
-  <li> <b>Sorting</b> of the searched restaurants can be done using <code>price</code> both<i> ascending and descending order</i> and <code>rating</code> in <i>descending order</i> only </li>
- <li> <strong>Filters</strong> namely <code>cost for two persons, establishment type, locality</code> can be applied on a list of searched results </li>
+  <li> <b>Sorting</b> of the searched restaurants can be done using <code>price</code> both<i> ascending and descending order</i> and <code>rating</code> in <i>descending order</i> only. </li>
+ <li> <strong>Filters</strong> namely <code>cost for two persons, establishment type, locality</code> can be applied on a list of searched results. </li>
   <ul>
-   <li> Only one filter can be selected from a particular category </li>
-   <li> Click on an active filter will deselect the filter</li>
+   <li> Only one filter can be selected from a particular category. </li>
+   <li> Click on an active filter will deselect the filter.</li>
   </ul>
 </ul>
 
 <br/> 
 
 <ul>
- <li> Viewing the details of <i>a</i> restaurant can be done <i>clicking the photo/ logo </i> of the restaurant or <i>clicking the View Details </i> button </li>
- <li> Viewing the details of <i>all</i> restaurants can be done by <i>clicking the <code><-</code> </i> of the individual restaurant page </li>
- <li> Listing of restaurants both <i>all</i> and <i>individual</i> are done using <a href="https://reactrouter.com/en/main/start/tutorial">React Router</a></li>
- <li> All the restaurant details are stored in the database i.e. <i>persistant</i>
- <li> All the currencies are shown in <i>INR</i> &#8377; format
+ <li> Viewing the details of <i>a</i> restaurant can be done <i>clicking the photo/ logo </i> of the restaurant or <i>clicking the View Details </i> button. </li>
+ <li> Viewing the details of <i>all</i> restaurants can be done by <i>clicking the <code><-</code> </i> of the individual restaurant page. </li>
+ <li> Listing of restaurants both <i>all</i> and <i>individual</i> are done using <a href="https://reactrouter.com/en/main/start/tutorial">React Router</a>.</li>
+ <li> All the restaurant details are stored in the database i.e. <i>persistant</i>. </li>
+ <li> All the currencies are shown in <i>INR</i> &#8377; format. </li>
 </ul>
 
 ## Installation
