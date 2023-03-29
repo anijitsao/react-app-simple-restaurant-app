@@ -1,25 +1,19 @@
 # react-app-simple-restaurant-app
-A Simple Restaurant Application using [React JS](https://reactjs.org/docs/getting-started.html), a JavaScript library to make awesome UI by Facebook, [Node JS](https://nodejs.org/en/docs/), [Express JS](https://expressjs.com/en/api.html) and [MongoDB](https://docs.mongodb.com/).
+A Simple Restaurant Application using using [React JS](https://react.dev/learn), a JavaScript library to make awesome UI by Facebook, [Node JS](https://nodejs.org/en/docs), [Express JS](https://expressjs.com/en/api.html) and [MongoDB](https://docs.mongodb.com/).
 
-This application uses [React JS](https://reactjs.org/docs/getting-started.html) component oriented UI creation paradigm. All components are written in [JSX](https://reactjs.org/docs/jsx-in-depth.html) and ES6 style and are
-combined to get a single build for production purpose using [Webpack 5](https://webpack.js.org/concepts/). 
+This application uses **component oriented UI** creation paradigm. All components are written in [JSX](https://react.dev/learn/writing-markup-with-jsx) and ES6 style and are combined to get a single build for production purpose using [Webpack 5](https://webpack.js.org/concepts/).
 
-ES6 `module` creation along with `import /export` is used. [Babel](https://babeljs.io/docs/en/babel-preset-react) is used to *transpile* all [JSX](https://reactjs.org/docs/jsx-in-depth.html) code to vanilla JavaScript code. To install all the dependecies `npm` is used.
+[Babel](https://babeljs.io/docs/) is used to _transpile_ all [JSX](https://react.dev/learn/writing-markup-with-jsx) code to vanilla JavaScript. For UI creation [HTML5](https://www.w3schools.com/html/html5_intro.asp) and [CSS3](https://www.w3schools.com/css/) are used.
 
-Back end is implemented using [Node JS](https://nodejs.org/en/docs), [Express JS](https://expressjs.com/en/api.html) and [MongoDB](https://docs.mongodb.com/). [Atlas](https://www.mongodb.com/cloud/atlas), the *Cloud* version of [MongoDB](https://docs.mongodb.com/) is used. 
+This is a _responsive web application_ for viewing in both Mobile and Desktop.
 
-
-For UI creation [HTML5](https://www.w3schools.com/html/html5_intro.asp) and [CSS3](https://www.w3schools.com/css/) are used. [Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout), the new feature of [CSS3](https://www.w3schools.com/css/) is used for layout creation purpose.
-
-This is a *responsive web application* for viewing in both Mobile and Desktop.
+Back end is implemented using [Node JS](https://nodejs.org/en/docs), [Express JS](https://expressjs.com/en/api.html) and [MongoDB Atlas](https://www.mongodb.com/cloud/atlas).
 
 
 ## Features
-- Code is rewritten with [React JS 17](https://reactjs.org/docs/getting-started.html) and [Node JS 17](https://nodejs.org/en/docs/)
-- Latest features of JavaScript i.e. ES6, ES7, ES8 is used
-- [React JS Hooks](https://reactjs.org/docs/hooks-intro.html) are used with Functional components
-- ES8 `async/await` is used
-- Routing is rewritten using [React Router v6](https://reactrouter.com/docs/en/v6)
+- Code is rewritten with latest version of [React JS](https://react.dev/learn) and [Node JS](https://nodejs.org/en/docs/).
+- Latest features of JavaScript i.e. **ESNext** is used.
+
 
 <br/>
 
@@ -28,7 +22,7 @@ This is a *responsive web application* for viewing in both Mobile and Desktop.
  <li> It is a Full Stack Application </li>
 </ul>
 
-- All the restaurant details namely *cusines, establishment type, address, locality, rating, cost for two persons* are stored in the [MongoDB Atlas](https://www.mongodb.com/cloud/atlas). This is a *free/ shared* account on [Atlas](https://www.mongodb.com/cloud/atlas). **So Please use it wisely** 
+- All the restaurant details namely *cusines, establishment type, address, locality, rating, cost for two persons* are stored in the [MongoDB Atlas](https://www.mongodb.com/cloud/atlas). This example uses a _free/ shared_ account. **So Please use it wisely**.
 
 <br/> 
 
@@ -50,7 +44,7 @@ This is a *responsive web application* for viewing in both Mobile and Desktop.
 <ul>
  <li> Viewing the details of <i>a</i> restaurant can be done <i>clicking the photo/ logo </i> of the restaurant or <i>clicking the View Details </i> button </li>
  <li> Viewing the details of <i>all</i> restaurants can be done by <i>clicking the <code><-</code> </i> of the individual restaurant page </li>
- <li> Listing of restaurants both <i>all</i> and <i>individual</i> are done using <a href="https://www.npmjs.com/package/react-router-dom">React Router</a></li>
+ <li> Listing of restaurants both <i>all</i> and <i>individual</i> are done using <a href="https://reactrouter.com/en/main/start/tutorial">React Router</a></li>
  <li> All the restaurant details are stored in the database i.e. <i>persistant</i>
  <li> All the currencies are shown in <i>INR</i> &#8377; format
 </ul>
@@ -88,7 +82,7 @@ Open the web browser and type`http://localhost:3000` in the address bar to load 
 4. View details of each restaurant by clicking `View Details` button
 
  
-*tested with <img src="screenshots/chrome.png" width="20px" title="Google Chrome">[Google Chrome 89](https://www.google.com/chrome/) and <img src="screenshots/firefox.png" width="25px" title="Firefox Developer edition">[Mozilla Firefox 86](https://www.mozilla.org/en-US/firefox/new/)*  
+*tested with latest version of <img src="screenshots/chrome.png" width="20px" title="Google Chrome">[Google Chrome](https://www.google.com/chrome/) and <img src="screenshots/firefox.png" width="25px" title="Firefox Developer edition">[Mozilla Firefox](https://www.mozilla.org/en-US/firefox/new/)*  
 
 ## Screenshots
 
