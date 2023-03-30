@@ -1,5 +1,5 @@
 # react-app-simple-restaurant-app
-A Simple Restaurant Application using using [React JS](https://react.dev/learn), a JavaScript library to make awesome UI by Facebook, [Node JS](https://nodejs.org/en/docs), [Express JS](https://expressjs.com/en/api.html) and [MongoDB](https://docs.mongodb.com/).
+A Simple Restaurant Application using [React JS](https://react.dev/learn), a JavaScript library to make awesome UI by Facebook, [Node JS](https://nodejs.org/en/docs), [Express JS](https://expressjs.com/en/api.html) and [MongoDB](https://docs.mongodb.com/).
 
 This application uses **component oriented UI** creation paradigm. All components are written in [JSX](https://react.dev/learn/writing-markup-with-jsx) and ES6 style and are combined to get a single build for production purpose using [Webpack 5](https://webpack.js.org/concepts/).
 
@@ -52,24 +52,23 @@ Back end is implemented using [Node JS](https://nodejs.org/en/docs), [Express JS
 ## Installation
 
 Clone the repository: 
-```
-git clone https://github.com/anijitsao/react-app-simple-restaurant-app.git
+```bash
+$ git clone https://github.com/anijitsao/react-app-simple-restaurant-app.git
 ``` 
-Navigate inside the directory:
-```
-cd react-app-simple-restaurant-app
-```
-Install all the necessary dependecies:
-```
-npm install
+Navigate inside the directory and install all the necessary dependecies:
+
+```bash
+$ cd react-app-simple-restaurant-app
+
+
+# Install all the dependencies
+$ npm install
 ``` 
-Navigate to the directory:
-```
-cd server
-```
-Run the server
-```
-npm run server
+
+Now, Run the server
+
+```bash
+$ npm run server
 ```
 Open the web browser and type`http://localhost:3000` in the address bar to load the application 
 
