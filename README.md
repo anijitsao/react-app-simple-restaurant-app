@@ -70,18 +70,18 @@ Now, Run the server
 ```bash
 $ npm run server
 ```
-Open the web browser and type`http://localhost:3000` in the address bar to load the application 
+Open the web browser and type`http://localhost:3000` in the address bar to load the application. 
 
 
 ### Search
 
-1. Search restaurants using `name`, `cuisines`, `locality` etc
-2. Filter the search results by `cost for 2 persons`, `establishment type` and `locality`
-3. Sort the results by `price` and `rating`
-4. View details of each restaurant by clicking `View Details` button
+1. Search restaurants using `name`, `cuisines`, `locality` etc.
+2. Filter the search results by `cost for 2 persons`, `establishment type` and `locality`.
+3. Sort the results by `price` and `rating`.
+4. View details of each restaurant by clicking `View Details` button.
 
  
-*tested with latest version of <img src="screenshots/chrome.png" width="20px" title="Google Chrome">[Google Chrome](https://www.google.com/chrome/) and <img src="screenshots/firefox.png" width="25px" title="Firefox Developer edition">[Mozilla Firefox](https://www.mozilla.org/en-US/firefox/new/)*  
+*tested with latest version of <img src="screenshots/chrome.png" width="20px" title="Google Chrome">[Google Chrome](https://www.google.com/chrome/) and <img src="screenshots/firefox.png" width="25px" title="Firefox">[Mozilla Firefox](https://www.mozilla.org/en-US/firefox/new/)*  
 
 ## Screenshots
 
