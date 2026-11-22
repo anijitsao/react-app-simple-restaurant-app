@@ -5,8 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "node --env-file=server/.env server/server.js",
-    "dev:ui": "npm --workspace=ui run dev"
+    "server": "node --env-file=.env server/index.js",
+    "server:watch": "node --watch --env-file=.env server/index.js",
+    "dev:ui": "node_modules/.bin/vite",
+    "build:ui": "node_modules/.bin/vite build",
+    "preview:ui": "node_modules/.bin/vite preview"
   },
   "type": "module",
   "repository": {
