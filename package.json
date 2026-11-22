@@ -9,7 +9,8 @@
     "server:watch": "node --watch --env-file=.env server/index.js",
     "dev:ui": "node_modules/.bin/vite",
     "build:ui": "node_modules/.bin/vite build",
-    "preview:ui": "node_modules/.bin/vite preview"
+    "preview:ui": "node_modules/.bin/vite preview",
+    "start": "npm run build:ui && npm run server"
   },
   "type": "module",
   "repository": {
