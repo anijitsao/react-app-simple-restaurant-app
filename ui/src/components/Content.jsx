@@ -97,6 +97,11 @@ const Content = (props) => {
       })
     } catch (err) {
       console.log("unable to get the data", err)
+    } finally {
+      setContent({
+        ...content,
+        showLoading: false
+      })
     }
   }
 
