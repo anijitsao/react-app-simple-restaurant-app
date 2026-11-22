@@ -86,22 +86,23 @@ const Content = (props) => {
     }
 
     try {
-      const res = await axios(axiosConfig)
-
+      const res = await axios(axiosConfig);
+      console.log("data received", res.data);
       // add the response along with an unique id for each response
       setContent({
         restaurants: [...res.data],
-        showLoading: false,
         modifyOrig: true,
         responseId: uuidv4(),
       })
     } catch (err) {
-      console.log("unable to get the data", err)
+      console.log("unable to get the data", err);
     } finally {
-      setContent({
-        ...content,
-        showLoading: false
-      })
+      // setContent(function (prevState) {
+      //   return {
+      //     ...prevState.content,
+      //     showLoading: false
+      //   }
+      // });
     }
   }
 

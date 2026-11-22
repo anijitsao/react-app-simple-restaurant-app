@@ -9,7 +9,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 // local file dependencies
-import router from "./routes.js";
+import router from "./routes/restaurant.routes.js";
 
 const app = express();
 
@@ -27,7 +27,7 @@ app.use("/services", router);
 
 // to stop not found when react router is not ready
 app.get("*splat", (req, res) => {
-  res.redirect("/");
+  // res.redirect("/");
 });
 
 // listen
