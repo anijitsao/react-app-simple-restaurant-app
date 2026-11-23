@@ -14,7 +14,7 @@ const ListEachRestaurant = (props) => {
 					</Link>
 					{restaurant.name}
 				</div>
-				<div className="restaurant-rating">{restaurant.rating}</div>
+				<div className="restaurant-rating">{restaurant.ratings}</div>
 			</div>
 			<div className="restaurant-description">
 				{["cost", "address", "cuisines", "establishment"].map(

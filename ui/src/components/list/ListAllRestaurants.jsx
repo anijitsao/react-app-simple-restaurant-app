@@ -49,7 +49,7 @@ const ListAllRestaurants = ({ restaurants }) => {
 							{restaurant.address}
 						</div>
 						<div className="restaurant-rating">
-							{restaurant.rating}
+							{restaurant.ratings}
 						</div>
 					</div>
 				</div>

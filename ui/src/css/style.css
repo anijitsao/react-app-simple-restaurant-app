@@ -74,7 +74,7 @@ input[type="text"] {
 /* Hero component related */
 .hero-div {
   background-image: linear-gradient(var(--dark-shadow), var(--light-shadow)),
-    url(http://localhost:3000/images/hero.jpg);
+    url(/images/hero.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   display: grid;
@@ -341,7 +341,7 @@ a {
   border: solid 1px var(--dark-grey);
 
   background-image: linear-gradient(var(--light-shadow), var(--light-shadow)),
-    url(http://localhost:3000/images/hero.jpg);
+    url(/images/hero.jpg);
   background-size: cover;
   margin-bottom: 8px;
 }
