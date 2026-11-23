@@ -1,13 +1,12 @@
 // dependencies
-import { useEffect, useState } from "react"
-import axios from "axios"
-import { v4 as uuidv4 } from "uuid"
+import { useEffect, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 // components
-import SearchBar from "./search/SearchBar"
-import RestaurantPanel from "./RestaurantPanel"
-import Loading from "./Loading"
-import { SearchProvider, SearchConsumer } from "./search/SearchContext"
+import SearchBar from "./search/SearchBar";
+import RestaurantPanel from "./RestaurantPanel";
+import Loading from "./Loading";
+import { SearchProvider, SearchConsumer } from "./search/SearchContext";
 
 // constants
 import Constants from "./Constants"
@@ -73,24 +72,29 @@ const Content = (props) => {
       content.searchText && props.searchText !== content.searchText
         ? content.searchText
         : props.searchText
-    const axiosConfig = {
-      url: url
-        ? url
-        : allConstants.getRestaurants.replace("{value}", searchText),
+
+    url = url? url: allConstants.getRestaurants.replace("{value}", searchText);
+    const config = {
       method: allConstants.method.POST,
       header: allConstants.header,
     }
 
     if (data) {
-      axiosConfig["data"] = data
+      config["data"] = data
     }
 
     try {
-      const res = await axios(axiosConfig);
-      console.log("data received", res.data);
+      const res = await fetch(url, config);
+      if (!res.ok) {
+        throw new Error("Unable to get restaurants");
+      }
+      const resultJSON = await res.json();
+
+      console.log("json data from fetch", resultJSON);
+
       // add the response along with an unique id for each response
       setContent({
-        restaurants: [...res.data],
+        restaurants: [...resultJSON],
         modifyOrig: true,
         responseId: uuidv4(),
       })
