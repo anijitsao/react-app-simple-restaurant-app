@@ -97,12 +97,12 @@ const Content = (props) => {
     } catch (err) {
       console.log("unable to get the data", err);
     } finally {
-      // setContent(function (prevState) {
-      //   return {
-      //     ...prevState.content,
-      //     showLoading: false
-      //   }
-      // });
+      setContent(function (prevState) {
+        return {
+          ...prevState,
+          showLoading: false
+        }
+      });
     }
   }
 

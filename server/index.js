@@ -26,8 +26,8 @@ app.use(express.static(path.join(__dirname, "../dist")));
 app.use("/services", router);
 
 // to stop not found when react router is not ready
-app.get("*splat", (req, res) => {
-  // res.redirect("/");
+app.get("/*splat", (req, res) => {
+  res.redirect("/");
 });
 
 // listen
