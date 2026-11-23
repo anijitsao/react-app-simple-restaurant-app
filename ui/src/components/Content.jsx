@@ -1,6 +1,5 @@
 // dependencies
 import { useEffect, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
 
 // components
 import SearchBar from "./search/SearchBar";
@@ -96,7 +95,7 @@ const Content = (props) => {
       setContent({
         restaurants: [...resultJSON],
         modifyOrig: true,
-        responseId: uuidv4(),
+        responseId: crypto.randomUUID(),
       })
     } catch (err) {
       console.log("unable to get the data", err);
