@@ -1,443 +1,446 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,700");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css");
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 :root {
-  --font-small: 10px;
-  --font-regular: 16px;
-  --font-family: "Roboto", sans-serif;
+    --font-small: 10px;
+    --font-regular: 16px;
+    --font-family: "Roboto", sans-serif;
 
-  --font-weight-regular: 300;
-  --font-weight-dark: 700;
+    --font-weight-regular: 300;
+    --font-weight-dark: 700;
 
-  --darker-grey: #605e5e;
-  --dark-grey: #ddd;
-  --light-grey: #eee;
-  --lighter-grey: #fff;
+    --darker-grey: #605e5e;
+    --dark-grey: #ddd;
+    --light-grey: #eee;
+    --lighter-grey: #fff;
 
-  --darkest-black: #000;
-  --lighter-black: #988686;
-  --lightest-black: #939393;
+    --darkest-black: #000;
+    --lighter-black: #988686;
+    --lightest-black: #939393;
 
-  --light-purple: #ab14ab;
-  --lighter-purple: #ba36ba;
-  --lightest-purple: #c075d6;
+    --light-purple: #ab14ab;
+    --lighter-purple: #ba36ba;
+    --lightest-purple: #c075d6;
 
-  --light-red: #f02323;
-  --lighter-red: #e31a1a;
+    --light-red: #f02323;
+    --lighter-red: #e31a1a;
 
-  --dark-shadow: rgba(0, 0, 0, 0.8);
-  --light-shadow: rgba(0, 0, 0, 0.4);
-  --lighter-shadow: rgba(0, 0, 0, 0.2);
+    --dark-shadow: rgba(0, 0, 0, 0.8);
+    --light-shadow: rgba(0, 0, 0, 0.4);
+    --lighter-shadow: rgba(0, 0, 0, 0.2);
 }
 
 body {
-  font-size: var(--font-regular);
-  font-family: var(--font-family);
+    font-size: var(--font-regular);
+    font-family: var(--font-family);
 }
 
 .container {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 50px calc(100vh - 50px);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 50px calc(100vh - 50px);
 }
 
 .header {
-  display: grid;
-  background-color: var(--light-purple);
-  color: var(--lighter-grey);
+    display: grid;
+    background-color: var(--light-purple);
+    color: var(--lighter-grey);
 
-  grid-template-columns: 1fr;
-  padding: 1em;
+    grid-template-columns: 1fr;
+    padding: 1em;
 }
 
 /* title of the application related */
 .title {
-  font-weight: var(--font-weight-regular);
-  text-transform: uppercase;
+    font-weight: var(--font-weight-regular);
+    text-transform: uppercase;
 }
 
 .bold-title {
-  font-weight: var(--font-weight-dark);
+    font-weight: var(--font-weight-dark);
 }
 
 input[type="text"] {
-  padding: 1.9em;
-  font-size: 0.7em;
-  letter-spacing: 1px;
+    padding: 1.9em;
+    font-size: 0.7em;
+    letter-spacing: 1px;
 }
 
 /* Hero component related */
 .hero-div {
-  background-image: linear-gradient(var(--dark-shadow), var(--light-shadow)),
-    url(/images/hero.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  display: grid;
+    background-image:
+        linear-gradient(var(--dark-shadow), var(--light-shadow)),
+        url(/images/hero.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: grid;
 
-  align-items: end;
-  justify-items: center;
-  position: relative;
+    align-items: end;
+    justify-items: center;
+    position: relative;
 }
 
 .find-title {
-  color: var(--lighter-grey);
-  font-size: 2em;
-  position: absolute;
-  bottom: 63px;
-  font-weight: var(--font-weight-regular);
+    color: var(--lighter-grey);
+    font-size: 2em;
+    position: absolute;
+    bottom: 63px;
+    font-weight: var(--font-weight-regular);
 }
 
 /* Search bar related */
 .btn {
-  background-color: var(--light-purple);
-  color: var(--lighter-grey);
-  padding: 1.3em;
-  letter-spacing: 2px;
-  border-radius: 2px;
-  border: solid 1px var(--light-purple);
-  font-size: 0.7em;
+    background-color: var(--light-purple);
+    color: var(--lighter-grey);
+    padding: 1.3em;
+    letter-spacing: 2px;
+    border-radius: 2px;
+    border: solid 1px var(--light-purple);
+    font-size: 0.7em;
 }
 
 .search-bar {
-  display: grid;
-  grid-template-columns: 4fr 1fr;
-  grid-gap: 1em;
-  position: relative;
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    grid-gap: 1em;
+    position: relative;
 }
 
 .search-btn {
-  text-transform: uppercase;
-  display: inline-block;
-  margin-left: 1em;
-  cursor: pointer;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-left: 1em;
+    cursor: pointer;
 }
 
 .search-box {
-  background-color: var(--dark-grey);
-  border: solid 1px var(--dark-grey);
-  border-radius: 3px;
+    background-color: var(--dark-grey);
+    border: solid 1px var(--dark-grey);
+    border-radius: 3px;
 }
 
 .search-box:hover {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .search-icon {
-  color: var(--darker-grey);
-  position: absolute;
-  left: 3px;
-  align-self: center;
+    color: var(--darker-grey);
+    position: absolute;
+    left: 3px;
+    align-self: center;
 }
 
 .search-box:focus {
-  background-color: var(--lighter-grey);
+    background-color: var(--lighter-grey);
 }
 
 .search-box:focus .search-icon {
-  color: var(--darkest-black);
+    color: var(--darkest-black);
 }
 
 /* Listing of all the restaurants */
 .content-div {
-  display: grid;
-  grid-template-rows: 50px calc(100vh - 100px);
-  background-color: var(--lighter-grey);
-  overflow-y: hidden;
+    display: grid;
+    grid-template-rows: 50px calc(100vh - 100px);
+    background-color: var(--lighter-grey);
+    overflow-y: hidden;
 }
 
 .content-div-search-bar {
-  display: grid;
-  align-items: center;
-  justify-items: center;
-  padding: 5px;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    padding: 5px;
 }
 
 .restaurants-list {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
 
-  padding: 1em;
-  grid-gap: 0.9em;
-  margin-right: 5%;
-  margin-left: 5%;
+    padding: 1em;
+    grid-gap: 0.9em;
+    margin-right: 5%;
+    margin-left: 5%;
 }
 
 .all-restaurants {
-  overflow-y: auto;
+    overflow-y: auto;
 }
 
 .restaurant-info {
-  display: grid;
-  grid-template-rows: repeat(2, 1fr);
-  border: solid 2px var(--light-grey);
-  border-radius: 5px;
-  padding: 1em;
-  margin-bottom: 5px;
-  background-color: var(--lighter-grey);
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    border: solid 2px var(--light-grey);
+    border-radius: 5px;
+    padding: 1em;
+    margin-bottom: 5px;
+    background-color: var(--lighter-grey);
 }
 
 .name-address {
-  display: grid;
-  grid-template-columns: 100px 3fr;
-  grid-gap: 10px;
-  border-bottom: solid 1px var(--dark-grey);
-  padding: 1em;
-  position: relative;
+    display: grid;
+    grid-template-columns: 100px 3fr;
+    grid-gap: 10px;
+    border-bottom: solid 1px var(--dark-grey);
+    padding: 1em;
+    position: relative;
 }
 
 .details {
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  grid-gap: 10px;
-  padding: 1em;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-gap: 10px;
+    padding: 1em;
 }
 
 .logo {
-  width: 100px;
-  border: 1px solid var(--dark-grey);
-  border-radius: 2px;
+    width: 100px;
+    border: 1px solid var(--dark-grey);
+    border-radius: 2px;
 }
 
 .restaurant-name {
-  font-weight: var(--font-weight-dark);
-  color: var(--light-purple);
-  font-size: 1.5em;
+    font-weight: var(--font-weight-dark);
+    color: var(--light-purple);
+    font-size: 1.5em;
 }
 
 .restaurant-locality {
-  font-weight: var(--font-weight-dark);
-  font-size: 1em;
-  text-transform: capitalize;
+    font-weight: var(--font-weight-dark);
+    font-size: 1em;
+    text-transform: capitalize;
 }
 
 .underline-div:hover {
-  text-decoration: underline;
-  cursor: pointer;
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 .details-title {
-  text-transform: uppercase;
-  font-size: 0.7em;
-  color: var(--lightest-black);
+    text-transform: uppercase;
+    font-size: 0.7em;
+    color: var(--lightest-black);
 }
 
 .restaurant-address {
-  color: var(--lighter-black);
-  font-size: 0.8em;
+    color: var(--lighter-black);
+    font-size: 0.8em;
 }
 
 .restaurant-rating {
-  position: absolute;
-  top: 0;
-  right: 0;
-  /* background-color: #fbc3fb; */
-  padding: 0.6em;
-  border-radius: 3px;
-  background: linear-gradient(var(--lighter-purple), var(--lightest-purple));
-  color: var(--lighter-grey);
-  font-weight: bold;
+    position: absolute;
+    top: 0;
+    right: 0;
+    /* background-color: #fbc3fb; */
+    padding: 0.6em;
+    border-radius: 3px;
+    background: linear-gradient(var(--lighter-purple), var(--lightest-purple));
+    color: var(--lighter-grey);
+    font-weight: bold;
 }
 
 .details-description {
-  text-transform: capitalize;
-  font-size: 0.7em;
+    text-transform: capitalize;
+    font-size: 0.7em;
 }
 
 a {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 .view-details-div {
-  text-transform: uppercase;
-  color: var(--lighter-grey);
-  background-color: var(--light-purple);
-  padding: 1em;
-  text-align: center;
+    text-transform: uppercase;
+    color: var(--lighter-grey);
+    background-color: var(--light-purple);
+    padding: 1em;
+    text-align: center;
 }
 
 .view-details-div:hover {
-  cursor: pointer;
-  color: var(--dark-grey);
+    cursor: pointer;
+    color: var(--dark-grey);
 }
 
 /* Filter Restaurant related */
 .filter-restaurants {
-  display: grid;
-  grid-template-columns: 1fr;
-  background-color: var(--lighter-grey);
-  border: solid 1px var(--dark-grey);
-  border-radius: 5px;
-  overflow-y: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    background-color: var(--lighter-grey);
+    border: solid 1px var(--dark-grey);
+    border-radius: 5px;
+    overflow-y: auto;
 }
 
 .filter-info {
-  text-transform: capitalize;
-  padding: 1em;
+    text-transform: capitalize;
+    padding: 1em;
 }
 
 .filter-name {
-  font-size: 1em;
+    font-size: 1em;
 }
 
 .filter-title {
-  text-transform: capitalize;
+    text-transform: capitalize;
 }
 
 .item-info {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  padding: 0.4em;
-  font-size: 0.8em;
-  cursor: pointer;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    padding: 0.4em;
+    font-size: 0.8em;
+    cursor: pointer;
 }
 
 .item-count {
-  color: var(--lightest-black);
+    color: var(--lightest-black);
 }
 
 /* both active item have same color and font */
 .active-item,
 .active-item-sort {
-  color: var(--light-purple);
-  font-weight: bold;
+    color: var(--light-purple);
+    font-weight: bold;
 }
 
 .active-item:hover {
-  text-decoration: line-through;
+    text-decoration: line-through;
 }
 
 /* Loading image related */
 .loading-div {
-  display: grid;
-  color: var(--light-purple);
-  font-size: 4em;
-  align-items: center;
-  justify-items: center;
+    display: grid;
+    color: var(--light-purple);
+    font-size: 4em;
+    align-items: center;
+    justify-items: center;
 }
 
 .loading-gif {
-  width: 100px;
+    width: 100px;
 }
 
 /* hide div related */
 .hide-div {
-  display: none;
+    display: none;
 }
 
 /* Each restaurant info related */
 .restaurant-details {
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  position: relative;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    position: relative;
 }
 
 .restaurant-photo {
-  border-radius: 5px;
-  border: solid 1px var(--dark-grey);
+    border-radius: 5px;
+    border: solid 1px var(--dark-grey);
 
-  background-image: linear-gradient(var(--light-shadow), var(--light-shadow)),
-    url(/images/hero.jpg);
-  background-size: cover;
-  margin-bottom: 8px;
+    background-image:
+        linear-gradient(var(--light-shadow), var(--light-shadow)),
+        url(/images/hero.jpg);
+    background-size: cover;
+    margin-bottom: 8px;
 }
 
 .restaurant-name-description {
-  color: var(--lighter-grey);
+    color: var(--lighter-grey);
 }
 
 .restaurant-description {
-  display: grid;
-  text-transform: capitalize;
-  grid-template-columns: 1fr 1fr;
+    display: grid;
+    text-transform: capitalize;
+    grid-template-columns: 1fr 1fr;
 
-  background-color: var(--lighter-grey);
-  border-radius: 5px;
-  border: solid 1px var(--dark-grey);
+    background-color: var(--lighter-grey);
+    border-radius: 5px;
+    border: solid 1px var(--dark-grey);
 }
 
 .category-title {
-  font-size: 1.2em;
+    font-size: 1.2em;
 }
 
 .category-description {
-  font-size: 0.7em;
-  color: var(--lightest-black);
+    font-size: 0.7em;
+    color: var(--lightest-black);
 }
 
 .category-div {
-  padding: 1em;
+    padding: 1em;
 }
 
 /* back arrow in the each restaurant details */
 .back-arrow {
-  color: var(--lighter-grey);
-  padding: 0.7em;
+    color: var(--lighter-grey);
+    padding: 0.7em;
 }
 
 /* no results div */
 .no-restaurant-div {
-  align-self: center;
-  justify-self: center;
+    align-self: center;
+    justify-self: center;
 }
 
 /* scroll bar related */
 ::-webkit-scrollbar {
-  width: 10px;
+    width: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--dark-grey);
-  border-radius: 8px;
+    background-color: var(--dark-grey);
+    border-radius: 8px;
 }
 
 /* media queries */
 @media screen and (max-width: 500px) {
-  body {
-    font-size: var(--font-small);
-  }
+    body {
+        font-size: var(--font-small);
+    }
 
-  .container {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 30px calc(100vh - 30px);
-  }
+    .container {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 30px calc(100vh - 30px);
+    }
 
-  .content-div {
-    display: grid;
-    grid-template-rows: 50px calc(100vh - 100px) 20px;
-    background-color: var(--lighter-grey);
-    overflow-y: hidden;
-  }
+    .content-div {
+        display: grid;
+        grid-template-rows: 50px calc(100vh - 100px) 20px;
+        background-color: var(--lighter-grey);
+        overflow-y: hidden;
+    }
 
-  .restaurants-list {
-    display: grid;
-    grid-template-columns: 1fr;
-  }
+    .restaurants-list {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
 
-  .category-div {
-    padding: 1.2em;
-  }
+    .category-div {
+        padding: 1.2em;
+    }
 
-  .footer {
-    background-color: var(--lighter-grey);
-    align-self: end;
-    padding: 1em;
-    align-items: center;
-    justify-items: center;
-    display: grid;
-    text-transform: uppercase;
-    position: relative;
-  }
+    .footer {
+        background-color: var(--lighter-grey);
+        align-self: end;
+        padding: 1em;
+        align-items: center;
+        justify-items: center;
+        display: grid;
+        text-transform: uppercase;
+        position: relative;
+    }
 
-  .filter-panel {
-    position: absolute;
-    bottom: 31px;
-    z-index: 2;
-    width: 100%;
-  }
+    .filter-panel {
+        position: absolute;
+        bottom: 31px;
+        z-index: 2;
+        width: 100%;
+    }
 }
