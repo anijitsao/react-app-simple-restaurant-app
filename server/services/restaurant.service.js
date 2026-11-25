@@ -11,6 +11,13 @@ const {
   SUCCESS,
 } = process.env;
 
+// fields the client is allowed to filter/search on
+const ALLOWED_QUERY_FIELDS = ["cost", "locality", "cuisines", "name", "address"];
+
+// escape regex metacharacters so user input cannot alter regex semantics
+const escapeRegex = (value) =>
+  String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
 // this function will connect db and based on API send response
 const fetchRestaurants = async (req, res) => {
   let connection;
@@ -29,21 +36,24 @@ const fetchRestaurants = async (req, res) => {
 
     if (item) {
       // if searched from the search box
+      const safeItem = escapeRegex(item);
       query = {
         $or: [
-          { name: { $regex: `${item}`, $options: "i" } },
-          { locality: { $regex: `${item}`, $options: "i" } },
-          { address: { $regex: `${item}`, $options: "i" } },
+          { name: { $regex: safeItem, $options: "i" } },
+          { locality: { $regex: safeItem, $options: "i" } },
+          { address: { $regex: safeItem, $options: "i" } },
           {
             cuisines: {
-              $elemMatch: { $regex: `${item}`, $options: "i" },
+              $elemMatch: { $regex: safeItem, $options: "i" },
             },
           },
         ],
       };
     } else if (body) {
       // if clicked from the list of restaurants
-      const keys = Object.keys(body);
+      const keys = Object.keys(body).filter((key) =>
+        ALLOWED_QUERY_FIELDS.includes(key)
+      );
       console.log("body of the req is", body, " having keys ", keys);
 
       keys.forEach((key) => {
@@ -51,7 +61,7 @@ const fetchRestaurants = async (req, res) => {
         query[key] =
           key == "cost"
             ? parseInt(body[key])
-            : { $regex: `${body[key]}`, $options: "i" };
+            : { $regex: escapeRegex(body[key]), $options: "i" };
       });
     }
     console.log("Query is now\n", JSON.stringify(query, null, "\t"));
