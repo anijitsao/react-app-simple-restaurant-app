@@ -1,22 +1,23 @@
 // imports dependencies
 import express from "express";
 import cors from "cors";
-import morgan from "morgan";
 import helmet from "helmet";
-import { fileURLToPath } from "url";
-import path, { dirname } from "path";
+import { fileURLToPath } from "node:url";
+import path, { dirname } from "node:path";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 // local file dependencies
 import router from "./routes/restaurant.routes.js";
 
+import { httpLogger } from "./middlewares/httpLogger.middleware.js";
+
 const app = express();
 
 // middlewares
 app.use(cors());
 app.use(express.json({ type: "application/json" }));
-app.use(morgan("dev"));
+app.use(httpLogger);
 app.use(helmet({ contentSecurityPolicy: false }));
 
 // serve the static pages
