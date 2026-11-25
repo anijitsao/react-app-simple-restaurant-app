@@ -25,7 +25,7 @@ Back end is implemented using [Node JS](https://nodejs.org/en/docs), [Express JS
 
 </ul>
 
-- All the restaurant details namely *cusines, establishment type, address, locality, rating, cost for two persons* are stored in the [MongoDB Atlas](https://www.mongodb.com/cloud/atlas). This example uses a _free/ shared_ account. **So Please use it wisely**.
+- All the restaurant details namely *cusines, establishment type, address, locality, rating, cost for two persons* are stored in the [MongoDB Atlas](https://www.mongodb.com/cloud/atlas). You can either have one account or use local installation of the same.
 
 <br/> 
 
