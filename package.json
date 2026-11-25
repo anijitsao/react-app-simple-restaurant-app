@@ -7,9 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "node --env-file=.env server/index.js",
     "server:watch": "node --watch --env-file=.env server/index.js",
-    "dev:ui": "node_modules/.bin/vite",
-    "build:ui": "node_modules/.bin/vite build",
-    "preview:ui": "node_modules/.bin/vite preview",
+    "dev:ui": "vite",
+    "build:ui": "vite build",
+    "preview:ui": "vite preview",
     "start": "npm run build:ui && npm run server"
   },
   "type": "module",
@@ -29,7 +29,6 @@
     "helmet": "^8.3.0",
     "html-react-parser": "^6.1.10",
     "mongodb": "^7.9.1",
-    "morgan": "^1.12.1",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "react-router-dom": "^7.18.6"
